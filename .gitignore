@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.venv/
+venv/
+.env
+client_secret.json
+output/
+.shorts-tmp/
+.idea/
+.vscode/
+
