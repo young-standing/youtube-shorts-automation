@@ -58,10 +58,10 @@ jobs:
           cache: pip
           cache-dependency-path: requirements.txt
 
-      - name: Install FFmpeg, font, and Python dependencies
+      - name: Install FFmpeg and Python dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install --yes ffmpeg fonts-dejavu-core
+          sudo apt-get install --yes ffmpeg
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
@@ -124,4 +124,3 @@ jobs:
       - name: Clean temporary output
         if: always()
         run: rm -rf output
-

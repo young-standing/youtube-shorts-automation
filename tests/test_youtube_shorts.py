@@ -4,6 +4,7 @@ from scripts.merge_state import merge_states
 from scripts.render_short import (
     build_metadata,
     load_quotes,
+    locate_font,
     make_title,
     select_quote,
     validate_channel_name,
@@ -64,7 +65,11 @@ def test_long_title_is_capped_at_one_hundred_characters():
 def test_every_catalog_quote_fits_the_render_safe_area():
     for entry in load_quotes():
         wrapped = wrap_quote(entry["quote"])
-        assert len(wrapped.splitlines()) <= 7
+        assert len(wrapped.splitlines()) <= 5
+
+
+def test_bundled_poppins_font_is_available():
+    assert locate_font().name == "Poppins-SemiBold.ttf"
 
 
 def test_channel_name_is_limited_to_safe_width():

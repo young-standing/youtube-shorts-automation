@@ -11,7 +11,7 @@ The project does not require n8n, a VM, a database, paid rendering services, or 
 - Downloads suitable portrait footage through the official Pexels Videos API.
 - Randomly selects any `.mp3` file placed in `music/`.
 - Renders a 20-second 1080×1920 H.264/AAC Short with FFmpeg.
-- Adds a wrapped quote, readable dark text box, and repository-configured channel name.
+- Adds a safely wrapped quote in bundled Poppins SemiBold, a readable dark text box, and the repository-configured channel name.
 - Uploads through the official YouTube Data API using resumable upload and retries.
 - Saves two-day debugging artifacts and persists quote usage safely.
 
@@ -27,4 +27,3 @@ pytest -q
 ```
 
 No real YouTube upload is performed by the tests.
-

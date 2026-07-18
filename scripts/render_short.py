@@ -27,6 +27,7 @@ QUOTES_PATH = ROOT / "data" / "quotes.json"
 STATE_PATH = ROOT / "data" / "state.json"
 MUSIC_DIR = ROOT / "music"
 OUTPUT_DIR = ROOT / "output"
+POPPINS_FONT_PATH = ROOT / "assets" / "fonts" / "Poppins-SemiBold.ttf"
 PEXELS_SEARCH_URL = "https://api.pexels.com/v1/videos/search"
 FALLBACK_SEARCH = "calm sunrise nature"
 VIDEO_SECONDS = 20
@@ -159,7 +160,7 @@ def save_state(state: dict[str, Any], path: Path = STATE_PATH) -> None:
     temporary.replace(path)
 
 
-def wrap_quote(text: str, *, width: int = 26, max_lines: int = 7) -> str:
+def wrap_quote(text: str, *, width: int = 22, max_lines: int = 5) -> str:
     cleaned = re.sub(r"\s+", " ", text).strip()
     if not cleaned:
         raise ShortsError("Quote text cannot be empty")
@@ -357,15 +358,9 @@ def find_music_files(directory: Path = MUSIC_DIR) -> list[Path]:
 
 
 def locate_font() -> Path:
-    candidates = [
-        Path("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf"),
-        Path("/usr/share/fonts/dejavu/DejaVuSans-Bold.ttf"),
-        Path("C:/Windows/Fonts/arialbd.ttf"),
-    ]
-    for path in candidates:
-        if path.exists():
-            return path
-    raise ShortsError("A bold DejaVu Sans or Arial font could not be found")
+    if POPPINS_FONT_PATH.is_file():
+        return POPPINS_FONT_PATH
+    raise ShortsError(f"Bundled Poppins font is missing: {POPPINS_FONT_PATH}")
 
 
 def ffmpeg_filter_path(path: Path) -> str:
@@ -389,11 +384,11 @@ def run_ffmpeg(
         f"crop={WIDTH}:{HEIGHT},fps={FPS},eq=brightness=-0.12:saturation=0.92,"
         "format=yuv420p,"
         f"drawtext=fontfile='{font_path}':textfile='{quote_path}':expansion=none:"
-        "fontcolor=white:fontsize=76:line_spacing=18:"
+        "fontcolor=white:fontsize=60:line_spacing=14:"
         "x=(w-text_w)/2:y=(h-text_h)/2:"
-        "box=1:boxcolor=black@0.48:boxborderw=38,"
+        "box=1:boxcolor=black@0.48:boxborderw=30,"
         f"drawtext=fontfile='{font_path}':textfile='{channel_path}':expansion=none:"
-        "fontcolor=white@0.90:fontsize=38:"
+        "fontcolor=white@0.90:fontsize=30:"
         "x=(w-text_w)/2:y=h-190,"
         f"trim=duration={VIDEO_SECONDS},setpts=PTS-STARTPTS[v];"
         f"[1:a]volume=0.16,afade=t=in:st=0:d=1,"
