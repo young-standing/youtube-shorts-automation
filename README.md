@@ -2,11 +2,11 @@
 
 Create and upload one original English motivational YouTube Short every day using only GitHub Actions, the free Pexels Videos API, FFmpeg, repository-supplied royalty-free music, and the official YouTube Data API.
 
-The project does not require n8n, a VM, a database, paid rendering services, or paid AI APIs. Uploads are private by default.
+The project does not require n8n, a VM, a database, paid rendering services, or paid AI APIs. Scheduled uploads are public; manual runs remain private by default.
 
 ## What it does
 
-- Runs daily at 7:07 PM in `Asia/Yangon`, with manual runs supported.
+- Runs every day at 7:07 AM and 7:07 PM in `Asia/Yangon`, with manual runs supported.
 - Rotates through 102 original quotes without repeating the current cycle.
 - Downloads suitable portrait footage through the official Pexels Videos API.
 - Randomly selects any `.mp3` file placed in `music/`.

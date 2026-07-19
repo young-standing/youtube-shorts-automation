@@ -1,7 +1,9 @@
-name: Create daily YouTube Short
+name: Create twice-daily YouTube Short
 
 on:
   schedule:
+    - cron: "7 7 * * *"
+      timezone: "Asia/Yangon"
     - cron: "7 19 * * *"
       timezone: "Asia/Yangon"
   workflow_dispatch:
@@ -43,7 +45,7 @@ jobs:
       CHANNEL_NAME: ${{ vars.CHANNEL_NAME }}
       INPUT_QUOTE: ${{ github.event_name == 'workflow_dispatch' && inputs.quote || '' }}
       INPUT_PEXELS_SEARCH: ${{ github.event_name == 'workflow_dispatch' && inputs.pexels_search || '' }}
-      INPUT_PRIVACY_STATUS: ${{ github.event_name == 'workflow_dispatch' && inputs.privacy_status || 'private' }}
+      INPUT_PRIVACY_STATUS: ${{ github.event_name == 'workflow_dispatch' && inputs.privacy_status || 'public' }}
 
     steps:
       - name: Check out repository

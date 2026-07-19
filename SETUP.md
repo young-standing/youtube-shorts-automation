@@ -1,6 +1,6 @@
 # GitHub-only YouTube Shorts setup
 
-This guide configures the daily workflow in `.github/workflows/create-short.yml`. It renders a 20-second English motivational Short entirely on GitHub's `ubuntu-latest` runner and uploads it with the official YouTube Data API. Scheduled and manual uploads are private by default.
+This guide configures the twice-daily workflow in `.github/workflows/create-short.yml`. It renders a 20-second English motivational Short entirely on GitHub's `ubuntu-latest` runner and uploads it with the official YouTube Data API. Scheduled uploads are public; manual uploads remain private by default.
 
 ## What you need
 
@@ -122,21 +122,21 @@ Open the workflow run and expand individual steps for clear validation, Pexels, 
 
 The **Artifacts** section contains `output/short.mp4` and `output/metadata.json` even when the YouTube upload fails, as long as rendering succeeded. Artifacts are retained for two days to limit storage usage. Generated MP4 files are ignored by Git and are never committed.
 
-## 9. Enable public uploads only after testing
+## 9. Scheduled public uploads
 
-The schedule always uses `private`. Manual runs also default to `private`, but offer `unlisted` and `public` choices. After repeated private tests, licensing review, and channel-policy review, you can intentionally select `public` for a manual run. If you later decide that scheduled uploads should be public, change the scheduled fallback in the workflow deliberately and review the diff before merging.
+The 7:07 AM and 7:07 PM schedules upload as `public`. Manual runs still default to `private`, but offer `unlisted` and `public` choices. Keep reviewing footage, music licenses, metadata, and channel-policy compliance because scheduled public uploads do not include a human approval step.
 
 New or unaudited Google API projects can have API uploads restricted to private visibility regardless of the requested setting. Follow Google's audit and verification requirements rather than attempting to bypass the restriction.
 
 ## Schedule and quote rotation
 
-GitHub runs the workflow every day at `19:07` using the IANA timezone `Asia/Yangon`. GitHub schedules can be delayed during high load, although choosing minute 7 avoids the busiest start-of-hour period.
+GitHub runs the workflow every day at `07:07` and `19:07` using the IANA timezone `Asia/Yangon`. GitHub schedules can be delayed during high load, although choosing minute 7 avoids the busiest start-of-hour period.
 
 `data/quotes.json` contains more than 100 original, unattributed quotes across discipline, success, healing, confidence, growth, and consistency. `data/state.json` prevents reuse until the catalog cycle is exhausted. A manual quote does not alter catalog rotation.
 
 ## GitHub Actions minutes
 
-Standard GitHub-hosted runners are free for public repositories. Private repositories consume the Actions minutes and storage included with the repository owner's plan; usage beyond the allowance may be billed or blocked. Daily FFmpeg rendering can consume a meaningful portion of a private repository's allowance. Review **Settings > Billing and licensing** regularly. See [GitHub Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
+Standard GitHub-hosted runners are free for public repositories. Private repositories consume the Actions minutes and storage included with the repository owner's plan; usage beyond the allowance may be billed or blocked. Twice-daily FFmpeg rendering can consume a meaningful portion of a private repository's allowance. Review **Settings > Billing and licensing** regularly. See [GitHub Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 
 ## Copyright and repetitive-content considerations
 
@@ -155,4 +155,3 @@ pytest -q tests/test_youtube_shorts.py
 ```
 
 The test suite covers quote rotation, safe text wrapping, metadata/title generation, and state merging. The upload script is never invoked by these tests.
-
