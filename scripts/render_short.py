@@ -384,11 +384,11 @@ def run_ffmpeg(
         f"crop={WIDTH}:{HEIGHT},fps={FPS},eq=brightness=-0.12:saturation=0.92,"
         "format=yuv420p,"
         f"drawtext=fontfile='{font_path}':textfile='{quote_path}':expansion=none:"
-        "fontcolor=white:fontsize=60:line_spacing=14:"
+        "fontcolor=white:fontsize=48:line_spacing=10:fix_bounds=1:"
         "x=(w-text_w)/2:y=(h-text_h)/2:"
-        "box=1:boxcolor=black@0.48:boxborderw=30,"
+        "box=1:boxcolor=black@0.48:boxborderw=24,"
         f"drawtext=fontfile='{font_path}':textfile='{channel_path}':expansion=none:"
-        "fontcolor=white@0.90:fontsize=30:"
+        "fontcolor=white@0.90:fontsize=26:fix_bounds=1:"
         "x=(w-text_w)/2:y=h-190,"
         f"trim=duration={VIDEO_SECONDS},setpts=PTS-STARTPTS[v];"
         f"[1:a]volume=0.16,afade=t=in:st=0:d=1,"
@@ -524,8 +524,8 @@ def main() -> None:
 
         quote_file = temporary / "quote.txt"
         channel_file = temporary / "channel.txt"
-        quote_file.write_text(wrapped, encoding="utf-8")
-        channel_file.write_text(channel_name, encoding="utf-8")
+        quote_file.write_text(wrapped, encoding="utf-8", newline="\n")
+        channel_file.write_text(channel_name, encoding="utf-8", newline="\n")
         run_ffmpeg(footage, music, quote_file, channel_file, output_video)
 
     metadata = build_metadata(
