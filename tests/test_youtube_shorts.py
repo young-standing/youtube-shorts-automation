@@ -1,7 +1,11 @@
 import random
 
+import pytest
+
+from scripts.consume_quote import consume_quote
 from scripts.merge_state import merge_states
 from scripts.render_short import (
+    ShortsError,
     build_metadata,
     load_quotes,
     locate_font,
@@ -15,21 +19,19 @@ from scripts.render_short import (
 
 def sample_quotes():
     return [
-        {"id": "q001", "quote": "A steady step can carry a brave plan forward.", "pexels_search": "walking sunrise", "category": "consistency"},
-        {"id": "q002", "quote": "Useful work becomes confidence when repeated.", "pexels_search": "focused worker", "category": "confidence"},
-        {"id": "q003", "quote": "Choose the direction that makes tomorrow stronger.", "pexels_search": "mountain road", "category": "growth"},
+        {"id": "q001", "quote": "A steady step can carry a brave plan forward.", "insight": "Choose one useful action and finish it today.", "pexels_search": "walking sunrise", "category": "consistency"},
+        {"id": "q002", "quote": "Useful work becomes confidence when repeated.", "insight": "Practice the skill before asking confidence to appear.", "pexels_search": "focused worker", "category": "confidence"},
+        {"id": "q003", "quote": "Choose the direction that makes tomorrow stronger.", "insight": "Make the next decision from values instead of fear.", "pexels_search": "mountain road", "category": "growth"},
     ]
 
 
-def test_quote_selection_avoids_repeats_until_catalog_is_used():
+def test_quote_selection_never_restarts_an_exhausted_catalog():
     state = {"version": 1, "cycle": 1, "used_ids": [], "history": []}
     rng = random.Random(7)
     selected = [select_quote(sample_quotes(), state, rng=rng)["id"] for _ in range(3)]
     assert len(set(selected)) == 3
-    fourth = select_quote(sample_quotes(), state, rng=rng)["id"]
-    assert fourth in {"q001", "q002", "q003"}
-    assert len(state["used_ids"]) == 1
-    assert state["cycle"] == 2
+    with pytest.raises(ShortsError, match="already marked as used"):
+        select_quote(sample_quotes(), state, rng=rng)
 
 
 def test_wrap_quote_respects_line_width_and_safe_line_count():
@@ -55,6 +57,7 @@ def test_metadata_contains_attribution_quote_and_safe_title():
     assert len(metadata["title"]) <= 100
     assert metadata["title"].endswith("#shorts")
     assert entry["quote"] in metadata["description"]
+    assert entry["insight"] in metadata["description"]
     assert "Example Creator" in metadata["description"]
     assert "Sad Piano" in metadata["description"]
     assert metadata["music_license"] == "CC0"
@@ -70,8 +73,19 @@ def test_long_title_is_capped_at_one_hundred_characters():
 
 def test_every_catalog_quote_fits_the_render_safe_area():
     for entry in load_quotes():
-        wrapped = wrap_quote(entry["quote"])
-        assert len(wrapped.splitlines()) <= 5
+        wrapped_quote = wrap_quote(entry["quote"], width=32, max_lines=5)
+        wrapped_insight = wrap_quote(entry["insight"], width=34, max_lines=4)
+        assert len(wrapped_quote.splitlines()) <= 5
+        assert len(wrapped_insight.splitlines()) <= 4
+
+
+def test_successful_catalog_consumption_is_permanent_and_idempotent_for_manual_text():
+    entries = sample_quotes()
+    remaining = consume_quote(entries, "q002")
+    assert [entry["id"] for entry in remaining] == ["q001", "q003"]
+    assert consume_quote(entries, "manual") == entries
+    with pytest.raises(RuntimeError, match="not available"):
+        consume_quote(remaining, "q002")
 
 
 def test_bundled_poppins_font_is_available():

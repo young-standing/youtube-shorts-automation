@@ -43,7 +43,7 @@ WIDTH = 1080
 HEIGHT = 1920
 FPS = 30
 HASHTAGS = "#motivation #discipline #success #mindset #shorts"
-REQUIRED_CATEGORIES = {
+SUPPORTED_CATEGORIES = {
     "discipline",
     "success",
     "healing",
@@ -84,14 +84,14 @@ def load_json(path: Path) -> Any:
 
 def load_quotes(path: Path = QUOTES_PATH) -> list[dict[str, str]]:
     payload = load_json(path)
-    if not isinstance(payload, list) or len(payload) < 100:
-        raise ShortsError("data/quotes.json must contain at least 100 entries")
+    if not isinstance(payload, list) or not payload:
+        raise ShortsError("The quote catalog is empty; add new original scripts before running again")
     seen: set[str] = set()
     quotes: list[dict[str, str]] = []
     for index, item in enumerate(payload):
         if not isinstance(item, dict):
             raise ShortsError(f"Quote entry {index} must be an object")
-        required = {"id", "quote", "pexels_search", "category"}
+        required = {"id", "quote", "insight", "pexels_search", "category"}
         if set(item) != required:
             raise ShortsError(f"Quote entry {index} must contain exactly {sorted(required)}")
         normalized = {key: str(item[key]).strip() for key in required}
@@ -99,12 +99,10 @@ def load_quotes(path: Path = QUOTES_PATH) -> list[dict[str, str]]:
             raise ShortsError(f"Quote entry {index} contains an empty value")
         if normalized["id"] in seen:
             raise ShortsError(f"Duplicate quote id: {normalized['id']}")
-        if normalized["category"] not in REQUIRED_CATEGORIES:
+        if normalized["category"] not in SUPPORTED_CATEGORIES:
             raise ShortsError(f"Unsupported quote category: {normalized['category']}")
         seen.add(normalized["id"])
         quotes.append(normalized)
-    if not REQUIRED_CATEGORIES.issubset({item["category"] for item in quotes}):
-        raise ShortsError("The quote catalog does not cover every required category")
     return quotes
 
 
@@ -144,9 +142,7 @@ def select_quote(
     used = {value for value in state.get("used_ids", []) if value in known_ids}
     candidates = [entry for entry in quotes if entry["id"] not in used]
     if not candidates:
-        state["used_ids"] = []
-        state["cycle"] = int(state.get("cycle", 1)) + 1
-        candidates = list(quotes)
+        raise ShortsError("All remaining scripts are already marked as used; refill the catalog")
     selected = chooser.choice(candidates)
     state.setdefault("used_ids", []).append(selected["id"])
     state.setdefault("history", []).append(
@@ -221,9 +217,11 @@ def build_metadata(
     if privacy_status not in {"private", "unlisted", "public"}:
         raise ShortsError(f"Invalid privacy status: {privacy_status}")
     quote = entry["quote"].strip()
+    insight = entry["insight"].strip()
     return {
         "quote_id": entry["id"],
         "quote": quote,
+        "insight": insight,
         "category": entry["category"],
         "pexels_search": entry["pexels_search"],
         "pexels_creator": creator_name,
@@ -235,7 +233,7 @@ def build_metadata(
         "channel_name": channel_name,
         "title": make_title(quote),
         "description": (
-            f"{quote}\n\n"
+            f"{quote}\n\nTakeaway: {insight}\n\n"
             f"Footage by {creator_name} on Pexels: {source_url}\n"
             f"Music: {music_name} by {music_creator} "
             f"({music_license}): {music_source_url}\n\n"
@@ -504,7 +502,7 @@ def run_ffmpeg(
         f"crop={WIDTH}:{HEIGHT},fps={FPS},eq=brightness=-0.12:saturation=0.92,"
         "format=yuv420p,"
         f"drawtext=fontfile='{font_path}':textfile='{quote_path}':expansion=none:"
-        "fontcolor=white:fontsize=48:line_spacing=10:fix_bounds=1:"
+        "fontcolor=white:fontsize=40:line_spacing=8:fix_bounds=1:"
         "x=(w-text_w)/2:y=(h-text_h)/2:"
         "box=1:boxcolor=black@0.48:boxborderw=24,"
         f"drawtext=fontfile='{font_path}':textfile='{channel_path}':expansion=none:"
@@ -598,6 +596,7 @@ def main() -> None:
         selected = {
             "id": "manual",
             "quote": quote_override,
+            "insight": "Choose one useful action and complete it today.",
             "pexels_search": args.search.strip() or FALLBACK_SEARCH,
             "category": "growth",
         }
@@ -608,7 +607,9 @@ def main() -> None:
             selected = {**selected, "pexels_search": args.search.strip()}
         state_changed = True
 
-    wrapped = wrap_quote(selected["quote"])
+    wrapped_quote = wrap_quote(selected["quote"], width=32, max_lines=5)
+    wrapped_insight = wrap_quote(selected["insight"], width=34, max_lines=4)
+    wrapped = f"{wrapped_quote}\n\n{wrapped_insight}"
     if args.music_file:
         if not args.music_file.is_file():
             raise ShortsError(f"Music file does not exist: {args.music_file}")

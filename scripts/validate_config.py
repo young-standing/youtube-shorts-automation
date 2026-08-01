@@ -51,13 +51,16 @@ def main() -> None:
     validate_channel_name(os.environ.get("CHANNEL_NAME", ""))
     if shutil.which("ffmpeg") is None or shutil.which("ffprobe") is None:
         raise ShortsError("ffmpeg and ffprobe must both be installed")
-    load_quotes()
+    quotes = load_quotes()
     load_state()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     probe = OUTPUT_DIR / ".write-test"
     probe.write_text("ok", encoding="utf-8")
     probe.unlink()
-    print("Configuration is valid; music will be fetched from Openverse.")
+    print(
+        f"Configuration is valid; {len(quotes)} unused original script(s) remain "
+        "and music will be fetched from Openverse."
+    )
 
 
 if __name__ == "__main__":

@@ -99,9 +99,9 @@ No repository MP3 is required. Every run authenticates with the free Openverse c
 
 Commit and push the implementation, quotes, and state to the default branch. The scheduled event only runs workflows that exist on the default branch.
 
-The workflow needs permission to update `data/state.json`. Under **Settings > Actions > General > Workflow permissions**, allow **Read and write permissions** if repository or organization policy does not already permit the workflow's declared `contents: write` permission.
+The workflow needs permission to update `data/state.json` and `data/quotes.json`. Under **Settings > Actions > General > Workflow permissions**, allow **Read and write permissions** if repository or organization policy does not already permit the workflow's declared `contents: write` permission.
 
-The state update uses a temporary branch, merges the rendered state with the latest remote state, and retries conflicts three times. A state-persistence failure is non-fatal and does not undo a completed render or upload.
+After a successful YouTube upload, the state update uses a temporary branch, removes the uploaded script from the available catalog, merges the rendered state with the latest remote state, and retries conflicts three times. Failed renders or uploads do not consume a script. A persistence failure is non-fatal and does not undo a completed upload.
 
 ## 7. Run the first private manual test
 
@@ -132,7 +132,7 @@ New or unaudited Google API projects can have API uploads restricted to private 
 
 GitHub runs the workflow every day at `07:07`, `13:07`, and `19:07` using the IANA timezone `Asia/Yangon`. GitHub schedules can be delayed during high load, although choosing minute 7 avoids the busiest start-of-hour period.
 
-`data/quotes.json` contains more than 100 original, unattributed quotes across discipline, success, healing, confidence, growth, and consistency. `data/state.json` prevents reuse until the catalog cycle is exhausted. A manual quote does not alter catalog rotation.
+`data/quotes.json` starts with 500 original, unattributed motivation/life scripts across discipline, success, healing, confidence, growth, and consistency. Each script has a headline quote and a short actionable takeaway. A successfully uploaded entry is permanently removed instead of being recycled. At three uploads per day the initial catalog lasts about 166 days; when it is empty, scheduled rendering stops with a clear refill error. A manual quote does not consume a catalog entry.
 
 ## GitHub Actions minutes
 
@@ -154,4 +154,4 @@ Run unit tests without uploading anything:
 pytest -q tests/test_youtube_shorts.py
 ```
 
-The test suite covers quote rotation, safe text wrapping, metadata/title generation, and state merging. The upload script is never invoked by these tests.
+The test suite covers permanent script consumption, safe text wrapping, metadata/title generation, Openverse filtering, and state merging. The upload script is never invoked by these tests.

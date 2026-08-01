@@ -83,13 +83,14 @@ jobs:
         run: python -m scripts.upload_youtube
 
       - name: Persist quote usage state safely
-        if: ${{ always() && steps.render.outcome == 'success' }}
+        if: ${{ always() && steps.render.outcome == 'success' && steps.youtube.outcome == 'success' }}
         continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
           snapshot="$RUNNER_TEMP/rendered-state.json"
           cp data/state.json "$snapshot"
+          consumed_id="$(python -c 'import json; print(json.load(open("output/metadata.json", encoding="utf-8"))["quote_id"])')"
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
@@ -97,14 +98,15 @@ jobs:
             git fetch origin "$GITHUB_REF_NAME"
             git checkout -B shorts-state-update "origin/$GITHUB_REF_NAME"
             python -m scripts.merge_state data/state.json "$snapshot" --output data/state.json
+            python -m scripts.consume_quote data/quotes.json "$consumed_id" --output data/quotes.json
 
-            if git diff --quiet -- data/state.json; then
+            if git diff --quiet -- data/state.json data/quotes.json; then
               echo "No quote state change to persist."
               exit 0
             fi
 
-            git add data/state.json
-            git commit -m "Update YouTube Shorts quote state [skip ci]"
+            git add data/state.json data/quotes.json
+            git commit -m "Consume uploaded YouTube Shorts script [skip ci]"
             if git push origin "HEAD:$GITHUB_REF_NAME"; then
               echo "Quote state persisted."
               exit 0

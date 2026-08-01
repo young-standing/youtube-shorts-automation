@@ -1,615 +1,3502 @@
 [
   {
-    "id": "q001",
-    "quote": "Do the useful thing before the comfortable thing asks for your time.",
-    "pexels_search": "focused athlete training alone",
+    "id": "m001",
+    "quote": "A promise kept when motivation is absent builds a future that excuses cannot reach.",
+    "insight": "Choose the task you have delayed most and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "focused athlete training",
     "category": "discipline"
   },
   {
-    "id": "q002",
-    "quote": "A promise to yourself becomes power when you keep it on ordinary days.",
-    "pexels_search": "early morning runner city",
+    "id": "m002",
+    "quote": "A promise kept when motivation is absent turns uncertainty into a direction you can follow.",
+    "insight": "Choose the task you have delayed most then make the next useful move before you reconsider.",
+    "pexels_search": "morning routine sunrise",
     "category": "discipline"
   },
   {
-    "id": "q003",
-    "quote": "Discipline is choosing tomorrow's freedom over today's easiest excuse.",
-    "pexels_search": "person climbing mountain trail",
+    "id": "m003",
+    "quote": "A promise kept when motivation is absent gives tomorrow a stronger place to begin.",
+    "insight": "Choose the task you have delayed most and record the result so progress becomes visible.",
+    "pexels_search": "person working alone",
     "category": "discipline"
   },
   {
-    "id": "q004",
-    "quote": "Small rules followed daily can carry dreams farther than sudden inspiration.",
-    "pexels_search": "organized desk morning light",
+    "id": "m004",
+    "quote": "A promise kept when motivation is absent creates evidence that you can trust yourself again.",
+    "insight": "Choose the task you have delayed most then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "mountain trail determination",
     "category": "discipline"
   },
   {
-    "id": "q005",
-    "quote": "Your future changes when your routine stops negotiating with your mood.",
-    "pexels_search": "determined person gym workout",
+    "id": "m005",
+    "quote": "A promise kept when motivation is absent moves your life farther than waiting for perfect conditions.",
+    "insight": "Choose the task you have delayed most and finish a small version before seeking a perfect one.",
+    "pexels_search": "focused athlete training",
     "category": "discipline"
   },
   {
-    "id": "q006",
-    "quote": "Finish the quiet work that no applause will ever notice.",
-    "pexels_search": "hands writing notebook focus",
+    "id": "m006",
+    "quote": "A promise kept when motivation is absent becomes quiet proof that meaningful change is already happening.",
+    "insight": "Choose the task you have delayed most then repeat it at the same time tomorrow.",
+    "pexels_search": "morning routine sunrise",
     "category": "discipline"
   },
   {
-    "id": "q007",
-    "quote": "Control the first hour and the rest of the day has a direction.",
-    "pexels_search": "sunrise morning routine",
+    "id": "m007",
+    "quote": "One focused hour protected from distraction builds a future that excuses cannot reach.",
+    "insight": "Protect one hour from every notification and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "morning routine sunrise",
     "category": "discipline"
   },
   {
-    "id": "q008",
-    "quote": "The habit you protect today becomes the strength you rely on tomorrow.",
-    "pexels_search": "athlete tying running shoes",
+    "id": "m008",
+    "quote": "One focused hour protected from distraction turns uncertainty into a direction you can follow.",
+    "insight": "Protect one hour from every notification then make the next useful move before you reconsider.",
+    "pexels_search": "person working alone",
     "category": "discipline"
   },
   {
-    "id": "q009",
-    "quote": "Hard choices become easier when your reason is stronger than your comfort.",
-    "pexels_search": "hiker steep mountain path",
+    "id": "m009",
+    "quote": "One focused hour protected from distraction gives tomorrow a stronger place to begin.",
+    "insight": "Protect one hour from every notification and record the result so progress becomes visible.",
+    "pexels_search": "mountain trail determination",
     "category": "discipline"
   },
   {
-    "id": "q010",
-    "quote": "Train your attention, and your actions will stop wandering.",
-    "pexels_search": "person meditating sunrise",
+    "id": "m010",
+    "quote": "One focused hour protected from distraction creates evidence that you can trust yourself again.",
+    "insight": "Protect one hour from every notification then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "focused athlete training",
     "category": "discipline"
   },
   {
-    "id": "q011",
-    "quote": "One disciplined hour can rescue a week of scattered intentions.",
-    "pexels_search": "focused student studying library",
+    "id": "m011",
+    "quote": "One focused hour protected from distraction moves your life farther than waiting for perfect conditions.",
+    "insight": "Protect one hour from every notification and finish a small version before seeking a perfect one.",
+    "pexels_search": "morning routine sunrise",
     "category": "discipline"
   },
   {
-    "id": "q012",
-    "quote": "Keep the standard even when nobody is checking the result.",
-    "pexels_search": "craftsperson working carefully",
+    "id": "m012",
+    "quote": "One focused hour protected from distraction becomes quiet proof that meaningful change is already happening.",
+    "insight": "Protect one hour from every notification then repeat it at the same time tomorrow.",
+    "pexels_search": "person working alone",
     "category": "discipline"
   },
   {
-    "id": "q013",
-    "quote": "You do not need more pressure; you need fewer broken agreements with yourself.",
-    "pexels_search": "person planning calendar desk",
+    "id": "m013",
+    "quote": "A difficult task finished before comfort takes over builds a future that excuses cannot reach.",
+    "insight": "Begin with the duty you usually avoid and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person working alone",
     "category": "discipline"
   },
   {
-    "id": "q014",
-    "quote": "A clear boundary around your time is a vote for the life you want.",
-    "pexels_search": "minimal clock workspace",
+    "id": "m014",
+    "quote": "A difficult task finished before comfort takes over turns uncertainty into a direction you can follow.",
+    "insight": "Begin with the duty you usually avoid then make the next useful move before you reconsider.",
+    "pexels_search": "mountain trail determination",
     "category": "discipline"
   },
   {
-    "id": "q015",
-    "quote": "Practice saying no to distractions before they learn your schedule.",
-    "pexels_search": "phone turned off desk",
+    "id": "m015",
+    "quote": "A difficult task finished before comfort takes over gives tomorrow a stronger place to begin.",
+    "insight": "Begin with the duty you usually avoid and record the result so progress becomes visible.",
+    "pexels_search": "focused athlete training",
     "category": "discipline"
   },
   {
-    "id": "q016",
-    "quote": "The strongest routine is simple enough to repeat on your hardest day.",
-    "pexels_search": "runner training in rain",
+    "id": "m016",
+    "quote": "A difficult task finished before comfort takes over creates evidence that you can trust yourself again.",
+    "insight": "Begin with the duty you usually avoid then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "morning routine sunrise",
     "category": "discipline"
   },
   {
-    "id": "q017",
-    "quote": "Let preparation make confidence unnecessary for the first step.",
-    "pexels_search": "athlete preparing before race",
+    "id": "m017",
+    "quote": "A difficult task finished before comfort takes over moves your life farther than waiting for perfect conditions.",
+    "insight": "Begin with the duty you usually avoid and finish a small version before seeking a perfect one.",
+    "pexels_search": "person working alone",
     "category": "discipline"
   },
   {
-    "id": "q018",
-    "quote": "Success grows quietly while excuses compete for attention.",
-    "pexels_search": "business person walking city sunrise",
+    "id": "m018",
+    "quote": "A difficult task finished before comfort takes over becomes quiet proof that meaningful change is already happening.",
+    "insight": "Begin with the duty you usually avoid then repeat it at the same time tomorrow.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m019",
+    "quote": "The routine you follow on an ordinary morning builds a future that excuses cannot reach.",
+    "insight": "Write one rule your morning must follow and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m020",
+    "quote": "The routine you follow on an ordinary morning turns uncertainty into a direction you can follow.",
+    "insight": "Write one rule your morning must follow then make the next useful move before you reconsider.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m021",
+    "quote": "The routine you follow on an ordinary morning gives tomorrow a stronger place to begin.",
+    "insight": "Write one rule your morning must follow and record the result so progress becomes visible.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m022",
+    "quote": "The routine you follow on an ordinary morning creates evidence that you can trust yourself again.",
+    "insight": "Write one rule your morning must follow then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m023",
+    "quote": "The routine you follow on an ordinary morning moves your life farther than waiting for perfect conditions.",
+    "insight": "Write one rule your morning must follow and finish a small version before seeking a perfect one.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m024",
+    "quote": "The routine you follow on an ordinary morning becomes quiet proof that meaningful change is already happening.",
+    "insight": "Write one rule your morning must follow then repeat it at the same time tomorrow.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m025",
+    "quote": "A clear boundary around your most important work builds a future that excuses cannot reach.",
+    "insight": "Close the easiest door to distraction and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m026",
+    "quote": "A clear boundary around your most important work turns uncertainty into a direction you can follow.",
+    "insight": "Close the easiest door to distraction then make the next useful move before you reconsider.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m027",
+    "quote": "A clear boundary around your most important work gives tomorrow a stronger place to begin.",
+    "insight": "Close the easiest door to distraction and record the result so progress becomes visible.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m028",
+    "quote": "A clear boundary around your most important work creates evidence that you can trust yourself again.",
+    "insight": "Close the easiest door to distraction then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m029",
+    "quote": "A clear boundary around your most important work moves your life farther than waiting for perfect conditions.",
+    "insight": "Close the easiest door to distraction and finish a small version before seeking a perfect one.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m030",
+    "quote": "A clear boundary around your most important work becomes quiet proof that meaningful change is already happening.",
+    "insight": "Close the easiest door to distraction then repeat it at the same time tomorrow.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m031",
+    "quote": "One honest decision made without negotiating builds a future that excuses cannot reach.",
+    "insight": "Decide what will be finished before resting and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m032",
+    "quote": "One honest decision made without negotiating turns uncertainty into a direction you can follow.",
+    "insight": "Decide what will be finished before resting then make the next useful move before you reconsider.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m033",
+    "quote": "One honest decision made without negotiating gives tomorrow a stronger place to begin.",
+    "insight": "Decide what will be finished before resting and record the result so progress becomes visible.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m034",
+    "quote": "One honest decision made without negotiating creates evidence that you can trust yourself again.",
+    "insight": "Decide what will be finished before resting then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m035",
+    "quote": "One honest decision made without negotiating moves your life farther than waiting for perfect conditions.",
+    "insight": "Decide what will be finished before resting and finish a small version before seeking a perfect one.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m036",
+    "quote": "One honest decision made without negotiating becomes quiet proof that meaningful change is already happening.",
+    "insight": "Decide what will be finished before resting then repeat it at the same time tomorrow.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m037",
+    "quote": "The standard you keep when nobody is watching builds a future that excuses cannot reach.",
+    "insight": "Keep one promise that nobody else can see and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m038",
+    "quote": "The standard you keep when nobody is watching turns uncertainty into a direction you can follow.",
+    "insight": "Keep one promise that nobody else can see then make the next useful move before you reconsider.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m039",
+    "quote": "The standard you keep when nobody is watching gives tomorrow a stronger place to begin.",
+    "insight": "Keep one promise that nobody else can see and record the result so progress becomes visible.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m040",
+    "quote": "The standard you keep when nobody is watching creates evidence that you can trust yourself again.",
+    "insight": "Keep one promise that nobody else can see then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m041",
+    "quote": "The standard you keep when nobody is watching moves your life farther than waiting for perfect conditions.",
+    "insight": "Keep one promise that nobody else can see and finish a small version before seeking a perfect one.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m042",
+    "quote": "The standard you keep when nobody is watching becomes quiet proof that meaningful change is already happening.",
+    "insight": "Keep one promise that nobody else can see then repeat it at the same time tomorrow.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m043",
+    "quote": "A small responsibility completed without applause builds a future that excuses cannot reach.",
+    "insight": "Complete the smallest neglected responsibility and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m044",
+    "quote": "A small responsibility completed without applause turns uncertainty into a direction you can follow.",
+    "insight": "Complete the smallest neglected responsibility then make the next useful move before you reconsider.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m045",
+    "quote": "A small responsibility completed without applause gives tomorrow a stronger place to begin.",
+    "insight": "Complete the smallest neglected responsibility and record the result so progress becomes visible.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m046",
+    "quote": "A small responsibility completed without applause creates evidence that you can trust yourself again.",
+    "insight": "Complete the smallest neglected responsibility then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m047",
+    "quote": "A small responsibility completed without applause moves your life farther than waiting for perfect conditions.",
+    "insight": "Complete the smallest neglected responsibility and finish a small version before seeking a perfect one.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m048",
+    "quote": "A small responsibility completed without applause becomes quiet proof that meaningful change is already happening.",
+    "insight": "Complete the smallest neglected responsibility then repeat it at the same time tomorrow.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m049",
+    "quote": "The first useful action after the alarm rings builds a future that excuses cannot reach.",
+    "insight": "Place tomorrow's first task where you can see it and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m050",
+    "quote": "The first useful action after the alarm rings turns uncertainty into a direction you can follow.",
+    "insight": "Place tomorrow's first task where you can see it then make the next useful move before you reconsider.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m051",
+    "quote": "The first useful action after the alarm rings gives tomorrow a stronger place to begin.",
+    "insight": "Place tomorrow's first task where you can see it and record the result so progress becomes visible.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m052",
+    "quote": "The first useful action after the alarm rings creates evidence that you can trust yourself again.",
+    "insight": "Place tomorrow's first task where you can see it then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m053",
+    "quote": "The first useful action after the alarm rings moves your life farther than waiting for perfect conditions.",
+    "insight": "Place tomorrow's first task where you can see it and finish a small version before seeking a perfect one.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m054",
+    "quote": "The first useful action after the alarm rings becomes quiet proof that meaningful change is already happening.",
+    "insight": "Place tomorrow's first task where you can see it then repeat it at the same time tomorrow.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m055",
+    "quote": "A distraction refused at the right moment builds a future that excuses cannot reach.",
+    "insight": "Say no to one impulse that steals your attention and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m056",
+    "quote": "A distraction refused at the right moment turns uncertainty into a direction you can follow.",
+    "insight": "Say no to one impulse that steals your attention then make the next useful move before you reconsider.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m057",
+    "quote": "A distraction refused at the right moment gives tomorrow a stronger place to begin.",
+    "insight": "Say no to one impulse that steals your attention and record the result so progress becomes visible.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m058",
+    "quote": "A distraction refused at the right moment creates evidence that you can trust yourself again.",
+    "insight": "Say no to one impulse that steals your attention then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m059",
+    "quote": "A distraction refused at the right moment moves your life farther than waiting for perfect conditions.",
+    "insight": "Say no to one impulse that steals your attention and finish a small version before seeking a perfect one.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m060",
+    "quote": "A distraction refused at the right moment becomes quiet proof that meaningful change is already happening.",
+    "insight": "Say no to one impulse that steals your attention then repeat it at the same time tomorrow.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m061",
+    "quote": "The work you complete despite an imperfect mood builds a future that excuses cannot reach.",
+    "insight": "Work through the first wave of resistance and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m062",
+    "quote": "The work you complete despite an imperfect mood turns uncertainty into a direction you can follow.",
+    "insight": "Work through the first wave of resistance then make the next useful move before you reconsider.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m063",
+    "quote": "The work you complete despite an imperfect mood gives tomorrow a stronger place to begin.",
+    "insight": "Work through the first wave of resistance and record the result so progress becomes visible.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m064",
+    "quote": "The work you complete despite an imperfect mood creates evidence that you can trust yourself again.",
+    "insight": "Work through the first wave of resistance then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m065",
+    "quote": "The work you complete despite an imperfect mood moves your life farther than waiting for perfect conditions.",
+    "insight": "Work through the first wave of resistance and finish a small version before seeking a perfect one.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m066",
+    "quote": "The work you complete despite an imperfect mood becomes quiet proof that meaningful change is already happening.",
+    "insight": "Work through the first wave of resistance then repeat it at the same time tomorrow.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m067",
+    "quote": "A plan reduced to one nonnegotiable step builds a future that excuses cannot reach.",
+    "insight": "Reduce today's plan to one essential step and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m068",
+    "quote": "A plan reduced to one nonnegotiable step turns uncertainty into a direction you can follow.",
+    "insight": "Reduce today's plan to one essential step then make the next useful move before you reconsider.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m069",
+    "quote": "A plan reduced to one nonnegotiable step gives tomorrow a stronger place to begin.",
+    "insight": "Reduce today's plan to one essential step and record the result so progress becomes visible.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m070",
+    "quote": "A plan reduced to one nonnegotiable step creates evidence that you can trust yourself again.",
+    "insight": "Reduce today's plan to one essential step then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m071",
+    "quote": "A plan reduced to one nonnegotiable step moves your life farther than waiting for perfect conditions.",
+    "insight": "Reduce today's plan to one essential step and finish a small version before seeking a perfect one.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m072",
+    "quote": "A plan reduced to one nonnegotiable step becomes quiet proof that meaningful change is already happening.",
+    "insight": "Reduce today's plan to one essential step then repeat it at the same time tomorrow.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m073",
+    "quote": "The habit you protect during a difficult week builds a future that excuses cannot reach.",
+    "insight": "Schedule the habit that matters most and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m074",
+    "quote": "The habit you protect during a difficult week turns uncertainty into a direction you can follow.",
+    "insight": "Schedule the habit that matters most then make the next useful move before you reconsider.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m075",
+    "quote": "The habit you protect during a difficult week gives tomorrow a stronger place to begin.",
+    "insight": "Schedule the habit that matters most and record the result so progress becomes visible.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m076",
+    "quote": "The habit you protect during a difficult week creates evidence that you can trust yourself again.",
+    "insight": "Schedule the habit that matters most then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m077",
+    "quote": "The habit you protect during a difficult week moves your life farther than waiting for perfect conditions.",
+    "insight": "Schedule the habit that matters most and finish a small version before seeking a perfect one.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m078",
+    "quote": "The habit you protect during a difficult week becomes quiet proof that meaningful change is already happening.",
+    "insight": "Schedule the habit that matters most then repeat it at the same time tomorrow.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m079",
+    "quote": "One deliberate choice repeated without drama builds a future that excuses cannot reach.",
+    "insight": "Make one disciplined choice without announcing it and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m080",
+    "quote": "One deliberate choice repeated without drama turns uncertainty into a direction you can follow.",
+    "insight": "Make one disciplined choice without announcing it then make the next useful move before you reconsider.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m081",
+    "quote": "One deliberate choice repeated without drama gives tomorrow a stronger place to begin.",
+    "insight": "Make one disciplined choice without announcing it and record the result so progress becomes visible.",
+    "pexels_search": "mountain trail determination",
+    "category": "discipline"
+  },
+  {
+    "id": "m082",
+    "quote": "One deliberate choice repeated without drama creates evidence that you can trust yourself again.",
+    "insight": "Make one disciplined choice without announcing it then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "focused athlete training",
+    "category": "discipline"
+  },
+  {
+    "id": "m083",
+    "quote": "One deliberate choice repeated without drama moves your life farther than waiting for perfect conditions.",
+    "insight": "Make one disciplined choice without announcing it and finish a small version before seeking a perfect one.",
+    "pexels_search": "morning routine sunrise",
+    "category": "discipline"
+  },
+  {
+    "id": "m084",
+    "quote": "One deliberate choice repeated without drama becomes quiet proof that meaningful change is already happening.",
+    "insight": "Make one disciplined choice without announcing it then repeat it at the same time tomorrow.",
+    "pexels_search": "person working alone",
+    "category": "discipline"
+  },
+  {
+    "id": "m085",
+    "quote": "A useful skill practiced beyond the beginner stage builds a future that excuses cannot reach.",
+    "insight": "Practice the skill your next opportunity will require and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "entrepreneur working focused",
     "category": "success"
   },
   {
-    "id": "q019",
-    "quote": "Build something useful today, and let recognition arrive on its own schedule.",
-    "pexels_search": "creative professional working studio",
+    "id": "m086",
+    "quote": "A useful skill practiced beyond the beginner stage turns uncertainty into a direction you can follow.",
+    "insight": "Practice the skill your next opportunity will require then make the next useful move before you reconsider.",
+    "pexels_search": "city sunrise ambition",
     "category": "success"
   },
   {
-    "id": "q020",
-    "quote": "Progress becomes visible after patience has already done the invisible work.",
-    "pexels_search": "seedling growing time lapse nature",
+    "id": "m087",
+    "quote": "A useful skill practiced beyond the beginner stage gives tomorrow a stronger place to begin.",
+    "insight": "Practice the skill your next opportunity will require and record the result so progress becomes visible.",
+    "pexels_search": "craftsperson detailed work",
     "category": "success"
   },
   {
-    "id": "q021",
-    "quote": "A meaningful win begins with a problem you are willing to understand deeply.",
-    "pexels_search": "engineer solving problem desk",
+    "id": "m088",
+    "quote": "A useful skill practiced beyond the beginner stage creates evidence that you can trust yourself again.",
+    "insight": "Practice the skill your next opportunity will require then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "runner reaching mountain summit",
     "category": "success"
   },
   {
-    "id": "q022",
-    "quote": "Measure success by the value you create, not the noise you attract.",
-    "pexels_search": "team collaborating modern office",
+    "id": "m089",
+    "quote": "A useful skill practiced beyond the beginner stage moves your life farther than waiting for perfect conditions.",
+    "insight": "Practice the skill your next opportunity will require and finish a small version before seeking a perfect one.",
+    "pexels_search": "entrepreneur working focused",
     "category": "success"
   },
   {
-    "id": "q023",
-    "quote": "The next opportunity often looks like work nobody volunteered to do.",
-    "pexels_search": "worker opening shop morning",
+    "id": "m090",
+    "quote": "A useful skill practiced beyond the beginner stage becomes quiet proof that meaningful change is already happening.",
+    "insight": "Practice the skill your next opportunity will require then repeat it at the same time tomorrow.",
+    "pexels_search": "city sunrise ambition",
     "category": "success"
   },
   {
-    "id": "q024",
-    "quote": "Aim for results that still matter after the excitement fades.",
-    "pexels_search": "mountain summit wide view",
+    "id": "m091",
+    "quote": "One thoughtful risk taken with preparation builds a future that excuses cannot reach.",
+    "insight": "Take one prepared risk you have been postponing and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "city sunrise ambition",
     "category": "success"
   },
   {
-    "id": "q025",
-    "quote": "Your best advantage is becoming dependable when the outcome is uncertain.",
-    "pexels_search": "team member helping colleague",
+    "id": "m092",
+    "quote": "One thoughtful risk taken with preparation turns uncertainty into a direction you can follow.",
+    "insight": "Take one prepared risk you have been postponing then make the next useful move before you reconsider.",
+    "pexels_search": "craftsperson detailed work",
     "category": "success"
   },
   {
-    "id": "q026",
-    "quote": "Success is easier to carry when character grew strong enough first.",
-    "pexels_search": "person walking forest path",
+    "id": "m093",
+    "quote": "One thoughtful risk taken with preparation gives tomorrow a stronger place to begin.",
+    "insight": "Take one prepared risk you have been postponing and record the result so progress becomes visible.",
+    "pexels_search": "runner reaching mountain summit",
     "category": "success"
   },
   {
-    "id": "q027",
-    "quote": "Learn faster than your circumstances can change around you.",
-    "pexels_search": "student learning computer",
+    "id": "m094",
+    "quote": "One thoughtful risk taken with preparation creates evidence that you can trust yourself again.",
+    "insight": "Take one prepared risk you have been postponing then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "entrepreneur working focused",
     "category": "success"
   },
   {
-    "id": "q028",
-    "quote": "Do not chase every door; become excellent enough to recognize the right one.",
-    "pexels_search": "hallway doors light",
+    "id": "m095",
+    "quote": "One thoughtful risk taken with preparation moves your life farther than waiting for perfect conditions.",
+    "insight": "Take one prepared risk you have been postponing and finish a small version before seeking a perfect one.",
+    "pexels_search": "city sunrise ambition",
     "category": "success"
   },
   {
-    "id": "q029",
-    "quote": "A goal becomes real when your calendar begins to reflect it.",
-    "pexels_search": "calendar planning close up",
+    "id": "m096",
+    "quote": "One thoughtful risk taken with preparation becomes quiet proof that meaningful change is already happening.",
+    "insight": "Take one prepared risk you have been postponing then repeat it at the same time tomorrow.",
+    "pexels_search": "craftsperson detailed work",
     "category": "success"
   },
   {
-    "id": "q030",
-    "quote": "Create evidence with action instead of arguments with doubt.",
-    "pexels_search": "hands building project workshop",
+    "id": "m097",
+    "quote": "A long goal divided into visible milestones builds a future that excuses cannot reach.",
+    "insight": "Turn your largest goal into today's milestone and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "craftsperson detailed work",
     "category": "success"
   },
   {
-    "id": "q031",
-    "quote": "The work that compounds is rarely the work that feels dramatic.",
-    "pexels_search": "city construction progress",
+    "id": "m098",
+    "quote": "A long goal divided into visible milestones turns uncertainty into a direction you can follow.",
+    "insight": "Turn your largest goal into today's milestone then make the next useful move before you reconsider.",
+    "pexels_search": "runner reaching mountain summit",
     "category": "success"
   },
   {
-    "id": "q032",
-    "quote": "Choose a direction worth staying with when quick rewards disappear.",
-    "pexels_search": "long road horizon",
+    "id": "m099",
+    "quote": "A long goal divided into visible milestones gives tomorrow a stronger place to begin.",
+    "insight": "Turn your largest goal into today's milestone and record the result so progress becomes visible.",
+    "pexels_search": "entrepreneur working focused",
     "category": "success"
   },
   {
-    "id": "q033",
-    "quote": "Make your contribution so clear that luck has somewhere to land.",
-    "pexels_search": "professional presenting project",
+    "id": "m100",
+    "quote": "A long goal divided into visible milestones creates evidence that you can trust yourself again.",
+    "insight": "Turn your largest goal into today's milestone then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "city sunrise ambition",
     "category": "success"
   },
   {
-    "id": "q034",
-    "quote": "Winning once is an event; building the ability to win again is success.",
-    "pexels_search": "athlete practicing repeated drills",
+    "id": "m101",
+    "quote": "A long goal divided into visible milestones moves your life farther than waiting for perfect conditions.",
+    "insight": "Turn your largest goal into today's milestone and finish a small version before seeking a perfect one.",
+    "pexels_search": "craftsperson detailed work",
     "category": "success"
   },
   {
-    "id": "q035",
-    "quote": "Healing begins when you stop demanding that yesterday explain itself.",
+    "id": "m102",
+    "quote": "A long goal divided into visible milestones becomes quiet proof that meaningful change is already happening.",
+    "insight": "Turn your largest goal into today's milestone then repeat it at the same time tomorrow.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m103",
+    "quote": "The lesson collected from an honest failure builds a future that excuses cannot reach.",
+    "insight": "Write the lesson hidden inside your latest failure and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m104",
+    "quote": "The lesson collected from an honest failure turns uncertainty into a direction you can follow.",
+    "insight": "Write the lesson hidden inside your latest failure then make the next useful move before you reconsider.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m105",
+    "quote": "The lesson collected from an honest failure gives tomorrow a stronger place to begin.",
+    "insight": "Write the lesson hidden inside your latest failure and record the result so progress becomes visible.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m106",
+    "quote": "The lesson collected from an honest failure creates evidence that you can trust yourself again.",
+    "insight": "Write the lesson hidden inside your latest failure then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m107",
+    "quote": "The lesson collected from an honest failure moves your life farther than waiting for perfect conditions.",
+    "insight": "Write the lesson hidden inside your latest failure and finish a small version before seeking a perfect one.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m108",
+    "quote": "The lesson collected from an honest failure becomes quiet proof that meaningful change is already happening.",
+    "insight": "Write the lesson hidden inside your latest failure then repeat it at the same time tomorrow.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m109",
+    "quote": "A quiet improvement repeated after others stop builds a future that excuses cannot reach.",
+    "insight": "Improve one detail that most people overlook and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m110",
+    "quote": "A quiet improvement repeated after others stop turns uncertainty into a direction you can follow.",
+    "insight": "Improve one detail that most people overlook then make the next useful move before you reconsider.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m111",
+    "quote": "A quiet improvement repeated after others stop gives tomorrow a stronger place to begin.",
+    "insight": "Improve one detail that most people overlook and record the result so progress becomes visible.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m112",
+    "quote": "A quiet improvement repeated after others stop creates evidence that you can trust yourself again.",
+    "insight": "Improve one detail that most people overlook then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m113",
+    "quote": "A quiet improvement repeated after others stop moves your life farther than waiting for perfect conditions.",
+    "insight": "Improve one detail that most people overlook and finish a small version before seeking a perfect one.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m114",
+    "quote": "A quiet improvement repeated after others stop becomes quiet proof that meaningful change is already happening.",
+    "insight": "Improve one detail that most people overlook then repeat it at the same time tomorrow.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m115",
+    "quote": "One opportunity met with practiced ability builds a future that excuses cannot reach.",
+    "insight": "Prepare today for an opportunity that has not arrived and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m116",
+    "quote": "One opportunity met with practiced ability turns uncertainty into a direction you can follow.",
+    "insight": "Prepare today for an opportunity that has not arrived then make the next useful move before you reconsider.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m117",
+    "quote": "One opportunity met with practiced ability gives tomorrow a stronger place to begin.",
+    "insight": "Prepare today for an opportunity that has not arrived and record the result so progress becomes visible.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m118",
+    "quote": "One opportunity met with practiced ability creates evidence that you can trust yourself again.",
+    "insight": "Prepare today for an opportunity that has not arrived then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m119",
+    "quote": "One opportunity met with practiced ability moves your life farther than waiting for perfect conditions.",
+    "insight": "Prepare today for an opportunity that has not arrived and finish a small version before seeking a perfect one.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m120",
+    "quote": "One opportunity met with practiced ability becomes quiet proof that meaningful change is already happening.",
+    "insight": "Prepare today for an opportunity that has not arrived then repeat it at the same time tomorrow.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m121",
+    "quote": "A strong reputation built through dependable work builds a future that excuses cannot reach.",
+    "insight": "Deliver one piece of work exactly as promised and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m122",
+    "quote": "A strong reputation built through dependable work turns uncertainty into a direction you can follow.",
+    "insight": "Deliver one piece of work exactly as promised then make the next useful move before you reconsider.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m123",
+    "quote": "A strong reputation built through dependable work gives tomorrow a stronger place to begin.",
+    "insight": "Deliver one piece of work exactly as promised and record the result so progress becomes visible.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m124",
+    "quote": "A strong reputation built through dependable work creates evidence that you can trust yourself again.",
+    "insight": "Deliver one piece of work exactly as promised then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m125",
+    "quote": "A strong reputation built through dependable work moves your life farther than waiting for perfect conditions.",
+    "insight": "Deliver one piece of work exactly as promised and finish a small version before seeking a perfect one.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m126",
+    "quote": "A strong reputation built through dependable work becomes quiet proof that meaningful change is already happening.",
+    "insight": "Deliver one piece of work exactly as promised then repeat it at the same time tomorrow.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m127",
+    "quote": "The patience to improve before demanding recognition builds a future that excuses cannot reach.",
+    "insight": "Measure improvement before asking for recognition and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m128",
+    "quote": "The patience to improve before demanding recognition turns uncertainty into a direction you can follow.",
+    "insight": "Measure improvement before asking for recognition then make the next useful move before you reconsider.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m129",
+    "quote": "The patience to improve before demanding recognition gives tomorrow a stronger place to begin.",
+    "insight": "Measure improvement before asking for recognition and record the result so progress becomes visible.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m130",
+    "quote": "The patience to improve before demanding recognition creates evidence that you can trust yourself again.",
+    "insight": "Measure improvement before asking for recognition then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m131",
+    "quote": "The patience to improve before demanding recognition moves your life farther than waiting for perfect conditions.",
+    "insight": "Measure improvement before asking for recognition and finish a small version before seeking a perfect one.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m132",
+    "quote": "The patience to improve before demanding recognition becomes quiet proof that meaningful change is already happening.",
+    "insight": "Measure improvement before asking for recognition then repeat it at the same time tomorrow.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m133",
+    "quote": "A problem studied longer than the first frustration builds a future that excuses cannot reach.",
+    "insight": "Stay with one problem past the first frustration and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m134",
+    "quote": "A problem studied longer than the first frustration turns uncertainty into a direction you can follow.",
+    "insight": "Stay with one problem past the first frustration then make the next useful move before you reconsider.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m135",
+    "quote": "A problem studied longer than the first frustration gives tomorrow a stronger place to begin.",
+    "insight": "Stay with one problem past the first frustration and record the result so progress becomes visible.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m136",
+    "quote": "A problem studied longer than the first frustration creates evidence that you can trust yourself again.",
+    "insight": "Stay with one problem past the first frustration then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m137",
+    "quote": "A problem studied longer than the first frustration moves your life farther than waiting for perfect conditions.",
+    "insight": "Stay with one problem past the first frustration and finish a small version before seeking a perfect one.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m138",
+    "quote": "A problem studied longer than the first frustration becomes quiet proof that meaningful change is already happening.",
+    "insight": "Stay with one problem past the first frustration then repeat it at the same time tomorrow.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m139",
+    "quote": "One clear priority protected from shallow urgency builds a future that excuses cannot reach.",
+    "insight": "Protect your highest priority from false urgency and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m140",
+    "quote": "One clear priority protected from shallow urgency turns uncertainty into a direction you can follow.",
+    "insight": "Protect your highest priority from false urgency then make the next useful move before you reconsider.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m141",
+    "quote": "One clear priority protected from shallow urgency gives tomorrow a stronger place to begin.",
+    "insight": "Protect your highest priority from false urgency and record the result so progress becomes visible.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m142",
+    "quote": "One clear priority protected from shallow urgency creates evidence that you can trust yourself again.",
+    "insight": "Protect your highest priority from false urgency then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m143",
+    "quote": "One clear priority protected from shallow urgency moves your life farther than waiting for perfect conditions.",
+    "insight": "Protect your highest priority from false urgency and finish a small version before seeking a perfect one.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m144",
+    "quote": "One clear priority protected from shallow urgency becomes quiet proof that meaningful change is already happening.",
+    "insight": "Protect your highest priority from false urgency then repeat it at the same time tomorrow.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m145",
+    "quote": "A brave attempt followed by careful reflection builds a future that excuses cannot reach.",
+    "insight": "Review one brave attempt without judging yourself and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m146",
+    "quote": "A brave attempt followed by careful reflection turns uncertainty into a direction you can follow.",
+    "insight": "Review one brave attempt without judging yourself then make the next useful move before you reconsider.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m147",
+    "quote": "A brave attempt followed by careful reflection gives tomorrow a stronger place to begin.",
+    "insight": "Review one brave attempt without judging yourself and record the result so progress becomes visible.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m148",
+    "quote": "A brave attempt followed by careful reflection creates evidence that you can trust yourself again.",
+    "insight": "Review one brave attempt without judging yourself then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m149",
+    "quote": "A brave attempt followed by careful reflection moves your life farther than waiting for perfect conditions.",
+    "insight": "Review one brave attempt without judging yourself and finish a small version before seeking a perfect one.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m150",
+    "quote": "A brave attempt followed by careful reflection becomes quiet proof that meaningful change is already happening.",
+    "insight": "Review one brave attempt without judging yourself then repeat it at the same time tomorrow.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m151",
+    "quote": "The value you create before asking for reward builds a future that excuses cannot reach.",
+    "insight": "Create something useful before seeking a reward and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m152",
+    "quote": "The value you create before asking for reward turns uncertainty into a direction you can follow.",
+    "insight": "Create something useful before seeking a reward then make the next useful move before you reconsider.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m153",
+    "quote": "The value you create before asking for reward gives tomorrow a stronger place to begin.",
+    "insight": "Create something useful before seeking a reward and record the result so progress becomes visible.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m154",
+    "quote": "The value you create before asking for reward creates evidence that you can trust yourself again.",
+    "insight": "Create something useful before seeking a reward then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m155",
+    "quote": "The value you create before asking for reward moves your life farther than waiting for perfect conditions.",
+    "insight": "Create something useful before seeking a reward and finish a small version before seeking a perfect one.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m156",
+    "quote": "The value you create before asking for reward becomes quiet proof that meaningful change is already happening.",
+    "insight": "Create something useful before seeking a reward then repeat it at the same time tomorrow.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m157",
+    "quote": "A meaningful goal supported by measurable habits builds a future that excuses cannot reach.",
+    "insight": "Attach one measurable habit to your main goal and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m158",
+    "quote": "A meaningful goal supported by measurable habits turns uncertainty into a direction you can follow.",
+    "insight": "Attach one measurable habit to your main goal then make the next useful move before you reconsider.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m159",
+    "quote": "A meaningful goal supported by measurable habits gives tomorrow a stronger place to begin.",
+    "insight": "Attach one measurable habit to your main goal and record the result so progress becomes visible.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m160",
+    "quote": "A meaningful goal supported by measurable habits creates evidence that you can trust yourself again.",
+    "insight": "Attach one measurable habit to your main goal then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m161",
+    "quote": "A meaningful goal supported by measurable habits moves your life farther than waiting for perfect conditions.",
+    "insight": "Attach one measurable habit to your main goal and finish a small version before seeking a perfect one.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m162",
+    "quote": "A meaningful goal supported by measurable habits becomes quiet proof that meaningful change is already happening.",
+    "insight": "Attach one measurable habit to your main goal then repeat it at the same time tomorrow.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m163",
+    "quote": "The courage to begin before certainty arrives builds a future that excuses cannot reach.",
+    "insight": "Begin one meaningful project with incomplete certainty and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m164",
+    "quote": "The courage to begin before certainty arrives turns uncertainty into a direction you can follow.",
+    "insight": "Begin one meaningful project with incomplete certainty then make the next useful move before you reconsider.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m165",
+    "quote": "The courage to begin before certainty arrives gives tomorrow a stronger place to begin.",
+    "insight": "Begin one meaningful project with incomplete certainty and record the result so progress becomes visible.",
+    "pexels_search": "runner reaching mountain summit",
+    "category": "success"
+  },
+  {
+    "id": "m166",
+    "quote": "The courage to begin before certainty arrives creates evidence that you can trust yourself again.",
+    "insight": "Begin one meaningful project with incomplete certainty then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "entrepreneur working focused",
+    "category": "success"
+  },
+  {
+    "id": "m167",
+    "quote": "The courage to begin before certainty arrives moves your life farther than waiting for perfect conditions.",
+    "insight": "Begin one meaningful project with incomplete certainty and finish a small version before seeking a perfect one.",
+    "pexels_search": "city sunrise ambition",
+    "category": "success"
+  },
+  {
+    "id": "m168",
+    "quote": "The courage to begin before certainty arrives becomes quiet proof that meaningful change is already happening.",
+    "insight": "Begin one meaningful project with incomplete certainty then repeat it at the same time tomorrow.",
+    "pexels_search": "craftsperson detailed work",
+    "category": "success"
+  },
+  {
+    "id": "m169",
+    "quote": "A painful memory met with patient understanding builds a future that excuses cannot reach.",
+    "insight": "Name the feeling you have been avoiding and give it ten focused minutes before the day gets noisy.",
     "pexels_search": "calm ocean sunrise",
     "category": "healing"
   },
   {
-    "id": "q036",
-    "quote": "Rest is not retreat when it helps you return with a steadier heart.",
-    "pexels_search": "person resting by window",
+    "id": "m170",
+    "quote": "A painful memory met with patient understanding turns uncertainty into a direction you can follow.",
+    "insight": "Name the feeling you have been avoiding then make the next useful move before you reconsider.",
+    "pexels_search": "person walking peaceful forest",
     "category": "healing"
   },
   {
-    "id": "q037",
-    "quote": "Some seasons are for rebuilding the parts nobody else can see.",
-    "pexels_search": "forest regrowth sunlight",
+    "id": "m171",
+    "quote": "A painful memory met with patient understanding gives tomorrow a stronger place to begin.",
+    "insight": "Name the feeling you have been avoiding and record the result so progress becomes visible.",
+    "pexels_search": "soft rain window",
     "category": "healing"
   },
   {
-    "id": "q038",
-    "quote": "You can honor what hurt without giving it permanent ownership of your future.",
-    "pexels_search": "person walking beach alone",
+    "id": "m172",
+    "quote": "A painful memory met with patient understanding creates evidence that you can trust yourself again.",
+    "insight": "Name the feeling you have been avoiding then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "quiet lake reflection",
     "category": "healing"
   },
   {
-    "id": "q039",
-    "quote": "Give yourself the patience you would offer someone learning to breathe again.",
-    "pexels_search": "slow waves peaceful shore",
+    "id": "m173",
+    "quote": "A painful memory met with patient understanding moves your life farther than waiting for perfect conditions.",
+    "insight": "Name the feeling you have been avoiding and finish a small version before seeking a perfect one.",
+    "pexels_search": "calm ocean sunrise",
     "category": "healing"
   },
   {
-    "id": "q040",
-    "quote": "A softer pace can still move you toward a stronger life.",
-    "pexels_search": "gentle river flowing nature",
+    "id": "m174",
+    "quote": "A painful memory met with patient understanding becomes quiet proof that meaningful change is already happening.",
+    "insight": "Name the feeling you have been avoiding then repeat it at the same time tomorrow.",
+    "pexels_search": "person walking peaceful forest",
     "category": "healing"
   },
   {
-    "id": "q041",
-    "quote": "Healing is making room for peace without waiting for every answer.",
-    "pexels_search": "quiet lake morning mist",
+    "id": "m175",
+    "quote": "One gentle boundary placed around your peace builds a future that excuses cannot reach.",
+    "insight": "Set one gentle boundary around your peace and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person walking peaceful forest",
     "category": "healing"
   },
   {
-    "id": "q042",
-    "quote": "Your scars are history, not instructions for how tomorrow must feel.",
-    "pexels_search": "sunlight through trees",
+    "id": "m176",
+    "quote": "One gentle boundary placed around your peace turns uncertainty into a direction you can follow.",
+    "insight": "Set one gentle boundary around your peace then make the next useful move before you reconsider.",
+    "pexels_search": "soft rain window",
     "category": "healing"
   },
   {
-    "id": "q043",
-    "quote": "Release the need to recover on somebody else's timeline.",
-    "pexels_search": "person walking slow forest",
+    "id": "m177",
+    "quote": "One gentle boundary placed around your peace gives tomorrow a stronger place to begin.",
+    "insight": "Set one gentle boundary around your peace and record the result so progress becomes visible.",
+    "pexels_search": "quiet lake reflection",
     "category": "healing"
   },
   {
-    "id": "q044",
-    "quote": "A calm boundary can protect what anger never managed to repair.",
-    "pexels_search": "closed garden gate peaceful",
+    "id": "m178",
+    "quote": "One gentle boundary placed around your peace creates evidence that you can trust yourself again.",
+    "insight": "Set one gentle boundary around your peace then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "calm ocean sunrise",
     "category": "healing"
   },
   {
-    "id": "q045",
-    "quote": "You are allowed to outgrow the version of you that only knew survival.",
-    "pexels_search": "butterfly emerging nature",
+    "id": "m179",
+    "quote": "One gentle boundary placed around your peace moves your life farther than waiting for perfect conditions.",
+    "insight": "Set one gentle boundary around your peace and finish a small version before seeking a perfect one.",
+    "pexels_search": "person walking peaceful forest",
     "category": "healing"
   },
   {
-    "id": "q046",
-    "quote": "Peace often arrives through small choices repeated in private.",
-    "pexels_search": "tea journal cozy morning",
+    "id": "m180",
+    "quote": "One gentle boundary placed around your peace becomes quiet proof that meaningful change is already happening.",
+    "insight": "Set one gentle boundary around your peace then repeat it at the same time tomorrow.",
+    "pexels_search": "soft rain window",
     "category": "healing"
   },
   {
-    "id": "q047",
-    "quote": "Let grief visit, but do not hand it the keys to every room.",
-    "pexels_search": "rain on window warm home",
+    "id": "m181",
+    "quote": "The rest you accept without calling it weakness builds a future that excuses cannot reach.",
+    "insight": "Give your body the rest it has requested and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "soft rain window",
     "category": "healing"
   },
   {
-    "id": "q048",
-    "quote": "Healing can be quiet and still be the bravest work you do.",
-    "pexels_search": "person meditating mountain",
+    "id": "m182",
+    "quote": "The rest you accept without calling it weakness turns uncertainty into a direction you can follow.",
+    "insight": "Give your body the rest it has requested then make the next useful move before you reconsider.",
+    "pexels_search": "quiet lake reflection",
     "category": "healing"
   },
   {
-    "id": "q049",
-    "quote": "Your nervous system deserves moments that ask nothing from it.",
-    "pexels_search": "clouds drifting peaceful sky",
+    "id": "m183",
+    "quote": "The rest you accept without calling it weakness gives tomorrow a stronger place to begin.",
+    "insight": "Give your body the rest it has requested and record the result so progress becomes visible.",
+    "pexels_search": "calm ocean sunrise",
     "category": "healing"
   },
   {
-    "id": "q050",
-    "quote": "Begin again gently; force is not the only language of change.",
-    "pexels_search": "new leaves spring closeup",
+    "id": "m184",
+    "quote": "The rest you accept without calling it weakness creates evidence that you can trust yourself again.",
+    "insight": "Give your body the rest it has requested then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person walking peaceful forest",
     "category": "healing"
   },
   {
-    "id": "q051",
-    "quote": "What you survived may shape your wisdom without limiting your joy.",
-    "pexels_search": "sun after storm landscape",
+    "id": "m185",
+    "quote": "The rest you accept without calling it weakness moves your life farther than waiting for perfect conditions.",
+    "insight": "Give your body the rest it has requested and finish a small version before seeking a perfect one.",
+    "pexels_search": "soft rain window",
     "category": "healing"
   },
   {
-    "id": "q052",
-    "quote": "Confidence is built when your actions keep introducing you to your own courage.",
-    "pexels_search": "person standing mountain edge",
+    "id": "m186",
+    "quote": "The rest you accept without calling it weakness becomes quiet proof that meaningful change is already happening.",
+    "insight": "Give your body the rest it has requested then repeat it at the same time tomorrow.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m187",
+    "quote": "A difficult feeling allowed to pass without control builds a future that excuses cannot reach.",
+    "insight": "Let one difficult emotion exist without fixing it and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m188",
+    "quote": "A difficult feeling allowed to pass without control turns uncertainty into a direction you can follow.",
+    "insight": "Let one difficult emotion exist without fixing it then make the next useful move before you reconsider.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m189",
+    "quote": "A difficult feeling allowed to pass without control gives tomorrow a stronger place to begin.",
+    "insight": "Let one difficult emotion exist without fixing it and record the result so progress becomes visible.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m190",
+    "quote": "A difficult feeling allowed to pass without control creates evidence that you can trust yourself again.",
+    "insight": "Let one difficult emotion exist without fixing it then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m191",
+    "quote": "A difficult feeling allowed to pass without control moves your life farther than waiting for perfect conditions.",
+    "insight": "Let one difficult emotion exist without fixing it and finish a small version before seeking a perfect one.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m192",
+    "quote": "A difficult feeling allowed to pass without control becomes quiet proof that meaningful change is already happening.",
+    "insight": "Let one difficult emotion exist without fixing it then repeat it at the same time tomorrow.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m193",
+    "quote": "The kindness you offer your unfinished self builds a future that excuses cannot reach.",
+    "insight": "Speak to yourself as you would to a tired friend and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m194",
+    "quote": "The kindness you offer your unfinished self turns uncertainty into a direction you can follow.",
+    "insight": "Speak to yourself as you would to a tired friend then make the next useful move before you reconsider.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m195",
+    "quote": "The kindness you offer your unfinished self gives tomorrow a stronger place to begin.",
+    "insight": "Speak to yourself as you would to a tired friend and record the result so progress becomes visible.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m196",
+    "quote": "The kindness you offer your unfinished self creates evidence that you can trust yourself again.",
+    "insight": "Speak to yourself as you would to a tired friend then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m197",
+    "quote": "The kindness you offer your unfinished self moves your life farther than waiting for perfect conditions.",
+    "insight": "Speak to yourself as you would to a tired friend and finish a small version before seeking a perfect one.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m198",
+    "quote": "The kindness you offer your unfinished self becomes quiet proof that meaningful change is already happening.",
+    "insight": "Speak to yourself as you would to a tired friend then repeat it at the same time tomorrow.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m199",
+    "quote": "One honest conversation with someone safe builds a future that excuses cannot reach.",
+    "insight": "Share one honest sentence with someone safe and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m200",
+    "quote": "One honest conversation with someone safe turns uncertainty into a direction you can follow.",
+    "insight": "Share one honest sentence with someone safe then make the next useful move before you reconsider.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m201",
+    "quote": "One honest conversation with someone safe gives tomorrow a stronger place to begin.",
+    "insight": "Share one honest sentence with someone safe and record the result so progress becomes visible.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m202",
+    "quote": "One honest conversation with someone safe creates evidence that you can trust yourself again.",
+    "insight": "Share one honest sentence with someone safe then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m203",
+    "quote": "One honest conversation with someone safe moves your life farther than waiting for perfect conditions.",
+    "insight": "Share one honest sentence with someone safe and finish a small version before seeking a perfect one.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m204",
+    "quote": "One honest conversation with someone safe becomes quiet proof that meaningful change is already happening.",
+    "insight": "Share one honest sentence with someone safe then repeat it at the same time tomorrow.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m205",
+    "quote": "A heavy expectation released at the right time builds a future that excuses cannot reach.",
+    "insight": "Release one expectation that keeps hurting you and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m206",
+    "quote": "A heavy expectation released at the right time turns uncertainty into a direction you can follow.",
+    "insight": "Release one expectation that keeps hurting you then make the next useful move before you reconsider.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m207",
+    "quote": "A heavy expectation released at the right time gives tomorrow a stronger place to begin.",
+    "insight": "Release one expectation that keeps hurting you and record the result so progress becomes visible.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m208",
+    "quote": "A heavy expectation released at the right time creates evidence that you can trust yourself again.",
+    "insight": "Release one expectation that keeps hurting you then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m209",
+    "quote": "A heavy expectation released at the right time moves your life farther than waiting for perfect conditions.",
+    "insight": "Release one expectation that keeps hurting you and finish a small version before seeking a perfect one.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m210",
+    "quote": "A heavy expectation released at the right time becomes quiet proof that meaningful change is already happening.",
+    "insight": "Release one expectation that keeps hurting you then repeat it at the same time tomorrow.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m211",
+    "quote": "The space you create between hurt and reaction builds a future that excuses cannot reach.",
+    "insight": "Pause before answering from an old wound and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m212",
+    "quote": "The space you create between hurt and reaction turns uncertainty into a direction you can follow.",
+    "insight": "Pause before answering from an old wound then make the next useful move before you reconsider.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m213",
+    "quote": "The space you create between hurt and reaction gives tomorrow a stronger place to begin.",
+    "insight": "Pause before answering from an old wound and record the result so progress becomes visible.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m214",
+    "quote": "The space you create between hurt and reaction creates evidence that you can trust yourself again.",
+    "insight": "Pause before answering from an old wound then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m215",
+    "quote": "The space you create between hurt and reaction moves your life farther than waiting for perfect conditions.",
+    "insight": "Pause before answering from an old wound and finish a small version before seeking a perfect one.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m216",
+    "quote": "The space you create between hurt and reaction becomes quiet proof that meaningful change is already happening.",
+    "insight": "Pause before answering from an old wound then repeat it at the same time tomorrow.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m217",
+    "quote": "A quiet morning that asks nothing from you builds a future that excuses cannot reach.",
+    "insight": "Create ten quiet minutes with no demand and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m218",
+    "quote": "A quiet morning that asks nothing from you turns uncertainty into a direction you can follow.",
+    "insight": "Create ten quiet minutes with no demand then make the next useful move before you reconsider.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m219",
+    "quote": "A quiet morning that asks nothing from you gives tomorrow a stronger place to begin.",
+    "insight": "Create ten quiet minutes with no demand and record the result so progress becomes visible.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m220",
+    "quote": "A quiet morning that asks nothing from you creates evidence that you can trust yourself again.",
+    "insight": "Create ten quiet minutes with no demand then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m221",
+    "quote": "A quiet morning that asks nothing from you moves your life farther than waiting for perfect conditions.",
+    "insight": "Create ten quiet minutes with no demand and finish a small version before seeking a perfect one.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m222",
+    "quote": "A quiet morning that asks nothing from you becomes quiet proof that meaningful change is already happening.",
+    "insight": "Create ten quiet minutes with no demand then repeat it at the same time tomorrow.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m223",
+    "quote": "One old story questioned with compassion builds a future that excuses cannot reach.",
+    "insight": "Question one painful story you repeat about yourself and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m224",
+    "quote": "One old story questioned with compassion turns uncertainty into a direction you can follow.",
+    "insight": "Question one painful story you repeat about yourself then make the next useful move before you reconsider.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m225",
+    "quote": "One old story questioned with compassion gives tomorrow a stronger place to begin.",
+    "insight": "Question one painful story you repeat about yourself and record the result so progress becomes visible.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m226",
+    "quote": "One old story questioned with compassion creates evidence that you can trust yourself again.",
+    "insight": "Question one painful story you repeat about yourself then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m227",
+    "quote": "One old story questioned with compassion moves your life farther than waiting for perfect conditions.",
+    "insight": "Question one painful story you repeat about yourself and finish a small version before seeking a perfect one.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m228",
+    "quote": "One old story questioned with compassion becomes quiet proof that meaningful change is already happening.",
+    "insight": "Question one painful story you repeat about yourself then repeat it at the same time tomorrow.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m229",
+    "quote": "The courage to seek help before breaking alone builds a future that excuses cannot reach.",
+    "insight": "Ask for support before the weight becomes unbearable and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m230",
+    "quote": "The courage to seek help before breaking alone turns uncertainty into a direction you can follow.",
+    "insight": "Ask for support before the weight becomes unbearable then make the next useful move before you reconsider.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m231",
+    "quote": "The courage to seek help before breaking alone gives tomorrow a stronger place to begin.",
+    "insight": "Ask for support before the weight becomes unbearable and record the result so progress becomes visible.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m232",
+    "quote": "The courage to seek help before breaking alone creates evidence that you can trust yourself again.",
+    "insight": "Ask for support before the weight becomes unbearable then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m233",
+    "quote": "The courage to seek help before breaking alone moves your life farther than waiting for perfect conditions.",
+    "insight": "Ask for support before the weight becomes unbearable and finish a small version before seeking a perfect one.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m234",
+    "quote": "The courage to seek help before breaking alone becomes quiet proof that meaningful change is already happening.",
+    "insight": "Ask for support before the weight becomes unbearable then repeat it at the same time tomorrow.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m235",
+    "quote": "A small return to something that makes you feel alive builds a future that excuses cannot reach.",
+    "insight": "Return briefly to something that once brought joy and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m236",
+    "quote": "A small return to something that makes you feel alive turns uncertainty into a direction you can follow.",
+    "insight": "Return briefly to something that once brought joy then make the next useful move before you reconsider.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m237",
+    "quote": "A small return to something that makes you feel alive gives tomorrow a stronger place to begin.",
+    "insight": "Return briefly to something that once brought joy and record the result so progress becomes visible.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m238",
+    "quote": "A small return to something that makes you feel alive creates evidence that you can trust yourself again.",
+    "insight": "Return briefly to something that once brought joy then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m239",
+    "quote": "A small return to something that makes you feel alive moves your life farther than waiting for perfect conditions.",
+    "insight": "Return briefly to something that once brought joy and finish a small version before seeking a perfect one.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m240",
+    "quote": "A small return to something that makes you feel alive becomes quiet proof that meaningful change is already happening.",
+    "insight": "Return briefly to something that once brought joy then repeat it at the same time tomorrow.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m241",
+    "quote": "The forgiveness that frees you from constant replay builds a future that excuses cannot reach.",
+    "insight": "Stop replaying one moment you cannot change and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m242",
+    "quote": "The forgiveness that frees you from constant replay turns uncertainty into a direction you can follow.",
+    "insight": "Stop replaying one moment you cannot change then make the next useful move before you reconsider.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m243",
+    "quote": "The forgiveness that frees you from constant replay gives tomorrow a stronger place to begin.",
+    "insight": "Stop replaying one moment you cannot change and record the result so progress becomes visible.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m244",
+    "quote": "The forgiveness that frees you from constant replay creates evidence that you can trust yourself again.",
+    "insight": "Stop replaying one moment you cannot change then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m245",
+    "quote": "The forgiveness that frees you from constant replay moves your life farther than waiting for perfect conditions.",
+    "insight": "Stop replaying one moment you cannot change and finish a small version before seeking a perfect one.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m246",
+    "quote": "The forgiveness that frees you from constant replay becomes quiet proof that meaningful change is already happening.",
+    "insight": "Stop replaying one moment you cannot change then repeat it at the same time tomorrow.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m247",
+    "quote": "One peaceful choice made after a painful season builds a future that excuses cannot reach.",
+    "insight": "Choose the response that protects your peace and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m248",
+    "quote": "One peaceful choice made after a painful season turns uncertainty into a direction you can follow.",
+    "insight": "Choose the response that protects your peace then make the next useful move before you reconsider.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m249",
+    "quote": "One peaceful choice made after a painful season gives tomorrow a stronger place to begin.",
+    "insight": "Choose the response that protects your peace and record the result so progress becomes visible.",
+    "pexels_search": "quiet lake reflection",
+    "category": "healing"
+  },
+  {
+    "id": "m250",
+    "quote": "One peaceful choice made after a painful season creates evidence that you can trust yourself again.",
+    "insight": "Choose the response that protects your peace then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "calm ocean sunrise",
+    "category": "healing"
+  },
+  {
+    "id": "m251",
+    "quote": "One peaceful choice made after a painful season moves your life farther than waiting for perfect conditions.",
+    "insight": "Choose the response that protects your peace and finish a small version before seeking a perfect one.",
+    "pexels_search": "person walking peaceful forest",
+    "category": "healing"
+  },
+  {
+    "id": "m252",
+    "quote": "One peaceful choice made after a painful season becomes quiet proof that meaningful change is already happening.",
+    "insight": "Choose the response that protects your peace then repeat it at the same time tomorrow.",
+    "pexels_search": "soft rain window",
+    "category": "healing"
+  },
+  {
+    "id": "m253",
+    "quote": "A small promise to yourself kept completely builds a future that excuses cannot reach.",
+    "insight": "Keep one promise you made only to yourself and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "confident person city",
     "category": "confidence"
   },
   {
-    "id": "q053",
-    "quote": "Speak to yourself like someone whose potential is worth protecting.",
-    "pexels_search": "person mirror morning confidence",
+    "id": "m254",
+    "quote": "A small promise to yourself kept completely turns uncertainty into a direction you can follow.",
+    "insight": "Keep one promise you made only to yourself then make the next useful move before you reconsider.",
+    "pexels_search": "woman mountain overlook",
     "category": "confidence"
   },
   {
-    "id": "q054",
-    "quote": "You do not need permission to take your preparation seriously.",
-    "pexels_search": "professional preparing presentation",
+    "id": "m255",
+    "quote": "A small promise to yourself kept completely gives tomorrow a stronger place to begin.",
+    "insight": "Keep one promise you made only to yourself and record the result so progress becomes visible.",
+    "pexels_search": "speaker empty stage",
     "category": "confidence"
   },
   {
-    "id": "q055",
-    "quote": "Let competence grow so steadily that doubt has less room to speak.",
-    "pexels_search": "person practicing public speaking",
+    "id": "m256",
+    "quote": "A small promise to yourself kept completely creates evidence that you can trust yourself again.",
+    "insight": "Keep one promise you made only to yourself then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person training boxing",
     "category": "confidence"
   },
   {
-    "id": "q056",
-    "quote": "Walk into the room to contribute, not to audition for your worth.",
-    "pexels_search": "confident person entering office",
+    "id": "m257",
+    "quote": "A small promise to yourself kept completely moves your life farther than waiting for perfect conditions.",
+    "insight": "Keep one promise you made only to yourself and finish a small version before seeking a perfect one.",
+    "pexels_search": "confident person city",
     "category": "confidence"
   },
   {
-    "id": "q057",
-    "quote": "Your voice becomes stronger each time you use it with honesty.",
-    "pexels_search": "speaker microphone stage",
+    "id": "m258",
+    "quote": "A small promise to yourself kept completely becomes quiet proof that meaningful change is already happening.",
+    "insight": "Keep one promise you made only to yourself then repeat it at the same time tomorrow.",
+    "pexels_search": "woman mountain overlook",
     "category": "confidence"
   },
   {
-    "id": "q058",
-    "quote": "Courage can shake and still take the next step.",
-    "pexels_search": "person crossing suspension bridge",
+    "id": "m259",
+    "quote": "One opinion expressed without shrinking your voice builds a future that excuses cannot reach.",
+    "insight": "Express one useful opinion without softening it and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "woman mountain overlook",
     "category": "confidence"
   },
   {
-    "id": "q059",
-    "quote": "Stop shrinking your goals to fit somebody else's imagination.",
-    "pexels_search": "wide open desert traveler",
+    "id": "m260",
+    "quote": "One opinion expressed without shrinking your voice turns uncertainty into a direction you can follow.",
+    "insight": "Express one useful opinion without softening it then make the next useful move before you reconsider.",
+    "pexels_search": "speaker empty stage",
     "category": "confidence"
   },
   {
-    "id": "q060",
-    "quote": "Trust grows when you collect proof that you can handle discomfort.",
-    "pexels_search": "cold water swimmer training",
+    "id": "m261",
+    "quote": "One opinion expressed without shrinking your voice gives tomorrow a stronger place to begin.",
+    "insight": "Express one useful opinion without softening it and record the result so progress becomes visible.",
+    "pexels_search": "person training boxing",
     "category": "confidence"
   },
   {
-    "id": "q061",
-    "quote": "You belong wherever your work and integrity have earned you a place.",
-    "pexels_search": "professional team meeting",
+    "id": "m262",
+    "quote": "One opinion expressed without shrinking your voice creates evidence that you can trust yourself again.",
+    "insight": "Express one useful opinion without softening it then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "confident person city",
     "category": "confidence"
   },
   {
-    "id": "q062",
-    "quote": "Confidence is not knowing everything; it is trusting yourself to learn.",
-    "pexels_search": "student asking question classroom",
+    "id": "m263",
+    "quote": "One opinion expressed without shrinking your voice moves your life farther than waiting for perfect conditions.",
+    "insight": "Express one useful opinion without softening it and finish a small version before seeking a perfect one.",
+    "pexels_search": "woman mountain overlook",
     "category": "confidence"
   },
   {
-    "id": "q063",
-    "quote": "Stand by your values before asking the world to stand by you.",
-    "pexels_search": "person standing firm city",
+    "id": "m264",
+    "quote": "One opinion expressed without shrinking your voice becomes quiet proof that meaningful change is already happening.",
+    "insight": "Express one useful opinion without softening it then repeat it at the same time tomorrow.",
+    "pexels_search": "speaker empty stage",
     "category": "confidence"
   },
   {
-    "id": "q064",
-    "quote": "Your presence does not need an apology or an explanation.",
-    "pexels_search": "portrait confident person natural light",
+    "id": "m265",
+    "quote": "The skill you practice instead of pretending certainty builds a future that excuses cannot reach.",
+    "insight": "Practice the skill behind the confidence you want and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "speaker empty stage",
     "category": "confidence"
   },
   {
-    "id": "q065",
-    "quote": "Prepare deeply, then allow yourself to be seen.",
-    "pexels_search": "performer backstage preparation",
+    "id": "m266",
+    "quote": "The skill you practice instead of pretending certainty turns uncertainty into a direction you can follow.",
+    "insight": "Practice the skill behind the confidence you want then make the next useful move before you reconsider.",
+    "pexels_search": "person training boxing",
     "category": "confidence"
   },
   {
-    "id": "q066",
-    "quote": "Comparison gets quieter when commitment gets louder.",
-    "pexels_search": "solo runner track",
+    "id": "m267",
+    "quote": "The skill you practice instead of pretending certainty gives tomorrow a stronger place to begin.",
+    "insight": "Practice the skill behind the confidence you want and record the result so progress becomes visible.",
+    "pexels_search": "confident person city",
     "category": "confidence"
   },
   {
-    "id": "q067",
-    "quote": "Own your progress without pretending the journey was easy.",
-    "pexels_search": "hiker looking back trail",
+    "id": "m268",
+    "quote": "The skill you practice instead of pretending certainty creates evidence that you can trust yourself again.",
+    "insight": "Practice the skill behind the confidence you want then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "woman mountain overlook",
     "category": "confidence"
   },
   {
-    "id": "q068",
-    "quote": "The way you recover from mistakes can become your strongest introduction.",
-    "pexels_search": "basketball player gets up",
+    "id": "m269",
+    "quote": "The skill you practice instead of pretending certainty moves your life farther than waiting for perfect conditions.",
+    "insight": "Practice the skill behind the confidence you want and finish a small version before seeking a perfect one.",
+    "pexels_search": "speaker empty stage",
     "category": "confidence"
   },
   {
-    "id": "q069",
-    "quote": "Growth asks you to release identities that once kept you safe.",
-    "pexels_search": "tree shedding leaves autumn",
+    "id": "m270",
+    "quote": "The skill you practice instead of pretending certainty becomes quiet proof that meaningful change is already happening.",
+    "insight": "Practice the skill behind the confidence you want then repeat it at the same time tomorrow.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m271",
+    "quote": "A mistake accepted without attacking your worth builds a future that excuses cannot reach.",
+    "insight": "Correct one mistake without insulting yourself and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m272",
+    "quote": "A mistake accepted without attacking your worth turns uncertainty into a direction you can follow.",
+    "insight": "Correct one mistake without insulting yourself then make the next useful move before you reconsider.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m273",
+    "quote": "A mistake accepted without attacking your worth gives tomorrow a stronger place to begin.",
+    "insight": "Correct one mistake without insulting yourself and record the result so progress becomes visible.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m274",
+    "quote": "A mistake accepted without attacking your worth creates evidence that you can trust yourself again.",
+    "insight": "Correct one mistake without insulting yourself then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m275",
+    "quote": "A mistake accepted without attacking your worth moves your life farther than waiting for perfect conditions.",
+    "insight": "Correct one mistake without insulting yourself and finish a small version before seeking a perfect one.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m276",
+    "quote": "A mistake accepted without attacking your worth becomes quiet proof that meaningful change is already happening.",
+    "insight": "Correct one mistake without insulting yourself then repeat it at the same time tomorrow.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m277",
+    "quote": "The room you enter without asking permission to belong builds a future that excuses cannot reach.",
+    "insight": "Enter one room as though you already belong and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m278",
+    "quote": "The room you enter without asking permission to belong turns uncertainty into a direction you can follow.",
+    "insight": "Enter one room as though you already belong then make the next useful move before you reconsider.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m279",
+    "quote": "The room you enter without asking permission to belong gives tomorrow a stronger place to begin.",
+    "insight": "Enter one room as though you already belong and record the result so progress becomes visible.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m280",
+    "quote": "The room you enter without asking permission to belong creates evidence that you can trust yourself again.",
+    "insight": "Enter one room as though you already belong then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m281",
+    "quote": "The room you enter without asking permission to belong moves your life farther than waiting for perfect conditions.",
+    "insight": "Enter one room as though you already belong and finish a small version before seeking a perfect one.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m282",
+    "quote": "The room you enter without asking permission to belong becomes quiet proof that meaningful change is already happening.",
+    "insight": "Enter one room as though you already belong then repeat it at the same time tomorrow.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m283",
+    "quote": "One clear no spoken with calm respect builds a future that excuses cannot reach.",
+    "insight": "Say one respectful no without adding an excuse and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m284",
+    "quote": "One clear no spoken with calm respect turns uncertainty into a direction you can follow.",
+    "insight": "Say one respectful no without adding an excuse then make the next useful move before you reconsider.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m285",
+    "quote": "One clear no spoken with calm respect gives tomorrow a stronger place to begin.",
+    "insight": "Say one respectful no without adding an excuse and record the result so progress becomes visible.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m286",
+    "quote": "One clear no spoken with calm respect creates evidence that you can trust yourself again.",
+    "insight": "Say one respectful no without adding an excuse then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m287",
+    "quote": "One clear no spoken with calm respect moves your life farther than waiting for perfect conditions.",
+    "insight": "Say one respectful no without adding an excuse and finish a small version before seeking a perfect one.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m288",
+    "quote": "One clear no spoken with calm respect becomes quiet proof that meaningful change is already happening.",
+    "insight": "Say one respectful no without adding an excuse then repeat it at the same time tomorrow.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m289",
+    "quote": "The evidence collected from challenges already survived builds a future that excuses cannot reach.",
+    "insight": "List three challenges you have already survived and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m290",
+    "quote": "The evidence collected from challenges already survived turns uncertainty into a direction you can follow.",
+    "insight": "List three challenges you have already survived then make the next useful move before you reconsider.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m291",
+    "quote": "The evidence collected from challenges already survived gives tomorrow a stronger place to begin.",
+    "insight": "List three challenges you have already survived and record the result so progress becomes visible.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m292",
+    "quote": "The evidence collected from challenges already survived creates evidence that you can trust yourself again.",
+    "insight": "List three challenges you have already survived then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m293",
+    "quote": "The evidence collected from challenges already survived moves your life farther than waiting for perfect conditions.",
+    "insight": "List three challenges you have already survived and finish a small version before seeking a perfect one.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m294",
+    "quote": "The evidence collected from challenges already survived becomes quiet proof that meaningful change is already happening.",
+    "insight": "List three challenges you have already survived then repeat it at the same time tomorrow.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m295",
+    "quote": "A comparison replaced by attention to your own path builds a future that excuses cannot reach.",
+    "insight": "Replace one comparison with your next personal step and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m296",
+    "quote": "A comparison replaced by attention to your own path turns uncertainty into a direction you can follow.",
+    "insight": "Replace one comparison with your next personal step then make the next useful move before you reconsider.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m297",
+    "quote": "A comparison replaced by attention to your own path gives tomorrow a stronger place to begin.",
+    "insight": "Replace one comparison with your next personal step and record the result so progress becomes visible.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m298",
+    "quote": "A comparison replaced by attention to your own path creates evidence that you can trust yourself again.",
+    "insight": "Replace one comparison with your next personal step then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m299",
+    "quote": "A comparison replaced by attention to your own path moves your life farther than waiting for perfect conditions.",
+    "insight": "Replace one comparison with your next personal step and finish a small version before seeking a perfect one.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m300",
+    "quote": "A comparison replaced by attention to your own path becomes quiet proof that meaningful change is already happening.",
+    "insight": "Replace one comparison with your next personal step then repeat it at the same time tomorrow.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m301",
+    "quote": "The imperfect work you allow others to see builds a future that excuses cannot reach.",
+    "insight": "Share one piece of work before it feels perfect and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m302",
+    "quote": "The imperfect work you allow others to see turns uncertainty into a direction you can follow.",
+    "insight": "Share one piece of work before it feels perfect then make the next useful move before you reconsider.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m303",
+    "quote": "The imperfect work you allow others to see gives tomorrow a stronger place to begin.",
+    "insight": "Share one piece of work before it feels perfect and record the result so progress becomes visible.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m304",
+    "quote": "The imperfect work you allow others to see creates evidence that you can trust yourself again.",
+    "insight": "Share one piece of work before it feels perfect then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m305",
+    "quote": "The imperfect work you allow others to see moves your life farther than waiting for perfect conditions.",
+    "insight": "Share one piece of work before it feels perfect and finish a small version before seeking a perfect one.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m306",
+    "quote": "The imperfect work you allow others to see becomes quiet proof that meaningful change is already happening.",
+    "insight": "Share one piece of work before it feels perfect then repeat it at the same time tomorrow.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m307",
+    "quote": "One strength named without apology builds a future that excuses cannot reach.",
+    "insight": "Name one strength without minimizing it and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m308",
+    "quote": "One strength named without apology turns uncertainty into a direction you can follow.",
+    "insight": "Name one strength without minimizing it then make the next useful move before you reconsider.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m309",
+    "quote": "One strength named without apology gives tomorrow a stronger place to begin.",
+    "insight": "Name one strength without minimizing it and record the result so progress becomes visible.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m310",
+    "quote": "One strength named without apology creates evidence that you can trust yourself again.",
+    "insight": "Name one strength without minimizing it then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m311",
+    "quote": "One strength named without apology moves your life farther than waiting for perfect conditions.",
+    "insight": "Name one strength without minimizing it and finish a small version before seeking a perfect one.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m312",
+    "quote": "One strength named without apology becomes quiet proof that meaningful change is already happening.",
+    "insight": "Name one strength without minimizing it then repeat it at the same time tomorrow.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m313",
+    "quote": "The courage to learn where others might notice builds a future that excuses cannot reach.",
+    "insight": "Learn openly instead of hiding inexperience and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m314",
+    "quote": "The courage to learn where others might notice turns uncertainty into a direction you can follow.",
+    "insight": "Learn openly instead of hiding inexperience then make the next useful move before you reconsider.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m315",
+    "quote": "The courage to learn where others might notice gives tomorrow a stronger place to begin.",
+    "insight": "Learn openly instead of hiding inexperience and record the result so progress becomes visible.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m316",
+    "quote": "The courage to learn where others might notice creates evidence that you can trust yourself again.",
+    "insight": "Learn openly instead of hiding inexperience then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m317",
+    "quote": "The courage to learn where others might notice moves your life farther than waiting for perfect conditions.",
+    "insight": "Learn openly instead of hiding inexperience and finish a small version before seeking a perfect one.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m318",
+    "quote": "The courage to learn where others might notice becomes quiet proof that meaningful change is already happening.",
+    "insight": "Learn openly instead of hiding inexperience then repeat it at the same time tomorrow.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m319",
+    "quote": "A decision made from values instead of approval builds a future that excuses cannot reach.",
+    "insight": "Make one decision without requesting unnecessary approval and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m320",
+    "quote": "A decision made from values instead of approval turns uncertainty into a direction you can follow.",
+    "insight": "Make one decision without requesting unnecessary approval then make the next useful move before you reconsider.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m321",
+    "quote": "A decision made from values instead of approval gives tomorrow a stronger place to begin.",
+    "insight": "Make one decision without requesting unnecessary approval and record the result so progress becomes visible.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m322",
+    "quote": "A decision made from values instead of approval creates evidence that you can trust yourself again.",
+    "insight": "Make one decision without requesting unnecessary approval then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m323",
+    "quote": "A decision made from values instead of approval moves your life farther than waiting for perfect conditions.",
+    "insight": "Make one decision without requesting unnecessary approval and finish a small version before seeking a perfect one.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m324",
+    "quote": "A decision made from values instead of approval becomes quiet proof that meaningful change is already happening.",
+    "insight": "Make one decision without requesting unnecessary approval then repeat it at the same time tomorrow.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m325",
+    "quote": "The posture of someone willing to try again builds a future that excuses cannot reach.",
+    "insight": "Try again with your shoulders relaxed and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m326",
+    "quote": "The posture of someone willing to try again turns uncertainty into a direction you can follow.",
+    "insight": "Try again with your shoulders relaxed then make the next useful move before you reconsider.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m327",
+    "quote": "The posture of someone willing to try again gives tomorrow a stronger place to begin.",
+    "insight": "Try again with your shoulders relaxed and record the result so progress becomes visible.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m328",
+    "quote": "The posture of someone willing to try again creates evidence that you can trust yourself again.",
+    "insight": "Try again with your shoulders relaxed then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m329",
+    "quote": "The posture of someone willing to try again moves your life farther than waiting for perfect conditions.",
+    "insight": "Try again with your shoulders relaxed and finish a small version before seeking a perfect one.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m330",
+    "quote": "The posture of someone willing to try again becomes quiet proof that meaningful change is already happening.",
+    "insight": "Try again with your shoulders relaxed then repeat it at the same time tomorrow.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m331",
+    "quote": "One truthful compliment you finally accept builds a future that excuses cannot reach.",
+    "insight": "Accept one sincere compliment without rejecting it and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m332",
+    "quote": "One truthful compliment you finally accept turns uncertainty into a direction you can follow.",
+    "insight": "Accept one sincere compliment without rejecting it then make the next useful move before you reconsider.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m333",
+    "quote": "One truthful compliment you finally accept gives tomorrow a stronger place to begin.",
+    "insight": "Accept one sincere compliment without rejecting it and record the result so progress becomes visible.",
+    "pexels_search": "person training boxing",
+    "category": "confidence"
+  },
+  {
+    "id": "m334",
+    "quote": "One truthful compliment you finally accept creates evidence that you can trust yourself again.",
+    "insight": "Accept one sincere compliment without rejecting it then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "confident person city",
+    "category": "confidence"
+  },
+  {
+    "id": "m335",
+    "quote": "One truthful compliment you finally accept moves your life farther than waiting for perfect conditions.",
+    "insight": "Accept one sincere compliment without rejecting it and finish a small version before seeking a perfect one.",
+    "pexels_search": "woman mountain overlook",
+    "category": "confidence"
+  },
+  {
+    "id": "m336",
+    "quote": "One truthful compliment you finally accept becomes quiet proof that meaningful change is already happening.",
+    "insight": "Accept one sincere compliment without rejecting it then repeat it at the same time tomorrow.",
+    "pexels_search": "speaker empty stage",
+    "category": "confidence"
+  },
+  {
+    "id": "m337",
+    "quote": "A familiar belief examined with new evidence builds a future that excuses cannot reach.",
+    "insight": "Test one familiar belief against new evidence and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "seedling sunlight growth",
     "category": "growth"
   },
   {
-    "id": "q070",
-    "quote": "The next version of your life needs skills your comfort zone cannot teach.",
-    "pexels_search": "person learning new skill",
+    "id": "m338",
+    "quote": "A familiar belief examined with new evidence turns uncertainty into a direction you can follow.",
+    "insight": "Test one familiar belief against new evidence then make the next useful move before you reconsider.",
+    "pexels_search": "person learning workshop",
     "category": "growth"
   },
   {
-    "id": "q071",
-    "quote": "Stay curious enough to revise the plan without abandoning the purpose.",
-    "pexels_search": "traveler reading map outdoors",
+    "id": "m339",
+    "quote": "A familiar belief examined with new evidence gives tomorrow a stronger place to begin.",
+    "insight": "Test one familiar belief against new evidence and record the result so progress becomes visible.",
+    "pexels_search": "winding road mountains",
     "category": "growth"
   },
   {
-    "id": "q072",
-    "quote": "Every honest reflection gives tomorrow better instructions.",
-    "pexels_search": "person journaling reflective",
+    "id": "m340",
+    "quote": "A familiar belief examined with new evidence creates evidence that you can trust yourself again.",
+    "insight": "Test one familiar belief against new evidence then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "student reading window",
     "category": "growth"
   },
   {
-    "id": "q073",
-    "quote": "You are not behind; you are responsible for the next direction you choose.",
-    "pexels_search": "crossroads road aerial",
+    "id": "m341",
+    "quote": "A familiar belief examined with new evidence moves your life farther than waiting for perfect conditions.",
+    "insight": "Test one familiar belief against new evidence and finish a small version before seeking a perfect one.",
+    "pexels_search": "seedling sunlight growth",
     "category": "growth"
   },
   {
-    "id": "q074",
-    "quote": "A stronger mind is built by questions that challenge familiar answers.",
-    "pexels_search": "student thinking library",
+    "id": "m342",
+    "quote": "A familiar belief examined with new evidence becomes quiet proof that meaningful change is already happening.",
+    "insight": "Test one familiar belief against new evidence then repeat it at the same time tomorrow.",
+    "pexels_search": "person learning workshop",
     "category": "growth"
   },
   {
-    "id": "q075",
-    "quote": "Let mistakes become information instead of permanent definitions.",
-    "pexels_search": "scientist reviewing experiment",
+    "id": "m343",
+    "quote": "One uncomfortable lesson welcomed without defense builds a future that excuses cannot reach.",
+    "insight": "Write the lesson inside your latest discomfort and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person learning workshop",
     "category": "growth"
   },
   {
-    "id": "q076",
-    "quote": "Growth feels awkward because old habits no longer fit the new direction.",
-    "pexels_search": "plant through concrete",
+    "id": "m344",
+    "quote": "One uncomfortable lesson welcomed without defense turns uncertainty into a direction you can follow.",
+    "insight": "Write the lesson inside your latest discomfort then make the next useful move before you reconsider.",
+    "pexels_search": "winding road mountains",
     "category": "growth"
   },
   {
-    "id": "q077",
-    "quote": "Choose environments that make your better habits easier to practice.",
-    "pexels_search": "bright healthy workspace",
+    "id": "m345",
+    "quote": "One uncomfortable lesson welcomed without defense gives tomorrow a stronger place to begin.",
+    "insight": "Write the lesson inside your latest discomfort and record the result so progress becomes visible.",
+    "pexels_search": "student reading window",
     "category": "growth"
   },
   {
-    "id": "q078",
-    "quote": "Your capacity expands when you stop treating discomfort as a stop sign.",
-    "pexels_search": "climber reaching rock ledge",
+    "id": "m346",
+    "quote": "One uncomfortable lesson welcomed without defense creates evidence that you can trust yourself again.",
+    "insight": "Write the lesson inside your latest discomfort then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "seedling sunlight growth",
     "category": "growth"
   },
   {
-    "id": "q079",
-    "quote": "Learn from the season without becoming trapped inside it.",
-    "pexels_search": "changing seasons forest",
+    "id": "m347",
+    "quote": "One uncomfortable lesson welcomed without defense moves your life farther than waiting for perfect conditions.",
+    "insight": "Write the lesson inside your latest discomfort and finish a small version before seeking a perfect one.",
+    "pexels_search": "person learning workshop",
     "category": "growth"
   },
   {
-    "id": "q080",
-    "quote": "The life you want may require a vocabulary of choices you have never used.",
-    "pexels_search": "person learning language notebook",
+    "id": "m348",
+    "quote": "One uncomfortable lesson welcomed without defense becomes quiet proof that meaningful change is already happening.",
+    "insight": "Write the lesson inside your latest discomfort then repeat it at the same time tomorrow.",
+    "pexels_search": "winding road mountains",
     "category": "growth"
   },
   {
-    "id": "q081",
-    "quote": "Keep what is true, improve what is weak, and release what is finished.",
-    "pexels_search": "hands pruning garden",
+    "id": "m349",
+    "quote": "The beginner stage accepted as part of mastery builds a future that excuses cannot reach.",
+    "insight": "Practice one skill badly enough to begin learning and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "winding road mountains",
     "category": "growth"
   },
   {
-    "id": "q082",
-    "quote": "A new perspective can turn the same obstacle into a different path.",
-    "pexels_search": "drone mountain winding road",
+    "id": "m350",
+    "quote": "The beginner stage accepted as part of mastery turns uncertainty into a direction you can follow.",
+    "insight": "Practice one skill badly enough to begin learning then make the next useful move before you reconsider.",
+    "pexels_search": "student reading window",
     "category": "growth"
   },
   {
-    "id": "q083",
-    "quote": "Growth is not becoming someone else; it is using more of who you are.",
-    "pexels_search": "person painting creative studio",
+    "id": "m351",
+    "quote": "The beginner stage accepted as part of mastery gives tomorrow a stronger place to begin.",
+    "insight": "Practice one skill badly enough to begin learning and record the result so progress becomes visible.",
+    "pexels_search": "seedling sunlight growth",
     "category": "growth"
   },
   {
-    "id": "q084",
-    "quote": "Ask better questions before demanding faster answers.",
-    "pexels_search": "thoughtful person city bench",
+    "id": "m352",
+    "quote": "The beginner stage accepted as part of mastery creates evidence that you can trust yourself again.",
+    "insight": "Practice one skill badly enough to begin learning then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person learning workshop",
     "category": "growth"
   },
   {
-    "id": "q085",
-    "quote": "Your potential needs experiments, not endless predictions.",
-    "pexels_search": "inventor working prototype",
+    "id": "m353",
+    "quote": "The beginner stage accepted as part of mastery moves your life farther than waiting for perfect conditions.",
+    "insight": "Practice one skill badly enough to begin learning and finish a small version before seeking a perfect one.",
+    "pexels_search": "winding road mountains",
     "category": "growth"
   },
   {
-    "id": "q086",
-    "quote": "Consistency turns a good intention into a place you can actually reach.",
-    "pexels_search": "footsteps long path",
+    "id": "m354",
+    "quote": "The beginner stage accepted as part of mastery becomes quiet proof that meaningful change is already happening.",
+    "insight": "Practice one skill badly enough to begin learning then repeat it at the same time tomorrow.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m355",
+    "quote": "A better question asked after the old answer fails builds a future that excuses cannot reach.",
+    "insight": "Ask a better question about a stubborn problem and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m356",
+    "quote": "A better question asked after the old answer fails turns uncertainty into a direction you can follow.",
+    "insight": "Ask a better question about a stubborn problem then make the next useful move before you reconsider.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m357",
+    "quote": "A better question asked after the old answer fails gives tomorrow a stronger place to begin.",
+    "insight": "Ask a better question about a stubborn problem and record the result so progress becomes visible.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m358",
+    "quote": "A better question asked after the old answer fails creates evidence that you can trust yourself again.",
+    "insight": "Ask a better question about a stubborn problem then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m359",
+    "quote": "A better question asked after the old answer fails moves your life farther than waiting for perfect conditions.",
+    "insight": "Ask a better question about a stubborn problem and finish a small version before seeking a perfect one.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m360",
+    "quote": "A better question asked after the old answer fails becomes quiet proof that meaningful change is already happening.",
+    "insight": "Ask a better question about a stubborn problem then repeat it at the same time tomorrow.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m361",
+    "quote": "The identity you outgrow without hating your past builds a future that excuses cannot reach.",
+    "insight": "Release one identity that no longer fits and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m362",
+    "quote": "The identity you outgrow without hating your past turns uncertainty into a direction you can follow.",
+    "insight": "Release one identity that no longer fits then make the next useful move before you reconsider.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m363",
+    "quote": "The identity you outgrow without hating your past gives tomorrow a stronger place to begin.",
+    "insight": "Release one identity that no longer fits and record the result so progress becomes visible.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m364",
+    "quote": "The identity you outgrow without hating your past creates evidence that you can trust yourself again.",
+    "insight": "Release one identity that no longer fits then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m365",
+    "quote": "The identity you outgrow without hating your past moves your life farther than waiting for perfect conditions.",
+    "insight": "Release one identity that no longer fits and finish a small version before seeking a perfect one.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m366",
+    "quote": "The identity you outgrow without hating your past becomes quiet proof that meaningful change is already happening.",
+    "insight": "Release one identity that no longer fits then repeat it at the same time tomorrow.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m367",
+    "quote": "One new environment that challenges your habits builds a future that excuses cannot reach.",
+    "insight": "Spend time in one environment that stretches you and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m368",
+    "quote": "One new environment that challenges your habits turns uncertainty into a direction you can follow.",
+    "insight": "Spend time in one environment that stretches you then make the next useful move before you reconsider.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m369",
+    "quote": "One new environment that challenges your habits gives tomorrow a stronger place to begin.",
+    "insight": "Spend time in one environment that stretches you and record the result so progress becomes visible.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m370",
+    "quote": "One new environment that challenges your habits creates evidence that you can trust yourself again.",
+    "insight": "Spend time in one environment that stretches you then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m371",
+    "quote": "One new environment that challenges your habits moves your life farther than waiting for perfect conditions.",
+    "insight": "Spend time in one environment that stretches you and finish a small version before seeking a perfect one.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m372",
+    "quote": "One new environment that challenges your habits becomes quiet proof that meaningful change is already happening.",
+    "insight": "Spend time in one environment that stretches you then repeat it at the same time tomorrow.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m373",
+    "quote": "A weakness studied instead of hidden builds a future that excuses cannot reach.",
+    "insight": "Study one weakness without trying to hide it and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m374",
+    "quote": "A weakness studied instead of hidden turns uncertainty into a direction you can follow.",
+    "insight": "Study one weakness without trying to hide it then make the next useful move before you reconsider.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m375",
+    "quote": "A weakness studied instead of hidden gives tomorrow a stronger place to begin.",
+    "insight": "Study one weakness without trying to hide it and record the result so progress becomes visible.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m376",
+    "quote": "A weakness studied instead of hidden creates evidence that you can trust yourself again.",
+    "insight": "Study one weakness without trying to hide it then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m377",
+    "quote": "A weakness studied instead of hidden moves your life farther than waiting for perfect conditions.",
+    "insight": "Study one weakness without trying to hide it and finish a small version before seeking a perfect one.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m378",
+    "quote": "A weakness studied instead of hidden becomes quiet proof that meaningful change is already happening.",
+    "insight": "Study one weakness without trying to hide it then repeat it at the same time tomorrow.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m379",
+    "quote": "The feedback you use without surrendering your judgment builds a future that excuses cannot reach.",
+    "insight": "Use one piece of feedback while keeping your judgment and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m380",
+    "quote": "The feedback you use without surrendering your judgment turns uncertainty into a direction you can follow.",
+    "insight": "Use one piece of feedback while keeping your judgment then make the next useful move before you reconsider.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m381",
+    "quote": "The feedback you use without surrendering your judgment gives tomorrow a stronger place to begin.",
+    "insight": "Use one piece of feedback while keeping your judgment and record the result so progress becomes visible.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m382",
+    "quote": "The feedback you use without surrendering your judgment creates evidence that you can trust yourself again.",
+    "insight": "Use one piece of feedback while keeping your judgment then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m383",
+    "quote": "The feedback you use without surrendering your judgment moves your life farther than waiting for perfect conditions.",
+    "insight": "Use one piece of feedback while keeping your judgment and finish a small version before seeking a perfect one.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m384",
+    "quote": "The feedback you use without surrendering your judgment becomes quiet proof that meaningful change is already happening.",
+    "insight": "Use one piece of feedback while keeping your judgment then repeat it at the same time tomorrow.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m385",
+    "quote": "A curious mind kept open during disagreement builds a future that excuses cannot reach.",
+    "insight": "Listen for understanding during one disagreement and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m386",
+    "quote": "A curious mind kept open during disagreement turns uncertainty into a direction you can follow.",
+    "insight": "Listen for understanding during one disagreement then make the next useful move before you reconsider.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m387",
+    "quote": "A curious mind kept open during disagreement gives tomorrow a stronger place to begin.",
+    "insight": "Listen for understanding during one disagreement and record the result so progress becomes visible.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m388",
+    "quote": "A curious mind kept open during disagreement creates evidence that you can trust yourself again.",
+    "insight": "Listen for understanding during one disagreement then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m389",
+    "quote": "A curious mind kept open during disagreement moves your life farther than waiting for perfect conditions.",
+    "insight": "Listen for understanding during one disagreement and finish a small version before seeking a perfect one.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m390",
+    "quote": "A curious mind kept open during disagreement becomes quiet proof that meaningful change is already happening.",
+    "insight": "Listen for understanding during one disagreement then repeat it at the same time tomorrow.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m391",
+    "quote": "One outdated goal released for a truer direction builds a future that excuses cannot reach.",
+    "insight": "Replace one outdated goal with a truer direction and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m392",
+    "quote": "One outdated goal released for a truer direction turns uncertainty into a direction you can follow.",
+    "insight": "Replace one outdated goal with a truer direction then make the next useful move before you reconsider.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m393",
+    "quote": "One outdated goal released for a truer direction gives tomorrow a stronger place to begin.",
+    "insight": "Replace one outdated goal with a truer direction and record the result so progress becomes visible.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m394",
+    "quote": "One outdated goal released for a truer direction creates evidence that you can trust yourself again.",
+    "insight": "Replace one outdated goal with a truer direction then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m395",
+    "quote": "One outdated goal released for a truer direction moves your life farther than waiting for perfect conditions.",
+    "insight": "Replace one outdated goal with a truer direction and finish a small version before seeking a perfect one.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m396",
+    "quote": "One outdated goal released for a truer direction becomes quiet proof that meaningful change is already happening.",
+    "insight": "Replace one outdated goal with a truer direction then repeat it at the same time tomorrow.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m397",
+    "quote": "The patience to become capable before becoming visible builds a future that excuses cannot reach.",
+    "insight": "Build capability before seeking visibility and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m398",
+    "quote": "The patience to become capable before becoming visible turns uncertainty into a direction you can follow.",
+    "insight": "Build capability before seeking visibility then make the next useful move before you reconsider.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m399",
+    "quote": "The patience to become capable before becoming visible gives tomorrow a stronger place to begin.",
+    "insight": "Build capability before seeking visibility and record the result so progress becomes visible.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m400",
+    "quote": "The patience to become capable before becoming visible creates evidence that you can trust yourself again.",
+    "insight": "Build capability before seeking visibility then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m401",
+    "quote": "The patience to become capable before becoming visible moves your life farther than waiting for perfect conditions.",
+    "insight": "Build capability before seeking visibility and finish a small version before seeking a perfect one.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m402",
+    "quote": "The patience to become capable before becoming visible becomes quiet proof that meaningful change is already happening.",
+    "insight": "Build capability before seeking visibility then repeat it at the same time tomorrow.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m403",
+    "quote": "A difficult season converted into useful wisdom builds a future that excuses cannot reach.",
+    "insight": "Extract one useful principle from a difficult season and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m404",
+    "quote": "A difficult season converted into useful wisdom turns uncertainty into a direction you can follow.",
+    "insight": "Extract one useful principle from a difficult season then make the next useful move before you reconsider.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m405",
+    "quote": "A difficult season converted into useful wisdom gives tomorrow a stronger place to begin.",
+    "insight": "Extract one useful principle from a difficult season and record the result so progress becomes visible.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m406",
+    "quote": "A difficult season converted into useful wisdom creates evidence that you can trust yourself again.",
+    "insight": "Extract one useful principle from a difficult season then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m407",
+    "quote": "A difficult season converted into useful wisdom moves your life farther than waiting for perfect conditions.",
+    "insight": "Extract one useful principle from a difficult season and finish a small version before seeking a perfect one.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m408",
+    "quote": "A difficult season converted into useful wisdom becomes quiet proof that meaningful change is already happening.",
+    "insight": "Extract one useful principle from a difficult season then repeat it at the same time tomorrow.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m409",
+    "quote": "The choice to update your plan without abandoning yourself builds a future that excuses cannot reach.",
+    "insight": "Update one plan that reality has outgrown and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m410",
+    "quote": "The choice to update your plan without abandoning yourself turns uncertainty into a direction you can follow.",
+    "insight": "Update one plan that reality has outgrown then make the next useful move before you reconsider.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m411",
+    "quote": "The choice to update your plan without abandoning yourself gives tomorrow a stronger place to begin.",
+    "insight": "Update one plan that reality has outgrown and record the result so progress becomes visible.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m412",
+    "quote": "The choice to update your plan without abandoning yourself creates evidence that you can trust yourself again.",
+    "insight": "Update one plan that reality has outgrown then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m413",
+    "quote": "The choice to update your plan without abandoning yourself moves your life farther than waiting for perfect conditions.",
+    "insight": "Update one plan that reality has outgrown and finish a small version before seeking a perfect one.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m414",
+    "quote": "The choice to update your plan without abandoning yourself becomes quiet proof that meaningful change is already happening.",
+    "insight": "Update one plan that reality has outgrown then repeat it at the same time tomorrow.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m415",
+    "quote": "One question that expands the life you can imagine builds a future that excuses cannot reach.",
+    "insight": "Ask what becomes possible if fear is not in charge and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m416",
+    "quote": "One question that expands the life you can imagine turns uncertainty into a direction you can follow.",
+    "insight": "Ask what becomes possible if fear is not in charge then make the next useful move before you reconsider.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m417",
+    "quote": "One question that expands the life you can imagine gives tomorrow a stronger place to begin.",
+    "insight": "Ask what becomes possible if fear is not in charge and record the result so progress becomes visible.",
+    "pexels_search": "student reading window",
+    "category": "growth"
+  },
+  {
+    "id": "m418",
+    "quote": "One question that expands the life you can imagine creates evidence that you can trust yourself again.",
+    "insight": "Ask what becomes possible if fear is not in charge then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "seedling sunlight growth",
+    "category": "growth"
+  },
+  {
+    "id": "m419",
+    "quote": "One question that expands the life you can imagine moves your life farther than waiting for perfect conditions.",
+    "insight": "Ask what becomes possible if fear is not in charge and finish a small version before seeking a perfect one.",
+    "pexels_search": "person learning workshop",
+    "category": "growth"
+  },
+  {
+    "id": "m420",
+    "quote": "One question that expands the life you can imagine becomes quiet proof that meaningful change is already happening.",
+    "insight": "Ask what becomes possible if fear is not in charge then repeat it at the same time tomorrow.",
+    "pexels_search": "winding road mountains",
+    "category": "growth"
+  },
+  {
+    "id": "m421",
+    "quote": "A modest action repeated after excitement disappears builds a future that excuses cannot reach.",
+    "insight": "Repeat one modest action after excitement fades and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "daily journal coffee",
     "category": "consistency"
   },
   {
-    "id": "q087",
-    "quote": "A small action repeated with care can outlast a perfect plan delayed forever.",
-    "pexels_search": "hands practicing piano",
+    "id": "m422",
+    "quote": "A modest action repeated after excitement disappears turns uncertainty into a direction you can follow.",
+    "insight": "Repeat one modest action after excitement fades then make the next useful move before you reconsider.",
+    "pexels_search": "runner training road",
     "category": "consistency"
   },
   {
-    "id": "q088",
-    "quote": "Return to the work before you judge how far it can take you.",
-    "pexels_search": "writer typing every morning",
+    "id": "m423",
+    "quote": "A modest action repeated after excitement disappears gives tomorrow a stronger place to begin.",
+    "insight": "Repeat one modest action after excitement fades and record the result so progress becomes visible.",
+    "pexels_search": "calendar habit tracking",
     "category": "consistency"
   },
   {
-    "id": "q089",
-    "quote": "Momentum trusts the person who keeps showing up after the novelty leaves.",
-    "pexels_search": "runner same road daily",
+    "id": "m424",
+    "quote": "A modest action repeated after excitement disappears creates evidence that you can trust yourself again.",
+    "insight": "Repeat one modest action after excitement fades then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "sunrise walking routine",
     "category": "consistency"
   },
   {
-    "id": "q090",
-    "quote": "Do less if necessary, but keep the connection to your goal alive.",
-    "pexels_search": "small daily workout home",
+    "id": "m425",
+    "quote": "A modest action repeated after excitement disappears moves your life farther than waiting for perfect conditions.",
+    "insight": "Repeat one modest action after excitement fades and finish a small version before seeking a perfect one.",
+    "pexels_search": "daily journal coffee",
     "category": "consistency"
   },
   {
-    "id": "q091",
-    "quote": "The calendar rewards repetition more reliably than intensity.",
-    "pexels_search": "calendar pages turning",
+    "id": "m426",
+    "quote": "A modest action repeated after excitement disappears becomes quiet proof that meaningful change is already happening.",
+    "insight": "Repeat one modest action after excitement fades then repeat it at the same time tomorrow.",
+    "pexels_search": "runner training road",
     "category": "consistency"
   },
   {
-    "id": "q092",
-    "quote": "One steady step is enough when you are willing to take another tomorrow.",
-    "pexels_search": "walking feet sunrise road",
+    "id": "m427",
+    "quote": "One daily page written without waiting for inspiration builds a future that excuses cannot reach.",
+    "insight": "Write one useful page without waiting for inspiration and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "runner training road",
     "category": "consistency"
   },
   {
-    "id": "q093",
-    "quote": "Consistency is patience with a schedule.",
-    "pexels_search": "clock and planner minimal",
+    "id": "m428",
+    "quote": "One daily page written without waiting for inspiration turns uncertainty into a direction you can follow.",
+    "insight": "Write one useful page without waiting for inspiration then make the next useful move before you reconsider.",
+    "pexels_search": "calendar habit tracking",
     "category": "consistency"
   },
   {
-    "id": "q094",
-    "quote": "Your ordinary effort becomes extraordinary when it survives enough ordinary days.",
-    "pexels_search": "worker daily craft routine",
+    "id": "m429",
+    "quote": "One daily page written without waiting for inspiration gives tomorrow a stronger place to begin.",
+    "insight": "Write one useful page without waiting for inspiration and record the result so progress becomes visible.",
+    "pexels_search": "sunrise walking routine",
     "category": "consistency"
   },
   {
-    "id": "q095",
-    "quote": "Keep the chain simple: begin, finish, recover, repeat.",
-    "pexels_search": "cycling training road",
+    "id": "m430",
+    "quote": "One daily page written without waiting for inspiration creates evidence that you can trust yourself again.",
+    "insight": "Write one useful page without waiting for inspiration then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "daily journal coffee",
     "category": "consistency"
   },
   {
-    "id": "q096",
-    "quote": "Results often arrive late to the habits that created them.",
-    "pexels_search": "gardener watering plants",
+    "id": "m431",
+    "quote": "One daily page written without waiting for inspiration moves your life farther than waiting for perfect conditions.",
+    "insight": "Write one useful page without waiting for inspiration and finish a small version before seeking a perfect one.",
+    "pexels_search": "runner training road",
     "category": "consistency"
   },
   {
-    "id": "q097",
-    "quote": "A reliable pace beats a heroic sprint that cannot return tomorrow.",
-    "pexels_search": "jogger steady pace park",
+    "id": "m432",
+    "quote": "One daily page written without waiting for inspiration becomes quiet proof that meaningful change is already happening.",
+    "insight": "Write one useful page without waiting for inspiration then repeat it at the same time tomorrow.",
+    "pexels_search": "calendar habit tracking",
     "category": "consistency"
   },
   {
-    "id": "q098",
-    "quote": "Make the next repetition cleaner, not necessarily bigger.",
-    "pexels_search": "athlete practicing form",
+    "id": "m433",
+    "quote": "The pace you can maintain during an ordinary month builds a future that excuses cannot reach.",
+    "insight": "Choose a pace you could maintain for a month and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "calendar habit tracking",
     "category": "consistency"
   },
   {
-    "id": "q099",
-    "quote": "Progress stays when the habit has somewhere permanent in your day.",
-    "pexels_search": "morning coffee notebook routine",
+    "id": "m434",
+    "quote": "The pace you can maintain during an ordinary month turns uncertainty into a direction you can follow.",
+    "insight": "Choose a pace you could maintain for a month then make the next useful move before you reconsider.",
+    "pexels_search": "sunrise walking routine",
     "category": "consistency"
   },
   {
-    "id": "q100",
-    "quote": "Show up at the same door until effort learns how to open it.",
-    "pexels_search": "person opening workshop door",
+    "id": "m435",
+    "quote": "The pace you can maintain during an ordinary month gives tomorrow a stronger place to begin.",
+    "insight": "Choose a pace you could maintain for a month and record the result so progress becomes visible.",
+    "pexels_search": "daily journal coffee",
     "category": "consistency"
   },
   {
-    "id": "q101",
-    "quote": "Consistency gives talent enough time to become useful.",
-    "pexels_search": "musician daily practice",
+    "id": "m436",
+    "quote": "The pace you can maintain during an ordinary month creates evidence that you can trust yourself again.",
+    "insight": "Choose a pace you could maintain for a month then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "runner training road",
     "category": "consistency"
   },
   {
-    "id": "q102",
-    "quote": "When motivation changes its mind, let the routine keep the appointment.",
-    "pexels_search": "alarm clock running shoes",
+    "id": "m437",
+    "quote": "The pace you can maintain during an ordinary month moves your life farther than waiting for perfect conditions.",
+    "insight": "Choose a pace you could maintain for a month and finish a small version before seeking a perfect one.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m438",
+    "quote": "The pace you can maintain during an ordinary month becomes quiet proof that meaningful change is already happening.",
+    "insight": "Choose a pace you could maintain for a month then repeat it at the same time tomorrow.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m439",
+    "quote": "A simple system that survives a difficult day builds a future that excuses cannot reach.",
+    "insight": "Simplify one system until it survives a difficult day and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m440",
+    "quote": "A simple system that survives a difficult day turns uncertainty into a direction you can follow.",
+    "insight": "Simplify one system until it survives a difficult day then make the next useful move before you reconsider.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m441",
+    "quote": "A simple system that survives a difficult day gives tomorrow a stronger place to begin.",
+    "insight": "Simplify one system until it survives a difficult day and record the result so progress becomes visible.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m442",
+    "quote": "A simple system that survives a difficult day creates evidence that you can trust yourself again.",
+    "insight": "Simplify one system until it survives a difficult day then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m443",
+    "quote": "A simple system that survives a difficult day moves your life farther than waiting for perfect conditions.",
+    "insight": "Simplify one system until it survives a difficult day and finish a small version before seeking a perfect one.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m444",
+    "quote": "A simple system that survives a difficult day becomes quiet proof that meaningful change is already happening.",
+    "insight": "Simplify one system until it survives a difficult day then repeat it at the same time tomorrow.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m445",
+    "quote": "The return you make after missing one attempt builds a future that excuses cannot reach.",
+    "insight": "Return today without punishing yesterday's missed attempt and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m446",
+    "quote": "The return you make after missing one attempt turns uncertainty into a direction you can follow.",
+    "insight": "Return today without punishing yesterday's missed attempt then make the next useful move before you reconsider.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m447",
+    "quote": "The return you make after missing one attempt gives tomorrow a stronger place to begin.",
+    "insight": "Return today without punishing yesterday's missed attempt and record the result so progress becomes visible.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m448",
+    "quote": "The return you make after missing one attempt creates evidence that you can trust yourself again.",
+    "insight": "Return today without punishing yesterday's missed attempt then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m449",
+    "quote": "The return you make after missing one attempt moves your life farther than waiting for perfect conditions.",
+    "insight": "Return today without punishing yesterday's missed attempt and finish a small version before seeking a perfect one.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m450",
+    "quote": "The return you make after missing one attempt becomes quiet proof that meaningful change is already happening.",
+    "insight": "Return today without punishing yesterday's missed attempt then repeat it at the same time tomorrow.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m451",
+    "quote": "One small improvement protected from impatience builds a future that excuses cannot reach.",
+    "insight": "Protect one small improvement from impatience and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m452",
+    "quote": "One small improvement protected from impatience turns uncertainty into a direction you can follow.",
+    "insight": "Protect one small improvement from impatience then make the next useful move before you reconsider.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m453",
+    "quote": "One small improvement protected from impatience gives tomorrow a stronger place to begin.",
+    "insight": "Protect one small improvement from impatience and record the result so progress becomes visible.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m454",
+    "quote": "One small improvement protected from impatience creates evidence that you can trust yourself again.",
+    "insight": "Protect one small improvement from impatience then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m455",
+    "quote": "One small improvement protected from impatience moves your life farther than waiting for perfect conditions.",
+    "insight": "Protect one small improvement from impatience and finish a small version before seeking a perfect one.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m456",
+    "quote": "One small improvement protected from impatience becomes quiet proof that meaningful change is already happening.",
+    "insight": "Protect one small improvement from impatience then repeat it at the same time tomorrow.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m457",
+    "quote": "The calendar that records effort instead of intention builds a future that excuses cannot reach.",
+    "insight": "Mark completed effort on a visible calendar and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m458",
+    "quote": "The calendar that records effort instead of intention turns uncertainty into a direction you can follow.",
+    "insight": "Mark completed effort on a visible calendar then make the next useful move before you reconsider.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m459",
+    "quote": "The calendar that records effort instead of intention gives tomorrow a stronger place to begin.",
+    "insight": "Mark completed effort on a visible calendar and record the result so progress becomes visible.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m460",
+    "quote": "The calendar that records effort instead of intention creates evidence that you can trust yourself again.",
+    "insight": "Mark completed effort on a visible calendar then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m461",
+    "quote": "The calendar that records effort instead of intention moves your life farther than waiting for perfect conditions.",
+    "insight": "Mark completed effort on a visible calendar and finish a small version before seeking a perfect one.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m462",
+    "quote": "The calendar that records effort instead of intention becomes quiet proof that meaningful change is already happening.",
+    "insight": "Mark completed effort on a visible calendar then repeat it at the same time tomorrow.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m463",
+    "quote": "A steady rhythm chosen over a dramatic beginning builds a future that excuses cannot reach.",
+    "insight": "Choose a steady rhythm over a dramatic restart and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m464",
+    "quote": "A steady rhythm chosen over a dramatic beginning turns uncertainty into a direction you can follow.",
+    "insight": "Choose a steady rhythm over a dramatic restart then make the next useful move before you reconsider.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m465",
+    "quote": "A steady rhythm chosen over a dramatic beginning gives tomorrow a stronger place to begin.",
+    "insight": "Choose a steady rhythm over a dramatic restart and record the result so progress becomes visible.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m466",
+    "quote": "A steady rhythm chosen over a dramatic beginning creates evidence that you can trust yourself again.",
+    "insight": "Choose a steady rhythm over a dramatic restart then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m467",
+    "quote": "A steady rhythm chosen over a dramatic beginning moves your life farther than waiting for perfect conditions.",
+    "insight": "Choose a steady rhythm over a dramatic restart and finish a small version before seeking a perfect one.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m468",
+    "quote": "A steady rhythm chosen over a dramatic beginning becomes quiet proof that meaningful change is already happening.",
+    "insight": "Choose a steady rhythm over a dramatic restart then repeat it at the same time tomorrow.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m469",
+    "quote": "The minimum useful action completed on a tired day builds a future that excuses cannot reach.",
+    "insight": "Complete the minimum useful action on a tired day and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m470",
+    "quote": "The minimum useful action completed on a tired day turns uncertainty into a direction you can follow.",
+    "insight": "Complete the minimum useful action on a tired day then make the next useful move before you reconsider.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m471",
+    "quote": "The minimum useful action completed on a tired day gives tomorrow a stronger place to begin.",
+    "insight": "Complete the minimum useful action on a tired day and record the result so progress becomes visible.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m472",
+    "quote": "The minimum useful action completed on a tired day creates evidence that you can trust yourself again.",
+    "insight": "Complete the minimum useful action on a tired day then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m473",
+    "quote": "The minimum useful action completed on a tired day moves your life farther than waiting for perfect conditions.",
+    "insight": "Complete the minimum useful action on a tired day and finish a small version before seeking a perfect one.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m474",
+    "quote": "The minimum useful action completed on a tired day becomes quiet proof that meaningful change is already happening.",
+    "insight": "Complete the minimum useful action on a tired day then repeat it at the same time tomorrow.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m475",
+    "quote": "One routine adjusted instead of completely abandoned builds a future that excuses cannot reach.",
+    "insight": "Adjust one routine instead of abandoning it and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m476",
+    "quote": "One routine adjusted instead of completely abandoned turns uncertainty into a direction you can follow.",
+    "insight": "Adjust one routine instead of abandoning it then make the next useful move before you reconsider.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m477",
+    "quote": "One routine adjusted instead of completely abandoned gives tomorrow a stronger place to begin.",
+    "insight": "Adjust one routine instead of abandoning it and record the result so progress becomes visible.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m478",
+    "quote": "One routine adjusted instead of completely abandoned creates evidence that you can trust yourself again.",
+    "insight": "Adjust one routine instead of abandoning it then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m479",
+    "quote": "One routine adjusted instead of completely abandoned moves your life farther than waiting for perfect conditions.",
+    "insight": "Adjust one routine instead of abandoning it and finish a small version before seeking a perfect one.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m480",
+    "quote": "One routine adjusted instead of completely abandoned becomes quiet proof that meaningful change is already happening.",
+    "insight": "Adjust one routine instead of abandoning it then repeat it at the same time tomorrow.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m481",
+    "quote": "The patience to let repeated effort become visible builds a future that excuses cannot reach.",
+    "insight": "Let repeated effort remain invisible a little longer and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m482",
+    "quote": "The patience to let repeated effort become visible turns uncertainty into a direction you can follow.",
+    "insight": "Let repeated effort remain invisible a little longer then make the next useful move before you reconsider.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m483",
+    "quote": "The patience to let repeated effort become visible gives tomorrow a stronger place to begin.",
+    "insight": "Let repeated effort remain invisible a little longer and record the result so progress becomes visible.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m484",
+    "quote": "The patience to let repeated effort become visible creates evidence that you can trust yourself again.",
+    "insight": "Let repeated effort remain invisible a little longer then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m485",
+    "quote": "The patience to let repeated effort become visible moves your life farther than waiting for perfect conditions.",
+    "insight": "Let repeated effort remain invisible a little longer and finish a small version before seeking a perfect one.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m486",
+    "quote": "The patience to let repeated effort become visible becomes quiet proof that meaningful change is already happening.",
+    "insight": "Let repeated effort remain invisible a little longer then repeat it at the same time tomorrow.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m487",
+    "quote": "A boring practice treated as part of the dream builds a future that excuses cannot reach.",
+    "insight": "Treat one boring practice as part of the dream and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m488",
+    "quote": "A boring practice treated as part of the dream turns uncertainty into a direction you can follow.",
+    "insight": "Treat one boring practice as part of the dream then make the next useful move before you reconsider.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m489",
+    "quote": "A boring practice treated as part of the dream gives tomorrow a stronger place to begin.",
+    "insight": "Treat one boring practice as part of the dream and record the result so progress becomes visible.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m490",
+    "quote": "A boring practice treated as part of the dream creates evidence that you can trust yourself again.",
+    "insight": "Treat one boring practice as part of the dream then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m491",
+    "quote": "A boring practice treated as part of the dream moves your life farther than waiting for perfect conditions.",
+    "insight": "Treat one boring practice as part of the dream and finish a small version before seeking a perfect one.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m492",
+    "quote": "A boring practice treated as part of the dream becomes quiet proof that meaningful change is already happening.",
+    "insight": "Treat one boring practice as part of the dream then repeat it at the same time tomorrow.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m493",
+    "quote": "The next repetition completed without measuring applause builds a future that excuses cannot reach.",
+    "insight": "Complete the next repetition without checking applause and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m494",
+    "quote": "The next repetition completed without measuring applause turns uncertainty into a direction you can follow.",
+    "insight": "Complete the next repetition without checking applause then make the next useful move before you reconsider.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m495",
+    "quote": "The next repetition completed without measuring applause gives tomorrow a stronger place to begin.",
+    "insight": "Complete the next repetition without checking applause and record the result so progress becomes visible.",
+    "pexels_search": "calendar habit tracking",
+    "category": "consistency"
+  },
+  {
+    "id": "m496",
+    "quote": "The next repetition completed without measuring applause creates evidence that you can trust yourself again.",
+    "insight": "Complete the next repetition without checking applause then remove one obstacle that makes tomorrow harder.",
+    "pexels_search": "sunrise walking routine",
+    "category": "consistency"
+  },
+  {
+    "id": "m497",
+    "quote": "The next repetition completed without measuring applause moves your life farther than waiting for perfect conditions.",
+    "insight": "Complete the next repetition without checking applause and finish a small version before seeking a perfect one.",
+    "pexels_search": "daily journal coffee",
+    "category": "consistency"
+  },
+  {
+    "id": "m498",
+    "quote": "The next repetition completed without measuring applause becomes quiet proof that meaningful change is already happening.",
+    "insight": "Complete the next repetition without checking applause then repeat it at the same time tomorrow.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m499",
+    "quote": "One dependable step taken at the agreed time builds a future that excuses cannot reach.",
+    "insight": "Take one dependable step at the time you chose and give it ten focused minutes before the day gets noisy.",
+    "pexels_search": "runner training road",
+    "category": "consistency"
+  },
+  {
+    "id": "m500",
+    "quote": "One dependable step taken at the agreed time turns uncertainty into a direction you can follow.",
+    "insight": "Take one dependable step at the time you chose then make the next useful move before you reconsider.",
+    "pexels_search": "calendar habit tracking",
     "category": "consistency"
   }
 ]
-
