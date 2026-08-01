@@ -1,6 +1,6 @@
 # GitHub-only YouTube Shorts setup
 
-This guide configures the twice-daily workflow in `.github/workflows/create-short.yml`. It renders a 20-second English motivational Short entirely on GitHub's `ubuntu-latest` runner and uploads it with the official YouTube Data API. Scheduled uploads are public; manual uploads remain private by default.
+This guide configures the three-times-daily workflow in `.github/workflows/create-short.yml`. It renders a 20-second English motivational Short entirely on GitHub's `ubuntu-latest` runner and uploads it with the official YouTube Data API. Scheduled uploads are public; manual uploads remain private by default.
 
 ## What you need
 
@@ -124,13 +124,13 @@ The **Artifacts** section contains `output/short.mp4` and `output/metadata.json`
 
 ## 9. Scheduled public uploads
 
-The 7:07 AM and 7:07 PM schedules upload as `public`. Manual runs still default to `private`, but offer `unlisted` and `public` choices. Keep reviewing footage, music licenses, metadata, and channel-policy compliance because scheduled public uploads do not include a human approval step.
+The 7:07 AM, 1:07 PM, and 7:07 PM schedules upload as `public`. Manual runs still default to `private`, but offer `unlisted` and `public` choices. Keep reviewing footage, music licenses, metadata, and channel-policy compliance because scheduled public uploads do not include a human approval step.
 
 New or unaudited Google API projects can have API uploads restricted to private visibility regardless of the requested setting. Follow Google's audit and verification requirements rather than attempting to bypass the restriction.
 
 ## Schedule and quote rotation
 
-GitHub runs the workflow every day at `07:07` and `19:07` using the IANA timezone `Asia/Yangon`. GitHub schedules can be delayed during high load, although choosing minute 7 avoids the busiest start-of-hour period.
+GitHub runs the workflow every day at `07:07`, `13:07`, and `19:07` using the IANA timezone `Asia/Yangon`. GitHub schedules can be delayed during high load, although choosing minute 7 avoids the busiest start-of-hour period.
 
 `data/quotes.json` contains more than 100 original, unattributed quotes across discipline, success, healing, confidence, growth, and consistency. `data/state.json` prevents reuse until the catalog cycle is exhausted. A manual quote does not alter catalog rotation.
 
