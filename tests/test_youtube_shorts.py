@@ -141,7 +141,8 @@ def test_new_subtitle_story_has_four_timed_phases_and_animation():
     assert "DO THIS TODAY" in subtitles
     assert "SAVE THIS FOR TOMORROW" in subtitles
     assert r"\fad(" in subtitles
-    assert r"\pos(540,1740)" in subtitles
+    assert r"\pos(540,1700)" in subtitles
+    assert "Style: Channel,Poppins SemiBold,30,&H10FFFFFF" in subtitles
     assert "0:00:16.20,0:00:20.00" in subtitles
 
 

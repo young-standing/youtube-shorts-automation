@@ -249,7 +249,7 @@ Style: Quote,Poppins SemiBold,52,&H00FFFFFF,&H00FFFFFF,&HCC000000,&H78000000,-1,
 Style: Label,Poppins SemiBold,30,&H0000D7FF,&H0000D7FF,&HCC000000,&H70000000,-1,0,0,0,100,100,2,0,1,3,0,5,90,90,0,1
 Style: Action,Poppins SemiBold,46,&H00FFFFFF,&H00FFFFFF,&HCC000000,&H78000000,-1,0,0,0,100,100,0,0,1,4,1,5,90,90,0,1
 Style: CTA,Poppins SemiBold,54,&H00FFFFFF,&H00FFFFFF,&HCC000000,&H80000000,-1,0,0,0,100,100,1,0,1,4,1,5,90,90,0,1
-Style: Channel,Poppins SemiBold,25,&HDDFFFFFF,&HDDFFFFFF,&H90000000,&H00000000,-1,0,0,0,100,100,1,0,1,2,60,60,125,1
+Style: Channel,Poppins SemiBold,30,&H10FFFFFF,&H10FFFFFF,&H60000000,&H50000000,-1,0,0,0,100,100,1,0,1,3,1,2,60,60,125,1
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
@@ -258,7 +258,7 @@ Dialogue: 1,0:00:02.25,0:00:10.40,Quote,,0,0,0,,{{\fad(250,300)\fscx104\fscy104\
 Dialogue: 2,0:00:09.85,0:00:16.75,Label,,0,0,0,,{{\fad(220,250)\pos(540,690)}}DO THIS TODAY
 Dialogue: 1,0:00:09.85,0:00:16.75,Action,,0,0,0,,{{\fad(220,250)\pos(540,1010)}}{insight}
 Dialogue: 2,0:00:16.20,0:00:20.00,CTA,,0,0,0,,{{\fad(220,500)\fscx108\fscy108\t(0,350,\fscx100\fscy100)}}SAVE THIS FOR TOMORROW
-Dialogue: 3,0:00:00.00,0:00:20.00,Channel,,0,0,0,,{{\an2\pos(540,1740)}}{channel}
+Dialogue: 3,0:00:00.00,0:00:20.00,Channel,,0,0,0,,{{\an2\pos(540,1700)}}{channel}
 """
 
 
