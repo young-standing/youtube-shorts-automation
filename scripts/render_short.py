@@ -25,11 +25,19 @@ from urllib3.util.retry import Retry
 ROOT = Path(__file__).resolve().parents[1]
 QUOTES_PATH = ROOT / "data" / "quotes.json"
 STATE_PATH = ROOT / "data" / "state.json"
-MUSIC_DIR = ROOT / "music"
 OUTPUT_DIR = ROOT / "output"
 POPPINS_FONT_PATH = ROOT / "assets" / "fonts" / "Poppins-SemiBold.ttf"
 PEXELS_SEARCH_URL = "https://api.pexels.com/v1/videos/search"
+OPENVERSE_AUDIO_URL = "https://api.openverse.org/v1/audio/"
+OPENVERSE_TOKEN_URL = "https://api.openverse.org/v1/auth_tokens/token/"
 FALLBACK_SEARCH = "calm sunrise nature"
+MUSIC_SEARCHES = (
+    "sad piano",
+    "emotional piano",
+    "melancholic piano",
+    "somber piano",
+)
+OPENVERSE_LICENSES = {"cc0", "pdm"}
 VIDEO_SECONDS = 20
 WIDTH = 1080
 HEIGHT = 1920
@@ -206,6 +214,9 @@ def build_metadata(
     channel_name: str,
     privacy_status: str,
     music_name: str,
+    music_creator: str = "Unknown creator",
+    music_source_url: str = "",
+    music_license: str = "CC0",
 ) -> dict[str, Any]:
     if privacy_status not in {"private", "unlisted", "public"}:
         raise ShortsError(f"Invalid privacy status: {privacy_status}")
@@ -218,11 +229,16 @@ def build_metadata(
         "pexels_creator": creator_name,
         "pexels_source_url": source_url,
         "music_file": music_name,
+        "music_creator": music_creator,
+        "music_source_url": music_source_url,
+        "music_license": music_license,
         "channel_name": channel_name,
         "title": make_title(quote),
         "description": (
             f"{quote}\n\n"
-            f"Footage by {creator_name} on Pexels: {source_url}\n\n"
+            f"Footage by {creator_name} on Pexels: {source_url}\n"
+            f"Music: {music_name} by {music_creator} "
+            f"({music_license}): {music_source_url}\n\n"
             f"{HASHTAGS}"
         ),
         "tags": [
@@ -349,12 +365,116 @@ def download_file(url: str, destination: Path, *, session: requests.Session | No
         raise ShortsError("Downloaded Pexels footage is empty or invalid")
 
 
-def find_music_files(directory: Path = MUSIC_DIR) -> list[Path]:
-    if not directory.exists():
-        return []
-    return sorted(
-        path for path in directory.iterdir() if path.is_file() and path.suffix.casefold() == ".mp3"
-    )
+def suitable_openverse_audio(results: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
+    candidates: list[dict[str, Any]] = []
+    for item in results:
+        download_url = str(item.get("url") or "")
+        source_url = str(item.get("foreign_landing_url") or "")
+        license_code = str(item.get("license") or "").casefold()
+        duration_ms = int(item.get("duration") or 0)
+        if (
+            not valid_https_url(download_url)
+            or not valid_https_url(source_url)
+            or license_code not in OPENVERSE_LICENSES
+            or duration_ms < VIDEO_SECONDS * 1000
+        ):
+            continue
+        candidates.append(
+            {
+                "id": str(item.get("id") or ""),
+                "download_url": download_url,
+                "title": str(item.get("title") or "Sad piano").strip(),
+                "creator": str(item.get("creator") or "Openverse contributor").strip(),
+                "source_url": source_url,
+                "license": license_code.upper(),
+                "duration_ms": duration_ms,
+            }
+        )
+    return candidates
+
+
+def search_openverse_audio(
+    *,
+    rng: random.Random | random.SystemRandom | None = None,
+    session: requests.Session | None = None,
+) -> dict[str, Any]:
+    chooser = rng or random.SystemRandom()
+    client = session or http_session()
+    client_id = os.environ.get("OPENVERSE_CLIENT_ID", "").strip()
+    client_secret = os.environ.get("OPENVERSE_CLIENT_SECRET", "").strip()
+    if not client_id or not client_secret:
+        raise ShortsError("OPENVERSE_CLIENT_ID and OPENVERSE_CLIENT_SECRET are required")
+    try:
+        token_response = client.post(
+            OPENVERSE_TOKEN_URL,
+            data={
+                "grant_type": "client_credentials",
+                "client_id": client_id,
+                "client_secret": client_secret,
+            },
+            timeout=(10, 30),
+        )
+        token_response.raise_for_status()
+        access_token = str(token_response.json().get("access_token") or "").strip()
+    except (requests.RequestException, ValueError) as exc:
+        raise ShortsError(f"Openverse authentication failed: {exc}") from exc
+    if not access_token:
+        raise ShortsError("Openverse authentication returned no access token")
+
+    queries = list(MUSIC_SEARCHES)
+    chooser.shuffle(queries)
+    errors: list[str] = []
+    for query in queries:
+        try:
+            response = client.get(
+                OPENVERSE_AUDIO_URL,
+                headers={"Authorization": f"Bearer {access_token}"},
+                params={
+                    "q": query,
+                    "license": "cc0,pdm",
+                    "page_size": 50,
+                    "mature": "false",
+                    "filter_dead": "true",
+                },
+                timeout=(10, 45),
+            )
+            response.raise_for_status()
+            candidates = suitable_openverse_audio(response.json().get("results") or [])
+            if candidates:
+                selected = chooser.choice(candidates)
+                selected["search_used"] = query
+                return selected
+            errors.append(f"no suitable CC0/Public Domain results for {query!r}")
+        except (requests.RequestException, ValueError, TypeError) as exc:
+            errors.append(f"{query!r}: {exc}")
+    raise ShortsError("Openverse sad-piano search failed; " + "; ".join(errors))
+
+
+def download_audio(
+    url: str,
+    destination: Path,
+    *,
+    session: requests.Session | None = None,
+) -> None:
+    if not valid_https_url(url):
+        raise ShortsError("Openverse returned an invalid audio URL")
+    client = session or http_session()
+    try:
+        with client.get(url, stream=True, timeout=(10, 120)) as response:
+            response.raise_for_status()
+            content_type = response.headers.get("Content-Type", "").lower()
+            if content_type and "audio" not in content_type and "octet-stream" not in content_type:
+                raise ShortsError(
+                    f"Openverse audio download returned unexpected content type: {content_type}"
+                )
+            with destination.open("wb") as handle:
+                for chunk in response.iter_content(chunk_size=1024 * 1024):
+                    if chunk:
+                        handle.write(chunk)
+    except requests.RequestException as exc:
+        raise ShortsError(f"Unable to download Openverse audio: {exc}") from exc
+    if not destination.exists() or destination.stat().st_size < 4096:
+        raise ShortsError("Downloaded Openverse audio is empty or invalid")
 
 
 def locate_font() -> Path:
@@ -489,15 +609,20 @@ def main() -> None:
         state_changed = True
 
     wrapped = wrap_quote(selected["quote"])
-    music_files = find_music_files()
     if args.music_file:
         if not args.music_file.is_file():
             raise ShortsError(f"Music file does not exist: {args.music_file}")
         music = args.music_file
+        music_asset = {
+            "title": music.name,
+            "creator": "Local smoke test",
+            "source_url": "https://openverse.org/",
+            "license": "Local test file",
+            "search_used": "local override",
+        }
     else:
-        if not music_files:
-            raise ShortsError("No MP3 files found in music/. See music/README.md")
-        music = rng.choice(music_files)
+        music_asset = search_openverse_audio(rng=rng)
+        music = Path()
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     output_video = OUTPUT_DIR / "short.mp4"
@@ -522,6 +647,10 @@ def main() -> None:
             footage = temporary / "pexels.mp4"
             download_file(asset["download_url"], footage)
 
+        if not args.music_file:
+            music = temporary / "openverse-music.mp3"
+            download_audio(music_asset["download_url"], music)
+
         quote_file = temporary / "quote.txt"
         channel_file = temporary / "channel.txt"
         quote_file.write_text(wrapped, encoding="utf-8", newline="\n")
@@ -534,9 +663,13 @@ def main() -> None:
         source_url=asset["source_url"],
         channel_name=channel_name,
         privacy_status=args.privacy,
-        music_name=music.name,
+        music_name=music_asset["title"],
+        music_creator=music_asset["creator"],
+        music_source_url=music_asset["source_url"],
+        music_license=music_asset["license"],
     )
     metadata["pexels_search_used"] = asset["search_used"]
+    metadata["music_search_used"] = music_asset["search_used"]
     write_metadata(metadata, output_metadata)
     if state_changed:
         save_state(state)

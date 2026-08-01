@@ -7,6 +7,7 @@ from scripts.render_short import (
     locate_font,
     make_title,
     select_quote,
+    suitable_openverse_audio,
     validate_channel_name,
     wrap_quote,
 )
@@ -46,12 +47,17 @@ def test_metadata_contains_attribution_quote_and_safe_title():
         source_url="https://www.pexels.com/video/example-123/",
         channel_name="Daily Resolve",
         privacy_status="private",
-        music_name="calm.mp3",
+        music_name="Sad Piano",
+        music_creator="Example Musician",
+        music_source_url="https://freesound.org/example/",
+        music_license="CC0",
     )
     assert len(metadata["title"]) <= 100
     assert metadata["title"].endswith("#shorts")
     assert entry["quote"] in metadata["description"]
     assert "Example Creator" in metadata["description"]
+    assert "Sad Piano" in metadata["description"]
+    assert metadata["music_license"] == "CC0"
     assert metadata["made_for_kids"] is False
     assert metadata["privacy_status"] == "private"
 
@@ -70,6 +76,39 @@ def test_every_catalog_quote_fits_the_render_safe_area():
 
 def test_bundled_poppins_font_is_available():
     assert locate_font().name == "Poppins-SemiBold.ttf"
+
+
+def test_openverse_audio_accepts_only_long_cc0_or_public_domain_tracks():
+    results = [
+        {
+            "id": "keep",
+            "url": "https://cdn.example.com/sad-piano.mp3",
+            "foreign_landing_url": "https://example.com/sounds/keep",
+            "title": "Sad Piano",
+            "creator": "Example Musician",
+            "license": "cc0",
+            "duration": 31_000,
+        },
+        {
+            "id": "too-short",
+            "url": "https://cdn.example.com/note.mp3",
+            "foreign_landing_url": "https://example.com/sounds/short",
+            "title": "Piano Note",
+            "creator": "Example Musician",
+            "license": "cc0",
+            "duration": 5_000,
+        },
+        {
+            "id": "noncommercial",
+            "url": "https://cdn.example.com/restricted.mp3",
+            "foreign_landing_url": "https://example.com/sounds/restricted",
+            "title": "Restricted Piano",
+            "creator": "Example Musician",
+            "license": "by-nc",
+            "duration": 60_000,
+        },
+    ]
+    assert [item["id"] for item in suitable_openverse_audio(results)] == ["keep"]
 
 
 def test_channel_name_is_limited_to_safe_width():

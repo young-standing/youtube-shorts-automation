@@ -8,7 +8,7 @@ This guide configures the three-times-daily workflow in `.github/workflows/creat
 - A YouTube channel on the Google account you will authorize.
 - A free Pexels API key.
 - Python 3.12 for the one-time local OAuth helper.
-- Between one and five or more royalty-free MP3 files that you are permitted to use on YouTube.
+- Internet access to retrieve CC0/Public Domain sad-piano audio through Openverse.
 
 Do not place API keys, OAuth credentials, tokens, or `client_secret.json` in the repository.
 
@@ -72,11 +72,13 @@ Copy them directly to GitHub Secrets. The helper does not save the refresh token
 
 On GitHub, open **Settings > Secrets and variables > Actions**.
 
-Under **Secrets**, create these four repository secrets:
+Under **Secrets**, create these six repository secrets:
 
 | Secret | Value |
 |---|---|
 | `PEXELS_API_KEY` | Pexels API key |
+| `OPENVERSE_CLIENT_ID` | Client ID from free Openverse API registration |
+| `OPENVERSE_CLIENT_SECRET` | Client secret from free Openverse API registration |
 | `YOUTUBE_CLIENT_ID` | Value printed by the helper |
 | `YOUTUBE_CLIENT_SECRET` | Value printed by the helper |
 | `YOUTUBE_REFRESH_TOKEN` | Value printed by the helper |
@@ -89,15 +91,13 @@ Under **Variables**, add:
 
 Secrets are passed only as environment variables. Upload scripts never print their values.
 
-## 5. Add royalty-free music
+## 5. Automatic sad-piano music
 
-Add one to five or more `.mp3` files under `music/`, then commit them. The renderer automatically discovers every MP3 and randomly picks one. No filename configuration is necessary.
-
-Read [music/README.md](music/README.md) before adding files. Confirm that each license allows YouTube use and monetization where relevant. Keep your license evidence and source URL. The repository intentionally contains no music file, and configuration validation intentionally fails until you add one.
+No repository MP3 is required. Every run authenticates with the free Openverse credentials, searches the Openverse Audio API for sad, emotional, melancholic, or somber piano, accepts only CC0/Public Domain results at least 20 seconds long, downloads one result, and records its title, creator, license, and source URL in the generated metadata and YouTube description.
 
 ## 6. Push the project and check Actions permissions
 
-Commit and push the implementation, quotes, state, and properly licensed MP3 files to the default branch. The scheduled event only runs workflows that exist on the default branch.
+Commit and push the implementation, quotes, and state to the default branch. The scheduled event only runs workflows that exist on the default branch.
 
 The workflow needs permission to update `data/state.json`. Under **Settings > Actions > General > Workflow permissions**, allow **Read and write permissions** if repository or organization policy does not already permit the workflow's declared `contents: write` permission.
 
@@ -114,7 +114,7 @@ The state update uses a temporary branch, merges the rendered state with the lat
 
 You may optionally enter an original English quote and a Pexels search phrase. Manual input is passed through environment variables rather than inserted into shell commands.
 
-When the run completes, open YouTube Studio and verify that the video is private, vertical, exactly 20 seconds, correctly cropped, readable, and attributed. Review the selected music license again.
+When the run completes, open YouTube Studio and verify that the video is private, vertical, exactly 20 seconds, correctly cropped, readable, and contains the Openverse music source details.
 
 ## 8. Inspect logs and artifacts
 
@@ -141,7 +141,7 @@ Standard GitHub-hosted runners are free for public repositories. Private reposit
 ## Copyright and repetitive-content considerations
 
 - Pexels access does not transfer rights to trademarks, recognizable people, music, or third-party material depicted in footage. Review the asset and Pexels license before publishing.
-- Use only music you are authorized to synchronize with video and publish on YouTube.
+- Openverse indexes third-party media. The workflow filters for CC0/Public Domain audio and records the source, but periodically review source links and YouTube claims.
 - Do not copy famous quotations or imply endorsement by a real person.
 - Automated template videos may be considered repetitive or low-value content. Meaningful human review, distinct creative editing, original commentary, and genuine variation are important, especially for monetization.
 - Review every artifact and metadata file before making uploads public. Automation does not replace compliance with YouTube policies, copyright law, or license terms.

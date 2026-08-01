@@ -10,20 +10,16 @@ from pathlib import Path
 
 try:
     from scripts.render_short import (
-        MUSIC_DIR,
         OUTPUT_DIR,
         ShortsError,
-        find_music_files,
         load_quotes,
         load_state,
         validate_channel_name,
     )
 except ModuleNotFoundError:  # Support `python scripts/validate_config.py` locally.
     from render_short import (  # type: ignore[no-redef]
-        MUSIC_DIR,
         OUTPUT_DIR,
         ShortsError,
-        find_music_files,
         load_quotes,
         load_state,
         validate_channel_name,
@@ -39,7 +35,12 @@ def main() -> None:
     parser.add_argument("--require-youtube", action="store_true")
     args = parser.parse_args()
 
-    required = ["PEXELS_API_KEY", "CHANNEL_NAME"]
+    required = [
+        "PEXELS_API_KEY",
+        "OPENVERSE_CLIENT_ID",
+        "OPENVERSE_CLIENT_SECRET",
+        "CHANNEL_NAME",
+    ]
     if args.require_youtube:
         required.extend(
             ["YOUTUBE_CLIENT_ID", "YOUTUBE_CLIENT_SECRET", "YOUTUBE_REFRESH_TOKEN"]
@@ -52,14 +53,11 @@ def main() -> None:
         raise ShortsError("ffmpeg and ffprobe must both be installed")
     load_quotes()
     load_state()
-    music = find_music_files(MUSIC_DIR)
-    if not music:
-        raise ShortsError("No MP3 files found in music/. See music/README.md")
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     probe = OUTPUT_DIR / ".write-test"
     probe.write_text("ok", encoding="utf-8")
     probe.unlink()
-    print(f"Configuration is valid; {len(music)} music track(s) available.")
+    print("Configuration is valid; music will be fetched from Openverse.")
 
 
 if __name__ == "__main__":
