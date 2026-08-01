@@ -9,10 +9,10 @@ The project does not require n8n, a VM, a database, paid rendering services, or 
 - Runs every day at 7:07 AM, 1:07 PM, and 7:07 PM in `Asia/Yangon`, with manual runs supported.
 - Starts with 500 original motivation/life scripts, each combining a quote with a short actionable insight.
 - Permanently removes each script from the available catalog only after its YouTube upload succeeds, so uploaded text never repeats.
-- Downloads suitable portrait footage through the official Pexels Videos API.
+- Downloads three distinct, category-relevant portrait clips through the official Pexels Videos API and credits every source.
 - Downloads a sad or emotional piano track from Openverse, restricted to CC0 or Public Domain audio at least 20 seconds long.
 - Renders a 20-second 1080×1920 H.264/AAC Short with FFmpeg.
-- Adds a safely wrapped quote in bundled Poppins SemiBold, a readable dark text box, and the repository-configured channel name.
+- Uses a four-part visual story: a gold opening hook, animated quote, actionable takeaway, and save CTA, with soft clip transitions and the configured channel name.
 - Uploads through the official YouTube Data API using resumable upload and retries.
 - Saves two-day debugging artifacts and persists quote usage safely.
 

@@ -6,11 +6,14 @@ from scripts.consume_quote import consume_quote
 from scripts.merge_state import merge_states
 from scripts.render_short import (
     ShortsError,
+    build_ass_subtitles,
     build_metadata,
     load_quotes,
     locate_font,
+    make_hook,
     make_title,
     select_quote,
+    suitable_video_files,
     suitable_openverse_audio,
     validate_channel_name,
     wrap_quote,
@@ -127,6 +130,48 @@ def test_openverse_audio_accepts_only_long_cc0_or_public_domain_tracks():
 
 def test_channel_name_is_limited_to_safe_width():
     assert validate_channel_name("  Daily   Resolve  ") == "Daily Resolve"
+
+
+def test_new_subtitle_story_has_four_timed_phases_and_animation():
+    entry = sample_quotes()[0]
+    subtitles = build_ass_subtitles(entry, "Daily Resolve")
+    assert make_hook(entry) in subtitles
+    assert "A steady step can carry a brave" in subtitles
+    assert r"\Nplan forward." in subtitles
+    assert "DO THIS TODAY" in subtitles
+    assert "SAVE THIS FOR TOMORROW" in subtitles
+    assert r"\fad(" in subtitles
+    assert r"\pos(540,1740)" in subtitles
+    assert "0:00:16.20,0:00:20.00" in subtitles
+
+
+def test_pexels_candidates_keep_only_best_file_from_each_distinct_video():
+    videos = [
+        {
+            "url": "https://www.pexels.com/video/one/",
+            "user": {"name": "Creator One"},
+            "video_files": [
+                {"link": "https://cdn.example.com/one-low.mp4", "file_type": "video/mp4", "width": 540, "height": 960},
+                {"link": "https://cdn.example.com/one-best.mp4", "file_type": "video/mp4", "width": 1080, "height": 1920},
+            ],
+        },
+        {
+            "url": "https://www.pexels.com/video/two/",
+            "user": {"name": "Creator Two"},
+            "video_files": [
+                {"link": "https://cdn.example.com/two.mp4", "file_type": "video/mp4", "width": 1080, "height": 1920},
+            ],
+        },
+    ]
+    candidates = suitable_video_files(videos)
+    assert len(candidates) == 2
+    assert {item["source_url"] for item in candidates} == {
+        "https://www.pexels.com/video/one/",
+        "https://www.pexels.com/video/two/",
+    }
+    assert "https://cdn.example.com/one-best.mp4" in {
+        item["download_url"] for item in candidates
+    }
 
 
 def test_state_merge_is_idempotent_and_preserves_both_histories():
