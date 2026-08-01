@@ -381,6 +381,7 @@ def search_pexels_clips(
         phrases.append(FALLBACK_SEARCH)
     selected_assets: list[dict[str, Any]] = []
     seen_sources: set[str] = set()
+    seen_creators: set[str] = set()
     for query in phrases:
         try:
             response = client.get(
@@ -396,16 +397,24 @@ def search_pexels_clips(
                 timeout=(10, 45),
             )
             response.raise_for_status()
+            response.encoding = "utf-8"
             payload = response.json()
             candidates = suitable_video_files(payload.get("videos") or [])
             pool = [item for item in candidates[:20] if item["source_url"] not in seen_sources]
             chooser.shuffle(pool)
-            for selected in pool:
-                selected["search_used"] = query
-                selected_assets.append(selected)
-                seen_sources.add(selected["source_url"])
-                if len(selected_assets) == count:
-                    return selected_assets
+            for prefer_new_creator in (True, False):
+                for selected in pool:
+                    creator_key = selected["creator_name"].casefold()
+                    if selected["source_url"] in seen_sources:
+                        continue
+                    if prefer_new_creator and creator_key in seen_creators:
+                        continue
+                    selected["search_used"] = query
+                    selected_assets.append(selected)
+                    seen_sources.add(selected["source_url"])
+                    seen_creators.add(creator_key)
+                    if len(selected_assets) == count:
+                        return selected_assets
             errors.append(f"no suitable portrait MP4 results for {query!r}")
         except (requests.RequestException, ValueError) as exc:
             errors.append(f"{query!r}: {exc}")
@@ -522,6 +531,7 @@ def search_openverse_audio(
                 timeout=(10, 45),
             )
             response.raise_for_status()
+            response.encoding = "utf-8"
             candidates = suitable_openverse_audio(response.json().get("results") or [])
             if candidates:
                 selected = chooser.choice(candidates)
