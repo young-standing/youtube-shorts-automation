@@ -1,6 +1,13 @@
 {
   "version": 1,
   "cycle": 1,
-  "used_ids": [],
-  "history": []
+  "used_ids": [
+    "m492"
+  ],
+  "history": [
+    {
+      "id": "m492",
+      "used_at": "2026-08-01T20:22:25+00:00"
+    }
+  ]
 }
