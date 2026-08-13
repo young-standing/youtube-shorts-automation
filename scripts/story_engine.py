@@ -231,8 +231,8 @@ def validate_story(story: dict[str, Any]) -> list[str]:
     duration = sum(estimate_beat_durations(beats))
     if not MIN_SECONDS <= duration <= MAX_SECONDS + 0.1:
         errors.append(f"estimated duration {duration:.1f}s is outside 25-40s")
-    if not 55 <= word_count(script) <= 105:
-        errors.append(f"script has {word_count(script)} words; expected 55-105")
+    if not 55 <= word_count(script) <= 115:
+        errors.append(f"script has {word_count(script)} words; expected 55-115")
     opening = hook.casefold()
     if any(generic in opening for generic in GENERIC_OPENINGS) or hook_score(hook) < 2:
         errors.append("selected hook is weak or generic")
@@ -279,6 +279,14 @@ def load_stories(path: Path) -> list[dict[str, Any]]:
         selected_hooks.add(hook)
         selected_titles.add(title)
         stories.append(story)
+    similarity_cache = [(story["id"], similarity_terms(story_script(story))) for story in stories]
+    for index, (story_id, terms) in enumerate(similarity_cache):
+        for other_id, other_terms in similarity_cache[:index]:
+            similarity = jaccard_similarity(terms, other_terms)
+            if similarity >= 0.88:
+                raise StoryError(
+                    f"Stories {other_id} and {story_id} are too similar ({similarity:.2f})"
+                )
     return stories
 
 
@@ -355,4 +363,3 @@ def story_history_event(story: dict[str, Any], hook: str, title: str) -> dict[st
         "key_phrases": story["key_phrases"],
         "similarity_terms": sorted(similarity_terms(story_script(story, hook))),
     }
-

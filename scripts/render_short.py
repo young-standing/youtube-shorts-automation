@@ -10,7 +10,9 @@ import random
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
+import wave
 import textwrap
 from datetime import datetime, timezone
 from pathlib import Path
@@ -23,6 +25,7 @@ from urllib3.util.retry import Retry
 
 from scripts.story_engine import (
     MAX_SECONDS,
+    MIN_SECONDS,
     StoryError,
     estimate_beat_durations,
     load_stories,
@@ -44,6 +47,8 @@ OUTPUT_DIR = ROOT / "output"
 POPPINS_FONT_PATH = ROOT / "assets" / "fonts" / "Poppins-SemiBold.ttf"
 PEXELS_SEARCH_URL = "https://api.pexels.com/v1/videos/search"
 OPENVERSE_AUDIO_URL = "https://api.openverse.org/v1/audio/"
+TTS_VOICE = "en_US-joe-medium"
+TTS_MODEL_DIR = ROOT / ".tts-models"
 OPENVERSE_TOKEN_URL = "https://api.openverse.org/v1/auth_tokens/token/"
 FALLBACK_SEARCH = "calm sunrise nature"
 MUSIC_SEARCHES = (
@@ -774,6 +779,7 @@ def ffmpeg_filter_path(path: Path) -> str:
 def run_ffmpeg(
     footage: list[Path],
     music: Path,
+    narration: Path,
     subtitles_file: Path,
     output: Path,
     beat_durations: list[float] | None = None,
@@ -812,11 +818,18 @@ def run_ffmpeg(
         "drawbox=x=0:y=ih-8:w=iw:h=8:color=0xFFD700@0.88:t=fill,"
         f"trim=duration={total_seconds:.3f},format=yuv420p[v]"
     )
-    audio_index = len(footage)
+    music_index = len(footage)
+    narration_index = music_index + 1
     filters.append(
-        f"[{audio_index}:a]volume=0.14,afade=t=in:st=0:d=1.2,"
+        f"[{music_index}:a]volume=0.13,afade=t=in:st=0:d=1.2,"
         f"afade=t=out:st={max(0, total_seconds - 2.2):.3f}:d=2.2,"
-        f"atrim=duration={total_seconds:.3f},asetpts=PTS-STARTPTS[a]"
+        f"atrim=duration={total_seconds:.3f},asetpts=PTS-STARTPTS[music];"
+        f"[{narration_index}:a]highpass=f=75,lowpass=f=12000,"
+        "loudnorm=I=-16:TP=-1.5:LRA=11,asplit=2[voice_sc][voice_mix];"
+        "[music][voice_sc]sidechaincompress=threshold=0.025:ratio=10:"
+        "attack=20:release=450[ducked];"
+        "[ducked][voice_mix]amix=inputs=2:duration=longest:normalize=0,"
+        f"alimiter=limit=0.95,atrim=duration={total_seconds:.3f}[a]"
     )
     video_filter = ";".join(filters)
     command = ["ffmpeg", "-hide_banner", "-y"]
@@ -824,6 +837,7 @@ def run_ffmpeg(
         command.extend(["-stream_loop", "-1", "-i", str(clip)])
     command.extend([
         "-stream_loop", "-1", "-i", str(music),
+        "-i", str(narration),
         "-filter_complex",
         video_filter,
         "-map",
@@ -860,6 +874,78 @@ def run_ffmpeg(
         raise ShortsError("FFmpeg completed without producing a valid MP4")
 
 
+def audio_duration(path: Path) -> float:
+    if path.suffix.casefold() == ".wav":
+        try:
+            with wave.open(str(path), "rb") as wav_file:
+                return wav_file.getnframes() / wav_file.getframerate()
+        except (wave.Error, OSError, ZeroDivisionError) as exc:
+            raise ShortsError(f"Unable to read narration WAV: {exc}") from exc
+    result = subprocess.run(
+        [
+            "ffprobe", "-v", "error", "-show_entries", "format=duration",
+            "-of", "default=noprint_wrappers=1:nokey=1", str(path),
+        ],
+        text=True,
+        capture_output=True,
+    )
+    try:
+        duration = float(result.stdout.strip())
+    except ValueError as exc:
+        raise ShortsError(f"Unable to read narration duration: {result.stderr.strip()}") from exc
+    if result.returncode != 0 or duration <= 0:
+        raise ShortsError("TTS produced invalid narration audio")
+    return duration
+
+
+def synthesize_narration(text: str, output: Path, voice_file: Path | None = None) -> dict[str, Any]:
+    """Create local narration without an API key and return auditable voice metadata."""
+    if voice_file:
+        if not voice_file.is_file():
+            raise ShortsError(f"Voice file does not exist: {voice_file}")
+        shutil.copyfile(voice_file, output)
+        voice_name = "Local smoke-test narration"
+        voice_license = "Local test file"
+    else:
+        model = TTS_MODEL_DIR / f"{TTS_VOICE}.onnx"
+        config = TTS_MODEL_DIR / f"{TTS_VOICE}.onnx.json"
+        if not model.is_file() or model.stat().st_size < 50_000_000 or not config.is_file():
+            raise ShortsError(
+                f"Piper voice {TTS_VOICE} is missing; run "
+                f"python -m piper.download_voices --data-dir {TTS_MODEL_DIR} {TTS_VOICE}"
+            )
+        command = [
+            sys.executable, "-m", "piper", "-m", TTS_VOICE,
+            "--data-dir", str(TTS_MODEL_DIR), "-f", str(output),
+            "--sentence-silence", "0.12", "--", text,
+        ]
+        result = subprocess.run(command, text=True, capture_output=True)
+        if result.returncode != 0:
+            tail = "\n".join(result.stderr.splitlines()[-25:])
+            raise ShortsError(f"Piper narration failed:\n{tail}")
+        voice_name = TTS_VOICE
+        voice_license = "CC0 voice dataset; Piper engine GPL-3.0"
+    duration = audio_duration(output)
+    if duration > MAX_SECONDS:
+        speed = min(2.0, duration / (MAX_SECONDS - 0.4))
+        fitted = output.with_name("narration-fitted.wav")
+        result = subprocess.run(
+            ["ffmpeg", "-hide_banner", "-y", "-i", str(output), "-af", f"atempo={speed:.5f}", str(fitted)],
+            text=True,
+            capture_output=True,
+        )
+        if result.returncode != 0:
+            raise ShortsError("Unable to fit TTS narration inside 40 seconds")
+        fitted.replace(output)
+        duration = audio_duration(output)
+    return {
+        "name": voice_name,
+        "license": voice_license,
+        "source_url": "https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_US/joe/medium",
+        "duration_seconds": round(duration, 3),
+    }
+
+
 def write_metadata(metadata: dict[str, Any], path: Path) -> None:
     path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
@@ -875,6 +961,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--footage-file", type=Path, help="Local footage for offline smoke tests")
     parser.add_argument("--music-file", type=Path, help="Specific music for offline smoke tests")
+    parser.add_argument("--voice-file", type=Path, help="Specific narration WAV for offline smoke tests")
     parser.add_argument(
         "--story-id",
         default=os.environ.get("INPUT_STORY_ID", ""),
@@ -989,6 +1076,12 @@ def main() -> None:
 
     with tempfile.TemporaryDirectory(prefix="youtube-short-") as temp_name:
         temporary = Path(temp_name)
+        narration = temporary / "narration.wav"
+        voice_asset = synthesize_narration(story_script(selected, hook), narration, args.voice_file)
+        narration_seconds = max(MIN_SECONDS, min(MAX_SECONDS, voice_asset["duration_seconds"] + 0.45))
+        estimated_total = sum(durations)
+        durations = [round(value * narration_seconds / estimated_total, 3) for value in durations]
+        duration_seconds = sum(durations)
         if args.footage_file:
             if not args.footage_file.is_file():
                 raise ShortsError(f"Footage file does not exist: {args.footage_file}")
@@ -1020,7 +1113,7 @@ def main() -> None:
             encoding="utf-8",
             newline="\n",
         )
-        run_ffmpeg(footage, music, subtitles_file, output_video, durations)
+        run_ffmpeg(footage, music, narration, subtitles_file, output_video, durations)
 
     metadata = build_story_metadata(
         selected,
@@ -1033,6 +1126,10 @@ def main() -> None:
         privacy_status=args.privacy,
         music_asset=music_asset,
     )
+    metadata["tts_voice"] = voice_asset["name"]
+    metadata["tts_license"] = voice_asset["license"]
+    metadata["tts_source_url"] = voice_asset["source_url"]
+    metadata["narration_duration_seconds"] = voice_asset["duration_seconds"]
     if args.story_id:
         metadata["quote_id"] = "manual"
         metadata["preview_story_id"] = selected["id"]

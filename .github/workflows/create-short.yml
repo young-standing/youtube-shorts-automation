@@ -74,6 +74,17 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Cache commercial-safe TTS voice
+        uses: actions/cache@v4
+        with:
+          path: .tts-models
+          key: piper-en-US-joe-medium-v1
+
+      - name: Download commercial-safe TTS voice
+        run: |
+          python -m piper.download_voices --data-dir .tts-models en_US-joe-medium
+          test "$(stat -c%s .tts-models/en_US-joe-medium.onnx)" -gt 50000000
+
       - name: Validate automation configuration
         run: python -m scripts.validate_config --require-youtube
 

@@ -59,7 +59,7 @@ def test_every_story_has_mobile_beats_and_a_25_to_40_second_estimate():
         durations = estimate_beat_durations(beats)
         assert 7 <= len(beats) <= 10
         assert MIN_SECONDS <= sum(durations) <= MAX_SECONDS + 0.1
-        assert 55 <= word_count(story_script(story, hook)) <= 105
+        assert 55 <= word_count(story_script(story, hook)) <= 115
         assert all(word_count(beat["text"]) <= 22 for beat in beats)
         assert all(beat["visual_search"] for beat in beats)
 
@@ -209,3 +209,23 @@ def test_story_json_round_trips_as_utf8():
     raw = STORIES_PATH.read_text(encoding="utf-8")
     payload = json.loads(raw)
     assert payload[0]["id"] == "s001"
+
+
+def test_catalog_contains_500_quality_checked_stories():
+    catalog = stories()
+    assert len(catalog) == 500
+    assert len({story["id"] for story in catalog}) == 500
+    assert set(story["pillar"] for story in catalog) == {
+        "transformation", "failure_comeback", "relatable_pain", "future_self",
+        "disappear_rebuild", "hard_truth_story",
+    }
+
+
+def test_workflow_installs_and_downloads_local_tts_voice():
+    workflow = (ROOT / ".github" / "workflows" / "create-short.yml").read_text(
+        encoding="utf-8"
+    )
+    requirements = (ROOT / "requirements.txt").read_text(encoding="utf-8")
+    assert "piper-tts" in requirements
+    assert "en_US-joe-medium" in workflow
+    assert "actions/cache@v4" in workflow

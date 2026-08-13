@@ -8,6 +8,7 @@ from pathlib import Path
 from typing import Any
 
 from scripts.story_engine import load_stories
+from scripts.expand_story_catalog import expand_stories
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -643,12 +644,12 @@ STORIES = [
 
 
 def main() -> None:
+    expanded = expand_stories(STORIES, target=500)
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-    OUTPUT.write_text(json.dumps(STORIES, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    OUTPUT.write_text(json.dumps(expanded, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     validated = load_stories(OUTPUT)
     print(f"Wrote {len(validated)} validated original micro-stories to {OUTPUT}")
 
 
 if __name__ == "__main__":
     main()
-
