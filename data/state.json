@@ -37,7 +37,8 @@
     "m158",
     "m096",
     "m491",
-    "s420"
+    "s420",
+    "s024"
   ],
   "history": [
     {
@@ -258,6 +259,70 @@
         "waiting",
         "weeks",
         "while"
+      ]
+    },
+    {
+      "id": "s024",
+      "used_at": "2026-08-13T05:54:37+00:00",
+      "pillar": "future_self",
+      "topic": "creative dream",
+      "theme": "unused potential",
+      "perspective": "unnamed",
+      "hook_type": "future_object",
+      "hook": "At 61, the guitar still had the price tag on its case.",
+      "title": "The Guitar Still Had Its Tag",
+      "ending_concept": "creative life began before confidence",
+      "key_phrases": [
+        "price tag on guitar",
+        "one chord recorded"
+      ],
+      "similarity_terms": [
+        "announcing",
+        "awful",
+        "badly",
+        "became",
+        "begins",
+        "busy",
+        "case",
+        "change",
+        "chord",
+        "clumsy",
+        "decades",
+        "deletion",
+        "dream",
+        "ends",
+        "evening",
+        "finally",
+        "fingers",
+        "first",
+        "guitar",
+        "imagined",
+        "joins",
+        "never",
+        "next",
+        "one",
+        "perfect",
+        "price",
+        "protected",
+        "protecting",
+        "real",
+        "record",
+        "recording",
+        "return",
+        "seasons",
+        "second",
+        "song",
+        "sounds",
+        "stayed",
+        "still",
+        "survives",
+        "tag",
+        "talent",
+        "testing",
+        "untrained",
+        "week",
+        "while",
+        "without"
       ]
     }
   ]
