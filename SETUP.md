@@ -1,6 +1,6 @@
 # GitHub-only YouTube Shorts setup
 
-This guide configures the three-times-daily workflow in `.github/workflows/create-short.yml`. It renders a 20-second English motivational Short entirely on GitHub's `ubuntu-latest` runner and uploads it with the official YouTube Data API. Scheduled uploads are public; manual uploads remain private by default.
+This guide configures the existing scheduled workflow in `.github/workflows/create-short.yml`. It renders a 25–40 second English motivational micro-story entirely on GitHub's `ubuntu-latest` runner and uploads it with the official YouTube Data API. Scheduled uploads are public; manual uploads remain private by default.
 
 ## What you need
 
@@ -93,20 +93,20 @@ Secrets are passed only as environment variables. Upload scripts never print the
 
 ## 5. Automatic sad-piano music
 
-No repository MP3 is required. Every run authenticates with the free Openverse credentials, searches the Openverse Audio API for sad, emotional, melancholic, or somber piano, accepts only CC0/Public Domain results at least 20 seconds long, downloads one result, and records its title, creator, license, and source URL in the generated metadata and YouTube description.
+No repository MP3 is required. Every run authenticates with the free Openverse credentials, searches for pillar-matched emotional piano, accepts only CC0/Public Domain results long enough for the selected story, downloads one result, and records its title, creator, license, and source URL in the generated metadata and YouTube description.
 
 ## 6. Push the project and check Actions permissions
 
 Commit and push the implementation, quotes, and state to the default branch. The scheduled event only runs workflows that exist on the default branch.
 
-The workflow needs permission to update `data/state.json` and `data/quotes.json`. Under **Settings > Actions > General > Workflow permissions**, allow **Read and write permissions** if repository or organization policy does not already permit the workflow's declared `contents: write` permission.
+The workflow needs permission to update `data/state.json` and consume entries from `data/stories.json`. Under **Settings > Actions > General > Workflow permissions**, allow **Read and write permissions** if repository or organization policy does not already permit the workflow's declared `contents: write` permission.
 
 After a successful YouTube upload, the state update uses a temporary branch, removes the uploaded script from the available catalog, merges the rendered state with the latest remote state, and retries conflicts three times. Failed renders or uploads do not consume a script. A persistence failure is non-fatal and does not undo a completed upload.
 
 ## 7. Run the first private manual test
 
 1. Open the repository's **Actions** tab.
-2. Select **Create daily YouTube Short**.
+2. Select **Create scheduled YouTube micro-stories**.
 3. Choose **Run workflow**.
 4. Leave the quote and Pexels search fields empty for a catalog-driven test.
 5. Keep **privacy status** set to `private`.
@@ -114,7 +114,7 @@ After a successful YouTube upload, the state update uses a temporary branch, rem
 
 You may optionally enter an original English quote and a Pexels search phrase. Manual input is passed through environment variables rather than inserted into shell commands.
 
-When the run completes, open YouTube Studio and verify that the video is private, vertical, exactly 20 seconds, correctly cropped, readable, and contains the Openverse music source details.
+For a deterministic non-consuming test, enter a `story_id` such as `s001`. When the run completes, open YouTube Studio and verify that the video is private, vertical, 25–40 seconds, correctly cropped, readable, visually matched to each beat, and contains the Openverse/Pexels source details.
 
 ## 8. Inspect logs and artifacts
 
@@ -124,19 +124,21 @@ The **Artifacts** section contains `output/short.mp4` and `output/metadata.json`
 
 ## 9. Scheduled public uploads
 
-The 7:07 AM, 1:07 PM, and 7:07 PM schedules upload as `public`. Manual runs still default to `private`, but offer `unlisted` and `public` choices. Keep reviewing footage, music licenses, metadata, and channel-policy compliance because scheduled public uploads do not include a human approval step.
+The 5:00 AM, 8:00 AM, 11:00 AM, and 2:00 PM schedules upload as `public`. Manual runs still default to `private`, but offer `unlisted` and `public` choices. Keep reviewing footage, music licenses, metadata, and channel-policy compliance because scheduled public uploads do not include a human approval step.
 
 New or unaudited Google API projects can have API uploads restricted to private visibility regardless of the requested setting. Follow Google's audit and verification requirements rather than attempting to bypass the restriction.
 
-## Schedule and quote rotation
+## Schedule and story rotation
 
-GitHub runs the workflow every day at `07:07`, `13:07`, and `19:07` using the IANA timezone `Asia/Yangon`. GitHub schedules can be delayed during high load, although choosing minute 7 avoids the busiest start-of-hour period.
+GitHub runs the workflow every day at `05:00`, `08:00`, `11:00`, and `14:00` in `Asia/Yangon`. The cron expressions are stored in UTC, so their `:30` minute values become exact-hour runs in Myanmar time. GitHub schedules can still be delayed during high load.
 
-`data/quotes.json` starts with 500 original, unattributed motivation/life scripts across discipline, success, healing, confidence, growth, and consistency. Each script has a headline quote and a short actionable takeaway. A successfully uploaded entry is permanently removed instead of being recycled. At three uploads per day the initial catalog lasts about 166 days; when it is empty, scheduled rendering stops with a clear refill error. A manual quote does not consume a catalog entry.
+`data/stories.json` contains curated original micro-stories across transformation, failure/comeback, relatable pain, future-self, disappear/rebuild, and hard-truth-through-story. Every story stores hook candidates, concrete beats, matching visual searches, titles, pillar, topic, perspective, ending concept, and music mood. A successfully uploaded entry is permanently removed instead of being recycled. When the catalog is empty, rendering stops with a clear refill error. Manual quotes and explicit `story_id` preview runs do not consume a catalog entry. The older `data/quotes.json` remains in the repository as a legacy catalog but scheduled runs no longer select from it.
+
+The current free stack has no TTS provider. Captions are timed from a narration-rate estimate and piano remains the audio layer. Adding voice narration later requires a provider or locally generated voice whose commercial-use terms are verified; this is intentionally not added as a hidden paid or licensing-risk dependency.
 
 ## GitHub Actions minutes
 
-Standard GitHub-hosted runners are free for public repositories. Private repositories consume the Actions minutes and storage included with the repository owner's plan; usage beyond the allowance may be billed or blocked. Twice-daily FFmpeg rendering can consume a meaningful portion of a private repository's allowance. Review **Settings > Billing and licensing** regularly. See [GitHub Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
+Standard GitHub-hosted runners are free for public repositories. Private repositories consume the Actions minutes and storage included with the repository owner's plan; usage beyond the allowance may be billed or blocked. Four daily FFmpeg renders can consume a meaningful portion of a private repository's allowance. Review **Settings > Billing and licensing** regularly. See [GitHub Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
 
 ## Copyright and repetitive-content considerations
 

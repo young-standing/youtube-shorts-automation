@@ -27,13 +27,16 @@ def merge_states(current: dict[str, Any], rendered: dict[str, Any]) -> dict[str,
         used_ids = list(
             dict.fromkeys([*current.get("used_ids", []), *rendered.get("used_ids", [])])
         )
-    history_by_key: dict[tuple[str, str], dict[str, str]] = {}
+    history_by_key: dict[tuple[str, str], dict[str, Any]] = {}
     for event in [*current.get("history", []), *rendered.get("history", [])]:
         if isinstance(event, dict) and event.get("id") and event.get("used_at"):
-            history_by_key[(str(event["id"]), str(event["used_at"]))] = {
-                "id": str(event["id"]),
-                "used_at": str(event["used_at"]),
-            }
+            normalized = dict(event)
+            normalized["id"] = str(event["id"])
+            normalized["used_at"] = str(event["used_at"])
+            key = (normalized["id"], normalized["used_at"])
+            existing = history_by_key.get(key, {})
+            # Keep analytics/anti-repetition fields from the richer snapshot.
+            history_by_key[key] = normalized if len(normalized) >= len(existing) else existing
     history = sorted(history_by_key.values(), key=lambda item: item["used_at"])[-200:]
     return {
         "version": 1,
