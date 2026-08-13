@@ -1,20 +1,25 @@
-# GitHub-only YouTube Shorts automation
+# GitHub-only motivational micro-story automation
 
-Create and upload original English motivational YouTube Shorts using only GitHub Actions, the free Pexels Videos API, CC0/Public Domain piano from Openverse, FFmpeg, and the official YouTube Data API.
+Create and upload original English motivational micro-stories using only GitHub Actions, the free Pexels Videos API, CC0/Public Domain piano from Openverse, FFmpeg, and the official YouTube Data API.
 
 The project does not require n8n, a VM, a database, paid rendering services, or paid AI APIs. Scheduled uploads are public; manual runs remain private by default.
 
 ## What it does
 
-- Runs every day at 7:07 AM, 1:07 PM, and 7:07 PM in `Asia/Yangon`, with manual runs supported.
-- Starts with 500 original motivation/life scripts, each combining a quote with a short actionable insight.
-- Permanently removes each script from the available catalog only after its YouTube upload succeeds, so uploaded text never repeats.
-- Downloads three distinct, category-relevant portrait clips through the official Pexels Videos API and credits every source.
-- Downloads a sad or emotional piano track from Openverse, restricted to CC0 or Public Domain audio at least 20 seconds long.
-- Renders a 20-second 1080×1920 H.264/AAC Short with FFmpeg.
-- Uses a four-part visual story: a gold opening hook, animated quote, actionable takeaway, and save CTA, with soft clip transitions and the configured channel name.
+- Runs every day at 5:00 AM, 8:00 AM, 11:00 AM, and 2:00 PM in `Asia/Yangon`, with manual runs supported.
+- Uses 500 original, quality-checked 25–40 second micro-stories aimed at 18–30 year olds who feel behind in life.
+- Rotates six content pillars and six narrator perspectives, with concrete tension, a believable turn, and a non-cliché payoff.
+- Scores multiple hooks, validates story quality/duration, and rejects stories that are too similar to recent uploads.
+- Permanently removes each story only after its YouTube upload succeeds, so uploaded scripts never repeat.
+- Downloads one meaningful portrait clip per 2–4 second story beat through Pexels and credits every source.
+- Creates English narration locally with Piper's `en_US-joe-medium` CC0 voice—no TTS API key or paid service required.
+- Downloads pillar-matched piano from Openverse, restricted to CC0 or Public Domain audio, then ducks it under narration.
+- Renders variable-length 1080×1920 H.264/AAC Shorts with beat-synchronized mobile captions and soft transitions.
+- Saves analytics-ready metadata: pillar, hook type/text, perspective, topic, duration, title, script, ending concept, and visual searches.
 - Uploads through the official YouTube Data API using resumable upload and retries.
-- Saves two-day debugging artifacts and persists quote usage safely.
+- Saves two-day debugging artifacts and persists rich anti-repetition history safely.
+
+The established schedule, secrets, OAuth flow, YouTube uploader, Pexels/Openverse integrations, public/private behavior, and success-only consumption logic are preserved. The project does not add a paid API or claim fictional stories are factual accounts of real people. The catalog lasts 125 days at four uploads per day.
 
 ## Start here
 
@@ -25,6 +30,7 @@ Run local feature tests with:
 ```bash
 pip install -r requirements.txt
 pytest -q
+python -m scripts.preview_stories --count 3
 ```
 
 No real YouTube upload is performed by the tests.

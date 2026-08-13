@@ -1,4 +1,4 @@
-name: Create three daily YouTube Shorts
+name: Create scheduled YouTube micro-stories
 
 on:
   schedule:
@@ -10,6 +10,10 @@ on:
     inputs:
       quote:
         description: "Optional original English quote override"
+        required: false
+        type: string
+      story_id:
+        description: "Optional catalog story ID for a non-consuming private test"
         required: false
         type: string
       pexels_search:
@@ -46,6 +50,7 @@ jobs:
       YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
       CHANNEL_NAME: ${{ vars.CHANNEL_NAME }}
       INPUT_QUOTE: ${{ github.event_name == 'workflow_dispatch' && inputs.quote || '' }}
+      INPUT_STORY_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.story_id || '' }}
       INPUT_PEXELS_SEARCH: ${{ github.event_name == 'workflow_dispatch' && inputs.pexels_search || '' }}
       INPUT_PRIVACY_STATUS: ${{ github.event_name == 'workflow_dispatch' && inputs.privacy_status || 'public' }}
 
@@ -69,10 +74,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Cache commercial-safe TTS voice
+        uses: actions/cache@v4
+        with:
+          path: .tts-models
+          key: piper-en-US-joe-medium-v1
+
+      - name: Download commercial-safe TTS voice
+        run: |
+          python -m piper.download_voices --data-dir .tts-models en_US-joe-medium
+          test "$(stat -c%s .tts-models/en_US-joe-medium.onnx)" -gt 50000000
+
       - name: Validate automation configuration
         run: python -m scripts.validate_config --require-youtube
 
-      - name: Render 20-second Short
+      - name: Render 25-40 second micro-story
         id: render
         run: python -m scripts.render_short
 
@@ -89,6 +105,11 @@ jobs:
           snapshot="$RUNNER_TEMP/rendered-state.json"
           cp data/state.json "$snapshot"
           consumed_id="$(python -c 'import json; print(json.load(open("output/metadata.json", encoding="utf-8"))["quote_id"])')"
+          catalog_file="$(python -c 'import json; print(json.load(open("output/metadata.json", encoding="utf-8")).get("catalog_file", "data/quotes.json"))')"
+          case "$catalog_file" in
+            data/stories.json|data/quotes.json) ;;
+            *) echo "Unexpected catalog path: $catalog_file" >&2; exit 1 ;;
+          esac
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
@@ -96,15 +117,15 @@ jobs:
             git fetch origin "$GITHUB_REF_NAME"
             git checkout -B shorts-state-update "origin/$GITHUB_REF_NAME"
             python -m scripts.merge_state data/state.json "$snapshot" --output data/state.json
-            python -m scripts.consume_quote data/quotes.json "$consumed_id" --output data/quotes.json
+            python -m scripts.consume_quote "$catalog_file" "$consumed_id" --output "$catalog_file"
 
-            if git diff --quiet -- data/state.json data/quotes.json; then
+            if git diff --quiet -- data/state.json data/stories.json data/quotes.json; then
               echo "No quote state change to persist."
               exit 0
             fi
 
-            git add data/state.json data/quotes.json
-            git commit -m "Consume uploaded YouTube Shorts script [skip ci]"
+            git add data/state.json data/stories.json data/quotes.json
+            git commit -m "Consume uploaded YouTube micro-story [skip ci]"
             if git push origin "HEAD:$GITHUB_REF_NAME"; then
               echo "Quote state persisted."
               exit 0

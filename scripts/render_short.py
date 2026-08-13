@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Create a 20-second motivational YouTube Short with Pexels footage and music."""
+"""Create a high-retention motivational micro-story Short."""
 
 from __future__ import annotations
 
@@ -10,7 +10,9 @@ import random
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
+import wave
 import textwrap
 from datetime import datetime, timezone
 from pathlib import Path
@@ -21,14 +23,32 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
+from scripts.story_engine import (
+    MAX_SECONDS,
+    MIN_SECONDS,
+    StoryError,
+    estimate_beat_durations,
+    load_stories,
+    seconds_to_ass,
+    select_hook,
+    select_story,
+    select_title,
+    story_beats,
+    story_history_event,
+    story_script,
+)
+
 
 ROOT = Path(__file__).resolve().parents[1]
 QUOTES_PATH = ROOT / "data" / "quotes.json"
+STORIES_PATH = ROOT / "data" / "stories.json"
 STATE_PATH = ROOT / "data" / "state.json"
 OUTPUT_DIR = ROOT / "output"
 POPPINS_FONT_PATH = ROOT / "assets" / "fonts" / "Poppins-SemiBold.ttf"
 PEXELS_SEARCH_URL = "https://api.pexels.com/v1/videos/search"
 OPENVERSE_AUDIO_URL = "https://api.openverse.org/v1/audio/"
+TTS_VOICE = "en_US-joe-medium"
+TTS_MODEL_DIR = ROOT / ".tts-models"
 OPENVERSE_TOKEN_URL = "https://api.openverse.org/v1/auth_tokens/token/"
 FALLBACK_SEARCH = "calm sunrise nature"
 MUSIC_SEARCHES = (
@@ -38,14 +58,13 @@ MUSIC_SEARCHES = (
     "somber piano",
 )
 OPENVERSE_LICENSES = {"cc0", "pdm"}
-VIDEO_SECONDS = 20
+VIDEO_SECONDS = int(MAX_SECONDS)
 WIDTH = 1080
 HEIGHT = 1920
 FPS = 30
 HASHTAGS = "#motivation #discipline #success #mindset #shorts"
-CLIP_COUNT = 3
-CLIP_SECONDS = 7
-TRANSITION_SECONDS = 0.5
+TRANSITION_SECONDS = 0.28
+CLIP_COUNT = 3  # Legacy single-quote helper compatibility.
 HOOKS = {
     "discipline": ("DO IT ANYWAY.", "STOP NEGOTIATING.", "KEEP THE PROMISE.", "NO MORE EXCUSES."),
     "success": ("PLAY THE LONG GAME.", "THIS IS HOW YOU WIN.", "BUILD IT QUIETLY.", "KEEP GOING."),
@@ -229,6 +248,65 @@ def ass_escape(value: str) -> str:
     )
 
 
+def wrap_caption(text: str, *, width: int = 30, max_lines: int = 4) -> str:
+    """Wrap one short narration beat inside the mobile caption safe area."""
+    return wrap_quote(text, width=width, max_lines=max_lines)
+
+
+def build_story_subtitles(
+    beats: list[dict[str, str]],
+    durations: list[float],
+    channel_name: str,
+) -> str:
+    """Build one closely timed caption event per information beat."""
+    if len(beats) != len(durations) or not beats:
+        raise ShortsError("Caption beats and durations must be non-empty and have equal lengths")
+    channel = ass_escape(channel_name)
+    events: list[str] = []
+    start = 0.0
+    for index, (beat, duration) in enumerate(zip(beats, durations, strict=True)):
+        end = start + duration
+        phase = beat["phase"]
+        style = {
+            "hook": "Hook",
+            "problem": "Story",
+            "turn": "Turn",
+            "payoff": "Payoff",
+        }.get(phase, "Story")
+        max_lines = 3 if phase == "hook" else 4
+        caption = ass_escape(wrap_caption(beat["text"], width=30, max_lines=max_lines))
+        animation = r"{\an8\pos(540,500)\fad(140,180)\fscx103\fscy103\t(0,220,\fscx100\fscy100)}"
+        events.append(
+            f"Dialogue: 2,{seconds_to_ass(start)},{seconds_to_ass(end)},{style},,0,0,0,,"
+            f"{animation}{caption}"
+        )
+        start = end
+    total = sum(durations)
+    events.append(
+        f"Dialogue: 3,0:00:00.00,{seconds_to_ass(total)},Channel,,0,0,0,,"
+        fr"{{\an2\pos(540,1700)}}{channel}"
+    )
+    return fr"""[Script Info]
+ScriptType: v4.00+
+PlayResX: {WIDTH}
+PlayResY: {HEIGHT}
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Hook,Poppins SemiBold,64,&H0000D7FF,&H0000D7FF,&HD0000000,&H50000000,-1,0,0,0,100,100,1,0,1,4,1,5,92,170,0,1
+Style: Story,Poppins SemiBold,47,&H00FFFFFF,&H00FFFFFF,&HD0000000,&H50000000,-1,0,0,0,100,100,0,0,1,4,1,5,92,170,0,1
+Style: Turn,Poppins SemiBold,49,&H0000D7FF,&H0000D7FF,&HD0000000,&H50000000,-1,0,0,0,100,100,0,0,1,4,1,5,92,170,0,1
+Style: Payoff,Poppins SemiBold,51,&H00FFFFFF,&H00FFFFFF,&HD0000000,&H60000000,-1,0,0,0,100,100,0,0,1,4,1,5,92,170,0,1
+Style: Channel,Poppins SemiBold,30,&H10FFFFFF,&H10FFFFFF,&H60000000,&H50000000,-1,0,0,0,100,100,1,0,1,3,1,2,60,60,125,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+{chr(10).join(events)}
+"""
+
+
 def build_ass_subtitles(entry: dict[str, str], channel_name: str) -> str:
     """Build staged, animated subtitles for the four-part Short structure."""
     hook = ass_escape(wrap_quote(make_hook(entry), width=24, max_lines=2))
@@ -316,6 +394,76 @@ def build_metadata(
     }
 
 
+def build_story_metadata(
+    story: dict[str, Any],
+    *,
+    hook: str,
+    title: str,
+    beats: list[dict[str, str]],
+    duration: float,
+    assets: list[dict[str, Any]],
+    channel_name: str,
+    privacy_status: str,
+    music_asset: dict[str, Any],
+) -> dict[str, Any]:
+    """Build concise YouTube metadata plus analytics-ready creative fields."""
+    if privacy_status not in {"private", "unlisted", "public"}:
+        raise ShortsError(f"Invalid privacy status: {privacy_status}")
+    safe_title = re.sub(r"\s+", " ", title).strip()[:100]
+    payoff = beats[-1]["text"]
+    footage_credits = "\n".join(
+        f"{index}. {asset['creator_name']} - {asset['source_url']}"
+        for index, asset in enumerate(assets, start=1)
+    )
+    description = (
+        f"{payoff}\n\n"
+        "Original motivational micro-story.\n\n"
+        f"Footage on Pexels:\n{footage_credits}\n"
+        f"Music: {music_asset['title']} by {music_asset['creator']} "
+        f"({music_asset['license']}): {music_asset['source_url']}\n\n"
+        "#motivation #selfimprovement #shorts"
+    )
+    return {
+        "quote_id": story["id"],
+        "story_id": story["id"],
+        "catalog_file": "data/stories.json",
+        "content_pillar": story["pillar"],
+        "topic": story["topic"],
+        "theme": story["theme"],
+        "perspective": story["perspective"],
+        "protagonist_type": story["protagonist"],
+        "hook_type": story["hook_type"],
+        "hook_text": hook,
+        "ending_concept": story["ending_concept"],
+        "key_phrases": story["key_phrases"],
+        "duration_seconds": round(duration, 2),
+        "title": safe_title,
+        "script": story_script(story, hook),
+        "caption_beats": beats,
+        "visual_searches": [beat["visual_search"] for beat in beats],
+        "pexels_assets": [
+            {
+                "creator": asset["creator_name"],
+                "source_url": asset["source_url"],
+                "search_used": asset["search_used"],
+            }
+            for asset in assets
+        ],
+        "music_file": music_asset["title"],
+        "music_creator": music_asset["creator"],
+        "music_source_url": music_asset["source_url"],
+        "music_license": music_asset["license"],
+        "music_search_used": music_asset["search_used"],
+        "channel_name": channel_name,
+        "description": description,
+        "tags": [story["topic"], story["theme"], "motivation", "self improvement", "shorts"],
+        "category_id": "22",
+        "made_for_kids": False,
+        "privacy_status": privacy_status,
+        "created_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+    }
+
+
 def valid_https_url(value: str) -> bool:
     try:
         parsed = urlparse(value)
@@ -370,6 +518,7 @@ def search_pexels_clips(
     *,
     api_key: str,
     count: int = CLIP_COUNT,
+    excluded_sources: set[str] | None = None,
     rng: random.Random | random.SystemRandom | None = None,
     session: requests.Session | None = None,
 ) -> list[dict[str, Any]]:
@@ -380,7 +529,7 @@ def search_pexels_clips(
     if phrase.casefold() != FALLBACK_SEARCH.casefold():
         phrases.append(FALLBACK_SEARCH)
     selected_assets: list[dict[str, Any]] = []
-    seen_sources: set[str] = set()
+    seen_sources: set[str] = set(excluded_sources or ())
     seen_creators: set[str] = set()
     for query in phrases:
         try:
@@ -424,6 +573,44 @@ def search_pexels_clips(
     )
 
 
+def search_pexels_for_beats(
+    beats: list[dict[str, str]],
+    *,
+    api_key: str,
+    rng: random.Random | random.SystemRandom | None = None,
+    session: requests.Session | None = None,
+) -> list[dict[str, Any]]:
+    """Choose one relevant portrait asset per story beat, avoiding repeats."""
+    chooser = rng or random.SystemRandom()
+    client = session or http_session()
+    assets: list[dict[str, Any]] = []
+    seen_sources: set[str] = set()
+    for index, beat in enumerate(beats):
+        query = beat["visual_search"]
+        try:
+            asset = search_pexels_clips(
+                query,
+                api_key=api_key,
+                count=1,
+                excluded_sources=seen_sources,
+                rng=chooser,
+                session=client,
+            )[0]
+        except ShortsError:
+            # A relevant repeated source is preferable to an unrelated random clip.
+            asset = search_pexels_clips(
+                query,
+                api_key=api_key,
+                count=1,
+                rng=chooser,
+                session=client,
+            )[0]
+        asset["beat_index"] = index
+        seen_sources.add(asset["source_url"])
+        assets.append(asset)
+    return assets
+
+
 def search_pexels(
     phrase: str,
     *,
@@ -457,7 +644,11 @@ def download_file(url: str, destination: Path, *, session: requests.Session | No
         raise ShortsError("Downloaded Pexels footage is empty or invalid")
 
 
-def suitable_openverse_audio(results: Iterable[dict[str, Any]]) -> list[dict[str, Any]]:
+def suitable_openverse_audio(
+    results: Iterable[dict[str, Any]],
+    *,
+    minimum_seconds: float = 20,
+) -> list[dict[str, Any]]:
     candidates: list[dict[str, Any]] = []
     for item in results:
         download_url = str(item.get("url") or "")
@@ -468,7 +659,7 @@ def suitable_openverse_audio(results: Iterable[dict[str, Any]]) -> list[dict[str
             not valid_https_url(download_url)
             or not valid_https_url(source_url)
             or license_code not in OPENVERSE_LICENSES
-            or duration_ms < VIDEO_SECONDS * 1000
+            or duration_ms < minimum_seconds * 1000
         ):
             continue
         candidates.append(
@@ -487,6 +678,8 @@ def suitable_openverse_audio(results: Iterable[dict[str, Any]]) -> list[dict[str
 
 def search_openverse_audio(
     *,
+    queries: Iterable[str] | None = None,
+    minimum_seconds: float = MAX_SECONDS,
     rng: random.Random | random.SystemRandom | None = None,
     session: requests.Session | None = None,
 ) -> dict[str, Any]:
@@ -513,10 +706,10 @@ def search_openverse_audio(
     if not access_token:
         raise ShortsError("Openverse authentication returned no access token")
 
-    queries = list(MUSIC_SEARCHES)
-    chooser.shuffle(queries)
+    search_queries = list(queries or MUSIC_SEARCHES)
+    chooser.shuffle(search_queries)
     errors: list[str] = []
-    for query in queries:
+    for query in search_queries:
         try:
             response = client.get(
                 OPENVERSE_AUDIO_URL,
@@ -532,7 +725,9 @@ def search_openverse_audio(
             )
             response.raise_for_status()
             response.encoding = "utf-8"
-            candidates = suitable_openverse_audio(response.json().get("results") or [])
+            candidates = suitable_openverse_audio(
+                response.json().get("results") or [], minimum_seconds=minimum_seconds
+            )
             if candidates:
                 selected = chooser.choice(candidates)
                 selected["search_used"] = query
@@ -584,37 +779,65 @@ def ffmpeg_filter_path(path: Path) -> str:
 def run_ffmpeg(
     footage: list[Path],
     music: Path,
+    narration: Path,
     subtitles_file: Path,
     output: Path,
+    beat_durations: list[float] | None = None,
 ) -> None:
-    if len(footage) != CLIP_COUNT:
-        raise ShortsError(f"Exactly {CLIP_COUNT} footage clips are required")
+    durations = beat_durations or [7.0] * len(footage)
+    if not footage or len(footage) != len(durations):
+        raise ShortsError("Footage clips and beat durations must be non-empty and match")
+    total_seconds = sum(durations)
+    if not 19.5 <= total_seconds <= MAX_SECONDS + 0.1:
+        raise ShortsError(f"Rendered duration {total_seconds:.1f}s is outside the safe range")
     font = locate_font()
     subtitles_path = ffmpeg_filter_path(subtitles_file)
     fonts_dir = ffmpeg_filter_path(font.parent)
-    video_filter = (
-        f"[0:v]scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,"
-        f"crop={WIDTH}:{HEIGHT},fps={FPS},trim=duration={CLIP_SECONDS},setpts=PTS-STARTPTS[v0];"
-        f"[1:v]scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,"
-        f"crop={WIDTH}:{HEIGHT},fps={FPS},trim=duration={CLIP_SECONDS},setpts=PTS-STARTPTS[v1];"
-        f"[2:v]scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,"
-        f"crop={WIDTH}:{HEIGHT},fps={FPS},trim=duration={CLIP_SECONDS},setpts=PTS-STARTPTS[v2];"
-        f"[v0][v1]xfade=transition=fade:duration={TRANSITION_SECONDS}:offset=6.5[v01];"
-        f"[v01][v2]xfade=transition=fade:duration={TRANSITION_SECONDS}:offset=13.0,"
-        "eq=brightness=-0.10:saturation=0.90,"
-        "drawbox=x=0:y=0:w=iw:h=ih:color=black@0.12:t=fill,"
+    filters: list[str] = []
+    for index, duration in enumerate(durations):
+        clip_duration = duration + (TRANSITION_SECONDS if index < len(durations) - 1 else 0)
+        filters.append(
+            f"[{index}:v]scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,"
+            f"crop={WIDTH}:{HEIGHT},fps={FPS},trim=duration={clip_duration:.3f},"
+            f"setpts=PTS-STARTPTS[v{index}]"
+        )
+    current = "v0"
+    elapsed = durations[0]
+    for index in range(1, len(durations)):
+        output_label = f"vx{index}"
+        filters.append(
+            f"[{current}][v{index}]xfade=transition=fade:duration={TRANSITION_SECONDS}:"
+            f"offset={elapsed:.3f}[{output_label}]"
+        )
+        current = output_label
+        elapsed += durations[index]
+    filters.append(
+        f"[{current}]eq=brightness=-0.08:saturation=0.92,"
+        "drawbox=x=0:y=0:w=iw:h=ih:color=black@0.10:t=fill,"
         f"subtitles='{subtitles_path}':fontsdir='{fonts_dir}',"
-        "drawbox=x=0:y=ih-8:w=iw:h=8:color=0xFFD700@0.90:t=fill,"
-        f"trim=duration={VIDEO_SECONDS},format=yuv420p[v];"
-        f"[3:a]volume=0.16,afade=t=in:st=0:d=1,"
-        f"afade=t=out:st={VIDEO_SECONDS - 2}:d=2,"
-        f"atrim=duration={VIDEO_SECONDS},asetpts=PTS-STARTPTS[a]"
+        "drawbox=x=0:y=ih-8:w=iw:h=8:color=0xFFD700@0.88:t=fill,"
+        f"trim=duration={total_seconds:.3f},format=yuv420p[v]"
     )
+    music_index = len(footage)
+    narration_index = music_index + 1
+    filters.append(
+        f"[{music_index}:a]volume=0.13,afade=t=in:st=0:d=1.2,"
+        f"afade=t=out:st={max(0, total_seconds - 2.2):.3f}:d=2.2,"
+        f"atrim=duration={total_seconds:.3f},asetpts=PTS-STARTPTS[music];"
+        f"[{narration_index}:a]highpass=f=75,lowpass=f=12000,"
+        "loudnorm=I=-16:TP=-1.5:LRA=11,asplit=2[voice_sc][voice_mix];"
+        "[music][voice_sc]sidechaincompress=threshold=0.025:ratio=10:"
+        "attack=20:release=450[ducked];"
+        "[ducked][voice_mix]amix=inputs=2:duration=longest:normalize=0,"
+        f"alimiter=limit=0.95,atrim=duration={total_seconds:.3f}[a]"
+    )
+    video_filter = ";".join(filters)
     command = ["ffmpeg", "-hide_banner", "-y"]
     for clip in footage:
         command.extend(["-stream_loop", "-1", "-i", str(clip)])
     command.extend([
         "-stream_loop", "-1", "-i", str(music),
+        "-i", str(narration),
         "-filter_complex",
         video_filter,
         "-map",
@@ -622,7 +845,7 @@ def run_ffmpeg(
         "-map",
         "[a]",
         "-t",
-        str(VIDEO_SECONDS),
+        f"{total_seconds:.3f}",
         "-r",
         str(FPS),
         "-c:v",
@@ -651,6 +874,78 @@ def run_ffmpeg(
         raise ShortsError("FFmpeg completed without producing a valid MP4")
 
 
+def audio_duration(path: Path) -> float:
+    if path.suffix.casefold() == ".wav":
+        try:
+            with wave.open(str(path), "rb") as wav_file:
+                return wav_file.getnframes() / wav_file.getframerate()
+        except (wave.Error, OSError, ZeroDivisionError) as exc:
+            raise ShortsError(f"Unable to read narration WAV: {exc}") from exc
+    result = subprocess.run(
+        [
+            "ffprobe", "-v", "error", "-show_entries", "format=duration",
+            "-of", "default=noprint_wrappers=1:nokey=1", str(path),
+        ],
+        text=True,
+        capture_output=True,
+    )
+    try:
+        duration = float(result.stdout.strip())
+    except ValueError as exc:
+        raise ShortsError(f"Unable to read narration duration: {result.stderr.strip()}") from exc
+    if result.returncode != 0 or duration <= 0:
+        raise ShortsError("TTS produced invalid narration audio")
+    return duration
+
+
+def synthesize_narration(text: str, output: Path, voice_file: Path | None = None) -> dict[str, Any]:
+    """Create local narration without an API key and return auditable voice metadata."""
+    if voice_file:
+        if not voice_file.is_file():
+            raise ShortsError(f"Voice file does not exist: {voice_file}")
+        shutil.copyfile(voice_file, output)
+        voice_name = "Local smoke-test narration"
+        voice_license = "Local test file"
+    else:
+        model = TTS_MODEL_DIR / f"{TTS_VOICE}.onnx"
+        config = TTS_MODEL_DIR / f"{TTS_VOICE}.onnx.json"
+        if not model.is_file() or model.stat().st_size < 50_000_000 or not config.is_file():
+            raise ShortsError(
+                f"Piper voice {TTS_VOICE} is missing; run "
+                f"python -m piper.download_voices --data-dir {TTS_MODEL_DIR} {TTS_VOICE}"
+            )
+        command = [
+            sys.executable, "-m", "piper", "-m", TTS_VOICE,
+            "--data-dir", str(TTS_MODEL_DIR), "-f", str(output),
+            "--sentence-silence", "0.12", "--", text,
+        ]
+        result = subprocess.run(command, text=True, capture_output=True)
+        if result.returncode != 0:
+            tail = "\n".join(result.stderr.splitlines()[-25:])
+            raise ShortsError(f"Piper narration failed:\n{tail}")
+        voice_name = TTS_VOICE
+        voice_license = "CC0 voice dataset; Piper engine GPL-3.0"
+    duration = audio_duration(output)
+    if duration > MAX_SECONDS:
+        speed = min(2.0, duration / (MAX_SECONDS - 0.4))
+        fitted = output.with_name("narration-fitted.wav")
+        result = subprocess.run(
+            ["ffmpeg", "-hide_banner", "-y", "-i", str(output), "-af", f"atempo={speed:.5f}", str(fitted)],
+            text=True,
+            capture_output=True,
+        )
+        if result.returncode != 0:
+            raise ShortsError("Unable to fit TTS narration inside 40 seconds")
+        fitted.replace(output)
+        duration = audio_duration(output)
+    return {
+        "name": voice_name,
+        "license": voice_license,
+        "source_url": "https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_US/joe/medium",
+        "duration_seconds": round(duration, 3),
+    }
+
+
 def write_metadata(metadata: dict[str, Any], path: Path) -> None:
     path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
@@ -666,8 +961,46 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument("--footage-file", type=Path, help="Local footage for offline smoke tests")
     parser.add_argument("--music-file", type=Path, help="Specific music for offline smoke tests")
+    parser.add_argument("--voice-file", type=Path, help="Specific narration WAV for offline smoke tests")
+    parser.add_argument(
+        "--story-id",
+        default=os.environ.get("INPUT_STORY_ID", ""),
+        help="Render one catalog story without consuming it",
+    )
     parser.add_argument("--seed", type=int, help="Deterministic selection for tests")
     return parser.parse_args()
+
+
+def make_manual_story(text: str, search: str) -> dict[str, Any]:
+    """Keep the existing manual quote input usable as a private test story."""
+    visual = search or FALLBACK_SEARCH
+    title = clean_manual_title = re.sub(r"\s+", " ", text).strip().strip('"')
+    if len(clean_manual_title) > 58:
+        title = clean_manual_title[:58].rsplit(" ", 1)[0].rstrip(".,;:!?")
+    return {
+        "id": "manual",
+        "pillar": "transformation",
+        "topic": "personal change",
+        "theme": "starting over",
+        "perspective": "you",
+        "protagonist": "manual workflow subject",
+        "hook_type": "manual_override",
+        "hook_candidates": [text, text, text],
+        "hook_visual": visual,
+        "beats": [
+            {"phase": "problem", "text": "For weeks, the same problem kept returning in a different disguise.", "visual_search": visual},
+            {"phase": "problem", "text": "Planning felt safer than discovering whether the effort would work.", "visual_search": visual},
+            {"phase": "problem", "text": "Another ordinary day nearly ended with the same promise.", "visual_search": visual},
+            {"phase": "turn", "text": "Then one useful action replaced the speech about changing.", "visual_search": visual},
+            {"phase": "turn", "text": "It was repeated quietly before confidence had time to arrive.", "visual_search": visual},
+            {"phase": "turn", "text": "The result stayed small, but the evidence became difficult to ignore.", "visual_search": visual},
+            {"phase": "payoff", "text": "The future moved when the promise finally became something visible.", "visual_search": visual},
+        ],
+        "title_candidates": [title, "The Promise That Became Visible"],
+        "ending_concept": "action made change visible",
+        "key_phrases": ["useful action", "visible promise"],
+        "music_searches": list(MUSIC_SEARCHES),
+    }
 
 
 def main() -> None:
@@ -679,23 +1012,44 @@ def main() -> None:
     if not shutil.which("ffmpeg"):
         raise ShortsError("ffmpeg is not installed or not on PATH")
 
-    quotes = load_quotes()
     state = load_state()
     quote_override = re.sub(r"\s+", " ", args.quote).strip()
     if quote_override:
-        selected = {
-            "id": "manual",
-            "quote": quote_override,
-            "insight": "Choose one useful action and complete it today.",
-            "pexels_search": args.search.strip() or FALLBACK_SEARCH,
-            "category": "growth",
-        }
+        selected = make_manual_story(quote_override, args.search.strip())
+        hook = quote_override
+        title = selected["title_candidates"][0]
+        state_changed = False
+    elif args.story_id:
+        try:
+            stories = load_stories(STORIES_PATH)
+            selected = next(story for story in stories if story["id"] == args.story_id)
+        except StoryError as exc:
+            raise ShortsError(str(exc)) from exc
+        except StopIteration as exc:
+            raise ShortsError(f"Unknown story id: {args.story_id}") from exc
+        hook = select_hook(selected)
+        title = select_title(selected)
         state_changed = False
     else:
-        selected = select_quote(quotes, state, rng=rng)
-        if args.search.strip():
-            selected = {**selected, "pexels_search": args.search.strip()}
+        try:
+            stories = load_stories(STORIES_PATH)
+            selected = select_story(stories, state, rng=rng)
+        except StoryError as exc:
+            raise ShortsError(str(exc)) from exc
+        hook = select_hook(selected)
+        title = select_title(selected)
+        state.setdefault("used_ids", []).append(selected["id"])
+        state.setdefault("history", []).append(story_history_event(selected, hook, title))
+        state["history"] = state["history"][-200:]
+        state["version"] = 1
+        state.setdefault("cycle", 1)
         state_changed = True
+
+    beats = story_beats(selected, hook)
+    if args.search.strip():
+        beats = [{**beat, "visual_search": args.search.strip()} for beat in beats]
+    durations = estimate_beat_durations(beats)
+    duration_seconds = sum(durations)
 
     if args.music_file:
         if not args.music_file.is_file():
@@ -709,7 +1063,11 @@ def main() -> None:
             "search_used": "local override",
         }
     else:
-        music_asset = search_openverse_audio(rng=rng)
+        music_asset = search_openverse_audio(
+            queries=selected["music_searches"],
+            minimum_seconds=duration_seconds,
+            rng=rng,
+        )
         music = Path()
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -718,20 +1076,27 @@ def main() -> None:
 
     with tempfile.TemporaryDirectory(prefix="youtube-short-") as temp_name:
         temporary = Path(temp_name)
+        narration = temporary / "narration.wav"
+        voice_asset = synthesize_narration(story_script(selected, hook), narration, args.voice_file)
+        narration_seconds = max(MIN_SECONDS, min(MAX_SECONDS, voice_asset["duration_seconds"] + 0.45))
+        estimated_total = sum(durations)
+        durations = [round(value * narration_seconds / estimated_total, 3) for value in durations]
+        duration_seconds = sum(durations)
         if args.footage_file:
             if not args.footage_file.is_file():
                 raise ShortsError(f"Footage file does not exist: {args.footage_file}")
-            footage = [args.footage_file] * CLIP_COUNT
+            footage = [args.footage_file] * len(beats)
             assets = [{
                 "creator_name": "Local smoke test",
                 "source_url": "https://www.pexels.com/",
-                "search_used": selected["pexels_search"],
-            }] * CLIP_COUNT
+                "search_used": beat["visual_search"],
+                "beat_index": index,
+            } for index, beat in enumerate(beats)]
         else:
             api_key = os.environ.get("PEXELS_API_KEY", "").strip()
             if not api_key:
                 raise ShortsError("PEXELS_API_KEY is required")
-            assets = search_pexels_clips(selected["pexels_search"], api_key=api_key, rng=rng)
+            assets = search_pexels_for_beats(beats, api_key=api_key, rng=rng)
             footage = []
             for index, asset in enumerate(assets, start=1):
                 clip = temporary / f"pexels-{index}.mp4"
@@ -744,36 +1109,30 @@ def main() -> None:
 
         subtitles_file = temporary / "captions.ass"
         subtitles_file.write_text(
-            build_ass_subtitles(selected, channel_name), encoding="utf-8", newline="\n"
+            build_story_subtitles(beats, durations, channel_name),
+            encoding="utf-8",
+            newline="\n",
         )
-        run_ffmpeg(footage, music, subtitles_file, output_video)
+        run_ffmpeg(footage, music, narration, subtitles_file, output_video, durations)
 
-    metadata = build_metadata(
+    metadata = build_story_metadata(
         selected,
-        creator_name=assets[0]["creator_name"],
-        source_url=assets[0]["source_url"],
+        hook=hook,
+        title=title,
+        beats=beats,
+        duration=duration_seconds,
+        assets=assets,
         channel_name=channel_name,
         privacy_status=args.privacy,
-        music_name=music_asset["title"],
-        music_creator=music_asset["creator"],
-        music_source_url=music_asset["source_url"],
-        music_license=music_asset["license"],
+        music_asset=music_asset,
     )
-    metadata["hook"] = make_hook(selected)
-    metadata["pexels_search_used"] = sorted({asset["search_used"] for asset in assets})
-    metadata["pexels_assets"] = [
-        {"creator": asset["creator_name"], "source_url": asset["source_url"]}
-        for asset in assets
-    ]
-    footage_credits = "\n".join(
-        f"Footage {index}: {asset['creator_name']} on Pexels: {asset['source_url']}"
-        for index, asset in enumerate(assets, start=1)
-    )
-    metadata["description"] = metadata["description"].replace(
-        f"Footage by {assets[0]['creator_name']} on Pexels: {assets[0]['source_url']}",
-        footage_credits,
-    )
-    metadata["music_search_used"] = music_asset["search_used"]
+    metadata["tts_voice"] = voice_asset["name"]
+    metadata["tts_license"] = voice_asset["license"]
+    metadata["tts_source_url"] = voice_asset["source_url"]
+    metadata["narration_duration_seconds"] = voice_asset["duration_seconds"]
+    if args.story_id:
+        metadata["quote_id"] = "manual"
+        metadata["preview_story_id"] = selected["id"]
     write_metadata(metadata, output_metadata)
     if state_changed:
         save_state(state)
