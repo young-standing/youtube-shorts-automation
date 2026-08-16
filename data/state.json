@@ -46,7 +46,8 @@
     "s022",
     "s015",
     "s087",
-    "s499"
+    "s499",
+    "s020"
   ],
   "history": [
     {
@@ -940,6 +941,70 @@
         "while",
         "who",
         "without"
+      ]
+    },
+    {
+      "id": "s020",
+      "used_at": "2026-08-16T07:54:03+00:00",
+      "pillar": "future_self",
+      "topic": "discipline",
+      "theme": "quiet progress",
+      "perspective": "you",
+      "hook_type": "positive_future",
+      "hook": "Future you still remembers the night nobody applauded.",
+      "title": "The Tuesday Future You Remembers",
+      "ending_concept": "ordinary repetition created future options",
+      "key_phrases": [
+        "boring Tuesday",
+        "forty focused minutes"
+      ],
+      "similarity_terms": [
+        "ability",
+        "almost",
+        "applauded",
+        "begins",
+        "chair",
+        "choice",
+        "creates",
+        "does",
+        "easier",
+        "enter",
+        "feels",
+        "focused",
+        "forty",
+        "future",
+        "hype",
+        "knows",
+        "later",
+        "minutes",
+        "months",
+        "motivation",
+        "need",
+        "night",
+        "nobody",
+        "not",
+        "one",
+        "remember",
+        "remembers",
+        "replacing",
+        "result",
+        "same",
+        "seems",
+        "session",
+        "skill",
+        "skip",
+        "slightly",
+        "small",
+        "stay",
+        "stayed",
+        "still",
+        "today",
+        "tomorrow",
+        "too",
+        "trying",
+        "visible",
+        "weeks",
+        "work"
       ]
     }
   ]
