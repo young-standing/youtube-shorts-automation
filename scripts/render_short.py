@@ -59,6 +59,8 @@ MUSIC_SEARCHES = (
     "emotional piano",
     "melancholic piano",
     "somber piano",
+    "soft piano",
+    "piano music",
 )
 OPENVERSE_LICENSES = {"cc0", "pdm"}
 VIDEO_SECONDS = int(MAX_SECONDS)
@@ -807,8 +809,14 @@ def search_openverse_audio(
     if not access_token:
         raise ShortsError("Openverse authentication returned no access token")
 
-    search_queries = list(queries or MUSIC_SEARCHES)
-    chooser.shuffle(search_queries)
+    # A story's mood searches can be too specific to return a long CC0/PDM
+    # recording. Always keep the broad piano searches as a fallback so one
+    # sparse Openverse query cannot stop the scheduled upload.
+    story_queries = list(dict.fromkeys(queries or ()))
+    fallback_queries = [query for query in MUSIC_SEARCHES if query not in story_queries]
+    chooser.shuffle(story_queries)
+    chooser.shuffle(fallback_queries)
+    search_queries = [*story_queries, *fallback_queries]
     errors: list[str] = []
     for query in search_queries:
         try:
