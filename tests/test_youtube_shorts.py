@@ -1,4 +1,5 @@
 import random
+from unittest.mock import Mock
 
 import pytest
 
@@ -18,6 +19,7 @@ from scripts.render_short import (
     select_quote,
     suitable_video_files,
     suitable_openverse_audio,
+    search_openverse_audio,
     validate_channel_name,
     wrap_quote,
 )
@@ -135,6 +137,48 @@ def test_openverse_audio_accepts_only_long_cc0_or_public_domain_tracks():
         },
     ]
     assert [item["id"] for item in suitable_openverse_audio(results)] == ["keep"]
+
+
+def test_openverse_music_falls_back_when_story_queries_are_too_specific(monkeypatch):
+    monkeypatch.setenv("OPENVERSE_CLIENT_ID", "client")
+    monkeypatch.setenv("OPENVERSE_CLIENT_SECRET", "secret")
+    token_response = Mock()
+    token_response.raise_for_status.return_value = None
+    token_response.json.return_value = {"access_token": "token"}
+    empty_response = Mock()
+    empty_response.raise_for_status.return_value = None
+    empty_response.json.return_value = {"results": []}
+    fallback_response = Mock()
+    fallback_response.raise_for_status.return_value = None
+    fallback_response.json.return_value = {
+        "results": [
+            {
+                "id": "fallback",
+                "url": "https://cdn.example.com/piano.mp3",
+                "foreign_landing_url": "https://example.com/piano",
+                "title": "Soft Piano",
+                "creator": "Example Musician",
+                "license": "cc0",
+                "duration": 30_000,
+            }
+        ]
+    }
+    session = Mock()
+    session.post.return_value = token_response
+
+    def fake_get(_url, *, params, **_kwargs):
+        return fallback_response if params["q"] == "sad piano" else empty_response
+
+    session.get.side_effect = fake_get
+    selected = search_openverse_audio(
+        queries=["dark focused piano"],
+        minimum_seconds=15,
+        rng=random.Random(0),
+        session=session,
+    )
+
+    assert selected["id"] == "fallback"
+    assert selected["search_used"] == "sad piano"
 
 
 def test_channel_name_is_limited_to_safe_width():
