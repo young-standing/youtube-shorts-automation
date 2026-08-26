@@ -67,6 +67,9 @@ HEIGHT = 1920
 FPS = 30
 HASHTAGS = "#motivation #discipline #success #mindset #shorts"
 TRANSITION_SECONDS = 0.08
+MUSIC_MIX_VOLUME = 0.24
+MUSIC_DUCK_THRESHOLD = 0.06
+MUSIC_DUCK_RATIO = 3
 CLIP_COUNT = 3  # Legacy single-quote helper compatibility.
 HOOKS = {
     "discipline": ("DO IT ANYWAY.", "STOP NEGOTIATING.", "KEEP THE PROMISE.", "NO MORE EXCUSES."),
@@ -922,13 +925,14 @@ def run_ffmpeg(
     music_index = len(footage)
     narration_index = music_index + 1
     filters.append(
-        f"[{music_index}:a]volume=0.10,afade=t=in:st=0:d=0.45,"
+        f"[{music_index}:a]volume={MUSIC_MIX_VOLUME},afade=t=in:st=0:d=0.45,"
         f"afade=t=out:st={max(0, total_seconds - 1.1):.3f}:d=1.1,"
         f"atrim=duration={total_seconds:.3f},asetpts=PTS-STARTPTS[music];"
         f"[{narration_index}:a]highpass=f=75,lowpass=f=12000,"
         "loudnorm=I=-16:TP=-1.5:LRA=11,asplit=2[voice_sc][voice_mix];"
-        "[music][voice_sc]sidechaincompress=threshold=0.025:ratio=10:"
-        "attack=20:release=450[ducked];"
+        f"[music][voice_sc]sidechaincompress=threshold={MUSIC_DUCK_THRESHOLD}:"
+        f"ratio={MUSIC_DUCK_RATIO}:"
+        "attack=15:release=240[ducked];"
         "[ducked][voice_mix]amix=inputs=2:duration=longest:normalize=0,"
         "loudnorm=I=-14:TP=-2:LRA=7,"
         f"alimiter=limit=0.79:level=false,atrim=duration={total_seconds:.3f}[a]"

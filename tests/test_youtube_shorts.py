@@ -5,6 +5,9 @@ import pytest
 from scripts.consume_quote import consume_quote
 from scripts.merge_state import merge_states
 from scripts.render_short import (
+    MUSIC_DUCK_RATIO,
+    MUSIC_DUCK_THRESHOLD,
+    MUSIC_MIX_VOLUME,
     ShortsError,
     build_ass_subtitles,
     build_metadata,
@@ -18,6 +21,12 @@ from scripts.render_short import (
     validate_channel_name,
     wrap_quote,
 )
+
+
+def test_background_music_stays_audible_beneath_narration():
+    assert 0.2 <= MUSIC_MIX_VOLUME <= 0.3
+    assert MUSIC_DUCK_THRESHOLD >= 0.05
+    assert MUSIC_DUCK_RATIO <= 4
 
 
 def sample_quotes():
