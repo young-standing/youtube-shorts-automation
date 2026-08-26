@@ -186,7 +186,7 @@ def test_explicit_story_preview_is_documented_as_non_consuming():
     workflow = (ROOT / ".github" / "workflows" / "create-short.yml").read_text(
         encoding="utf-8"
     )
-    assert "Optional catalog story ID for a non-consuming private test" in workflow
+    assert "Optional quote/story ID for a non-consuming private test" in workflow
     assert 'if args.story_id:' in (ROOT / "scripts" / "render_short.py").read_text(
         encoding="utf-8"
     )

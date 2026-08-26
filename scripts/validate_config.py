@@ -11,19 +11,19 @@ from pathlib import Path
 try:
     from scripts.render_short import (
         OUTPUT_DIR,
-        STORIES_PATH,
+        QUOTES_PATH,
         ShortsError,
+        load_quotes,
         load_state,
-        load_stories,
         validate_channel_name,
     )
 except ModuleNotFoundError:  # Support `python scripts/validate_config.py` locally.
     from render_short import (  # type: ignore[no-redef]
         OUTPUT_DIR,
-        STORIES_PATH,
+        QUOTES_PATH,
         ShortsError,
+        load_quotes,
         load_state,
-        load_stories,
         validate_channel_name,
     )
 
@@ -53,14 +53,14 @@ def main() -> None:
     validate_channel_name(os.environ.get("CHANNEL_NAME", ""))
     if shutil.which("ffmpeg") is None or shutil.which("ffprobe") is None:
         raise ShortsError("ffmpeg and ffprobe must both be installed")
-    stories = load_stories(STORIES_PATH)
+    quotes = load_quotes(QUOTES_PATH)
     load_state()
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     probe = OUTPUT_DIR / ".write-test"
     probe.write_text("ok", encoding="utf-8")
     probe.unlink()
     print(
-        f"Configuration is valid; {len(stories)} unused curated micro-story script(s) remain "
+        f"Configuration is valid; {len(quotes)} unused original motivational quote(s) remain "
         "and music will be fetched from Openverse."
     )
 

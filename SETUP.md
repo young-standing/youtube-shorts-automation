@@ -91,15 +91,15 @@ Under **Variables**, add:
 
 Secrets are passed only as environment variables. Upload scripts never print their values.
 
-## 5. Automatic sad-piano music
+## 5. Automatic energetic motivational music
 
-No repository MP3 is required. Every run authenticates with the free Openverse credentials, searches for pillar-matched emotional piano, accepts only CC0/Public Domain results long enough for the selected story, downloads one result, and records its title, creator, license, and source URL in the generated metadata and YouTube description.
+No repository MP3 is required. Every run authenticates with the free Openverse credentials, searches for uplifting, epic, powerful, or cinematic motivational music, accepts only CC0/Public Domain results long enough for the quote, downloads one result, and records its title, creator, license, and source URL in the generated metadata and YouTube description.
 
 ## 6. Push the project and check Actions permissions
 
 Commit and push the implementation, quotes, and state to the default branch. The scheduled event only runs workflows that exist on the default branch.
 
-The workflow needs permission to update `data/state.json` and consume entries from `data/stories.json`. Under **Settings > Actions > General > Workflow permissions**, allow **Read and write permissions** if repository or organization policy does not already permit the workflow's declared `contents: write` permission.
+The workflow needs permission to update `data/state.json` and consume entries from `data/quotes.json`. Under **Settings > Actions > General > Workflow permissions**, allow **Read and write permissions** if repository or organization policy does not already permit the workflow's declared `contents: write` permission.
 
 After a successful YouTube upload, the state update uses a temporary branch, removes the uploaded script from the available catalog, merges the rendered state with the latest remote state, and retries conflicts three times. Failed renders or uploads do not consume a script. A persistence failure is non-fatal and does not undo a completed upload.
 
@@ -114,7 +114,7 @@ After a successful YouTube upload, the state update uses a temporary branch, rem
 
 You may optionally enter an original English quote and a Pexels search phrase. Manual input is passed through environment variables rather than inserted into shell commands.
 
-For a deterministic non-consuming test, enter a `story_id` such as `s001`. When the run completes, open YouTube Studio and verify that the video is private, vertical, 8–14 seconds, correctly cropped, readable, visually coherent, and contains the Openverse/Pexels source details.
+For a deterministic non-consuming test, enter a quote ID such as `m001` in the quote/story ID field. When the run completes, open YouTube Studio and verify that the video is private, vertical, 8–14 seconds, correctly cropped, readable, energetic, and contains the Openverse/Pexels source details.
 
 ## 8. Inspect logs and artifacts
 
@@ -128,13 +128,13 @@ The 5:00 AM, 8:00 AM, 11:00 AM, and 2:00 PM schedules upload as `public`. Manual
 
 New or unaudited Google API projects can have API uploads restricted to private visibility regardless of the requested setting. Follow Google's audit and verification requirements rather than attempting to bypass the restriction.
 
-## Schedule and story rotation
+## Schedule and quote rotation
 
 GitHub runs the workflow every day at `05:00`, `08:00`, `11:00`, and `14:00` in `Asia/Yangon`. The cron expressions are stored in UTC, so their `:30` minute values become exact-hour runs in Myanmar time. GitHub schedules can still be delayed during high load.
 
-`data/stories.json` initially contained 500 original, quality-checked micro-stories across transformation, failure/comeback, relatable pain, future-self, disappear/rebuild, and hard-truth-through-story. Every story stores hook candidates, concrete beats, matching visual searches, titles, pillar, topic, perspective, ending concept, and music mood. At four uploads per day the initial catalog lasts 125 days. A successfully uploaded entry is permanently removed instead of being recycled, so the live count decreases over time. When the catalog is empty, rendering stops with a clear refill error. Manual quotes and explicit `story_id` preview runs do not consume a catalog entry. The older `data/quotes.json` remains in the repository as a legacy catalog but scheduled runs no longer select from it.
+`data/quotes.json` is the active idea bank of original motivational quotes across discipline, success, healing, confidence, growth, and consistency. A successfully uploaded entry is permanently removed instead of being recycled, so the live count decreases over time. When the catalog is empty, rendering stops with a clear refill error. Manual text and explicit ID preview runs do not consume a catalog entry. `data/stories.json` remains available only for legacy previews.
 
-Narration is generated locally on the GitHub runner with Piper and the `en_US-joe-medium` voice. Piper's engine is GPL-3.0 and that voice's model card identifies its dataset as CC0; no API key or paid TTS account is required. The workflow caches the model after its first download. Each phrase receives a different pace, energy, and emphasis profile. FFmpeg targets approximately -14 LUFS and automatically ducks the Openverse piano beneath speech. Voice name, source, license, and narration duration are recorded in each video's metadata.
+Narration is generated locally on the GitHub runner with Piper and the `en_US-joe-medium` voice. Piper's engine is GPL-3.0 and that voice's model card identifies its dataset as CC0; no API key or paid TTS account is required. The workflow caches the model after its first download. Each phrase receives a faster, escalating pace, energy, and emphasis profile. FFmpeg targets approximately -14 LUFS and lightly ducks the energetic Openverse music beneath speech. Voice name, source, license, and narration duration are recorded in each video's metadata.
 
 ## GitHub Actions minutes
 

@@ -16,6 +16,7 @@ from scripts.render_short import (
     locate_font,
     make_hook,
     make_title,
+    quote_to_impact_story,
     select_quote,
     suitable_video_files,
     suitable_openverse_audio,
@@ -154,9 +155,9 @@ def test_openverse_music_falls_back_when_story_queries_are_too_specific(monkeypa
         "results": [
             {
                 "id": "fallback",
-                "url": "https://cdn.example.com/piano.mp3",
-                "foreign_landing_url": "https://example.com/piano",
-                "title": "Soft Piano",
+            "url": "https://cdn.example.com/epic.mp3",
+            "foreign_landing_url": "https://example.com/epic",
+            "title": "Epic Motivation",
                 "creator": "Example Musician",
                 "license": "cc0",
                 "duration": 30_000,
@@ -167,7 +168,7 @@ def test_openverse_music_falls_back_when_story_queries_are_too_specific(monkeypa
     session.post.return_value = token_response
 
     def fake_get(_url, *, params, **_kwargs):
-        return fallback_response if params["q"] == "sad piano" else empty_response
+        return fallback_response if params["q"] == "epic motivational music" else empty_response
 
     session.get.side_effect = fake_get
     selected = search_openverse_audio(
@@ -178,7 +179,16 @@ def test_openverse_music_falls_back_when_story_queries_are_too_specific(monkeypa
     )
 
     assert selected["id"] == "fallback"
-    assert selected["search_used"] == "sad piano"
+    assert selected["search_used"] == "epic motivational music"
+
+
+def test_quote_bank_entry_adapts_to_direct_energetic_impact_format():
+    adapted = quote_to_impact_story(sample_quotes()[0])
+
+    assert adapted["quote_text"] == sample_quotes()[0]["quote"]
+    assert adapted["catalog_file"] == "data/quotes.json"
+    assert adapted["hook_visual"] == sample_quotes()[0]["pexels_search"]
+    assert all("piano" not in query for query in adapted["music_searches"])
 
 
 def test_channel_name_is_limited_to_safe_width():
