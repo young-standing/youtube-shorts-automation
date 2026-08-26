@@ -55,12 +55,12 @@ IMPACT_MAX_SECONDS = 14.5
 OPENVERSE_TOKEN_URL = "https://api.openverse.org/v1/auth_tokens/token/"
 FALLBACK_SEARCH = "calm sunrise nature"
 MUSIC_SEARCHES = (
-    "sad piano",
-    "emotional piano",
-    "melancholic piano",
-    "somber piano",
-    "soft piano",
-    "piano music",
+    "epic motivational music",
+    "uplifting cinematic music",
+    "powerful inspiring music",
+    "motivational trailer music",
+    "epic orchestral music",
+    "inspiring background music",
 )
 OPENVERSE_LICENSES = {"cc0", "pdm"}
 VIDEO_SECONDS = int(MAX_SECONDS)
@@ -69,9 +69,9 @@ HEIGHT = 1920
 FPS = 30
 HASHTAGS = "#motivation #discipline #success #mindset #shorts"
 TRANSITION_SECONDS = 0.08
-MUSIC_MIX_VOLUME = 0.24
+MUSIC_MIX_VOLUME = 0.30
 MUSIC_DUCK_THRESHOLD = 0.06
-MUSIC_DUCK_RATIO = 3
+MUSIC_DUCK_RATIO = 2.5
 CLIP_COUNT = 3  # Legacy single-quote helper compatibility.
 HOOKS = {
     "discipline": ("DO IT ANYWAY.", "STOP NEGOTIATING.", "KEEP THE PROMISE.", "NO MORE EXCUSES."),
@@ -356,7 +356,10 @@ def chunk_impact_text(text: str, max_words: int = 10) -> list[str]:
 
 def impact_beats(story: dict[str, Any], hook: str) -> list[dict[str, str]]:
     """Condense a full catalog story into an original 2–4 phrase impact quote."""
-    if story["id"] == "manual":
+    if story.get("quote_text"):
+        text = story["quote_text"]
+        visual = story["hook_visual"]
+    elif story["id"] == "manual":
         text = hook
         visual = story["hook_visual"]
     else:
@@ -518,9 +521,10 @@ def build_story_metadata(
         f"{index}. {asset['creator_name']} - {asset['source_url']}"
         for index, asset in enumerate(assets, start=1)
     )
+    content_label = "motivational quote" if story.get("quote_text") else "motivational micro-story"
     description = (
         f"{payoff}\n\n"
-        "Original motivational micro-story.\n\n"
+        f"Original {content_label}.\n\n"
         f"Footage on Pexels:\n{footage_credits}\n"
         f"Music: {music_asset['title']} by {music_asset['creator']} "
         f"({music_asset['license']}): {music_asset['source_url']}\n\n"
@@ -529,7 +533,7 @@ def build_story_metadata(
     return {
         "quote_id": story["id"],
         "story_id": story["id"],
-        "catalog_file": "data/stories.json",
+        "catalog_file": story.get("catalog_file", "data/stories.json"),
         "content_pillar": story["pillar"],
         "topic": story["topic"],
         "theme": story["theme"],
@@ -541,7 +545,7 @@ def build_story_metadata(
         "key_phrases": story["key_phrases"],
         "duration_seconds": round(duration, 2),
         "title": safe_title,
-        "script": story_script(story, hook),
+        "script": story.get("quote_text") or story_script(story, hook),
         "caption_beats": beats,
         "visual_searches": [beat["visual_search"] for beat in beats],
         "pexels_assets": [
@@ -809,8 +813,8 @@ def search_openverse_audio(
     if not access_token:
         raise ShortsError("Openverse authentication returned no access token")
 
-    # A story's mood searches can be too specific to return a long CC0/PDM
-    # recording. Always keep the broad piano searches as a fallback so one
+    # A mood search can be too specific to return a long CC0/PDM recording.
+    # Always keep broad motivational searches as a fallback so one
     # sparse Openverse query cannot stop the scheduled upload.
     story_queries = list(dict.fromkeys(queries or ()))
     fallback_queries = [query for query in MUSIC_SEARCHES if query not in story_queries]
@@ -844,7 +848,7 @@ def search_openverse_audio(
             errors.append(f"no suitable CC0/Public Domain results for {query!r}")
         except (requests.RequestException, ValueError, TypeError) as exc:
             errors.append(f"{query!r}: {exc}")
-    raise ShortsError("Openverse sad-piano search failed; " + "; ".join(errors))
+    raise ShortsError("Openverse motivational-music search failed; " + "; ".join(errors))
 
 
 def download_audio(
@@ -1077,9 +1081,9 @@ def synthesize_impact_narration(
         raise ShortsError(f"Piper voice {TTS_VOICE} is missing or incomplete")
     voice = PiperVoice.load(str(model), config_path=str(config))
     profiles = [
-        SynthesisConfig(length_scale=1.02, noise_scale=0.58, noise_w_scale=0.72, volume=0.82),
-        SynthesisConfig(length_scale=0.93, noise_scale=0.64, noise_w_scale=0.80, volume=1.05),
-        SynthesisConfig(length_scale=1.07, noise_scale=0.70, noise_w_scale=0.86, volume=1.28),
+        SynthesisConfig(length_scale=0.95, noise_scale=0.62, noise_w_scale=0.78, volume=1.00),
+        SynthesisConfig(length_scale=0.89, noise_scale=0.68, noise_w_scale=0.84, volume=1.18),
+        SynthesisConfig(length_scale=0.92, noise_scale=0.72, noise_w_scale=0.90, volume=1.35),
     ]
     durations: list[float] = []
     with wave.open(str(output), "wb") as wav_file:
@@ -1151,6 +1155,8 @@ def make_manual_story(text: str, search: str) -> dict[str, Any]:
         title = clean_manual_title[:58].rsplit(" ", 1)[0].rstrip(".,;:!?")
     return {
         "id": "manual",
+        "quote_text": text,
+        "catalog_file": "data/quotes.json",
         "pillar": "transformation",
         "topic": "personal change",
         "theme": "starting over",
@@ -1175,6 +1181,28 @@ def make_manual_story(text: str, search: str) -> dict[str, Any]:
     }
 
 
+def quote_to_impact_story(entry: dict[str, str]) -> dict[str, Any]:
+    """Adapt an original quote-bank entry to the cinematic impact renderer."""
+    quote = entry["quote"].strip()
+    return {
+        "id": entry["id"],
+        "quote_text": quote,
+        "catalog_file": "data/quotes.json",
+        "pillar": entry["category"],
+        "topic": entry["category"],
+        "theme": "motivational quote",
+        "perspective": "you",
+        "protagonist": "the viewer",
+        "hook_type": "direct_motivation",
+        "hook_candidates": [make_hook(entry)] * 3,
+        "hook_visual": entry["pexels_search"],
+        "title_candidates": [make_title(quote)],
+        "ending_concept": entry["insight"],
+        "key_phrases": [entry["category"], "take action"],
+        "music_searches": list(MUSIC_SEARCHES),
+    }
+
+
 def main() -> None:
     args = parse_args()
     rng: random.Random | random.SystemRandom = (
@@ -1192,29 +1220,30 @@ def main() -> None:
         title = selected["title_candidates"][0]
         state_changed = False
     elif args.story_id:
-        try:
-            stories = load_stories(STORIES_PATH)
-            selected = next(story for story in stories if story["id"] == args.story_id)
-        except StoryError as exc:
-            raise ShortsError(str(exc)) from exc
-        except StopIteration as exc:
-            raise ShortsError(f"Unknown story id: {args.story_id}") from exc
-        hook = select_hook(selected)
-        title = select_title(selected)
+        if args.story_id.startswith("m"):
+            try:
+                entry = next(quote for quote in load_quotes() if quote["id"] == args.story_id)
+            except StopIteration as exc:
+                raise ShortsError(f"Unknown quote id: {args.story_id}") from exc
+            selected = quote_to_impact_story(entry)
+            hook = make_hook(entry)
+            title = selected["title_candidates"][0]
+        else:
+            try:
+                stories = load_stories(STORIES_PATH)
+                selected = next(story for story in stories if story["id"] == args.story_id)
+            except StoryError as exc:
+                raise ShortsError(str(exc)) from exc
+            except StopIteration as exc:
+                raise ShortsError(f"Unknown story id: {args.story_id}") from exc
+            hook = select_hook(selected)
+            title = select_title(selected)
         state_changed = False
     else:
-        try:
-            stories = load_stories(STORIES_PATH)
-            selected = select_story(stories, state, rng=rng)
-        except StoryError as exc:
-            raise ShortsError(str(exc)) from exc
-        hook = select_hook(selected)
-        title = select_title(selected)
-        state.setdefault("used_ids", []).append(selected["id"])
-        state.setdefault("history", []).append(story_history_event(selected, hook, title))
-        state["history"] = state["history"][-200:]
-        state["version"] = 1
-        state.setdefault("cycle", 1)
+        entry = select_quote(load_quotes(), state, rng=rng)
+        selected = quote_to_impact_story(entry)
+        hook = make_hook(entry)
+        title = selected["title_candidates"][0]
         state_changed = True
 
     beats = impact_beats(selected, hook)

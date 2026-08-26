@@ -1,25 +1,24 @@
 # GitHub-only cinematic motivational quote automation
 
-Create and upload original, concise English motivational impact quotes using only GitHub Actions, the free Pexels Videos API, CC0/Public Domain piano from Openverse, FFmpeg, and the official YouTube Data API.
+Create and upload original, concise English motivational impact quotes using only GitHub Actions, the free Pexels Videos API, CC0/Public Domain energetic music from Openverse, FFmpeg, and the official YouTube Data API.
 
 The project does not require n8n, a VM, a database, paid rendering services, or paid AI APIs. Scheduled uploads are public; manual runs remain private by default.
 
 ## What it does
 
 - Runs every day at 5:00 AM, 8:00 AM, 11:00 AM, and 2:00 PM in `Asia/Yangon`, with manual runs supported.
-- Condenses 500 original, quality-checked stories into unique 8–14 second impact quotes of roughly 12–40 words.
-- Rotates six content pillars and six narrator perspectives, with concrete tension, a believable turn, and a non-cliché payoff.
-- Scores multiple hooks, validates story quality/duration, and rejects stories that are too similar to recent uploads.
-- Permanently removes each story only after its YouTube upload succeeds, so uploaded scripts never repeat.
+- Selects from an original motivational quote bank and renders each quote as a unique 8–14 second Short.
+- Rotates discipline, success, healing, confidence, growth, and consistency themes.
+- Permanently removes each quote only after its YouTube upload succeeds, so uploaded scripts never repeat.
 - Uses one coherent portrait clip per Short, with monochrome contrast and phrase-synchronized punch-ins instead of unrelated scene changes.
 - Creates English narration locally with Piper's `en_US-joe-medium` CC0 voice, varying pace, energy, and emphasis phrase by phrase.
-- Downloads pillar-matched piano from Openverse, restricted to CC0 or Public Domain audio, then ducks it under narration.
+- Downloads uplifting, epic, or cinematic motivational music from Openverse, restricted to CC0 or Public Domain audio, then ducks it under narration.
 - Renders 1080×1920 H.264/AAC Shorts with minimal centered white captions, subtle `ORDERLESS` branding, and a final audio target near -14 LUFS.
-- Saves analytics-ready metadata: pillar, hook type/text, perspective, topic, duration, title, script, ending concept, and visual searches.
+- Saves analytics-ready metadata including theme, duration, title, script, music source, and visual searches.
 - Uploads through the official YouTube Data API using resumable upload and retries.
 - Saves two-day debugging artifacts and persists rich anti-repetition history safely.
 
-The established schedule, secrets, OAuth flow, YouTube uploader, Pexels/Openverse integrations, public/private behavior, and success-only consumption logic are preserved. The project does not add a paid API or claim fictional stories are factual accounts of real people. The catalog lasts 125 days at four uploads per day.
+The established schedule, secrets, OAuth flow, YouTube uploader, Pexels/Openverse integrations, public/private behavior, and success-only consumption logic are preserved. The project does not add a paid API.
 
 ## Start here
 
