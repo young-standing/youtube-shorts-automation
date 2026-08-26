@@ -20,6 +20,7 @@ from typing import Any, Iterable
 from urllib.parse import urlparse
 
 import requests
+from piper import PiperVoice, SynthesisConfig
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -49,6 +50,8 @@ PEXELS_SEARCH_URL = "https://api.pexels.com/v1/videos/search"
 OPENVERSE_AUDIO_URL = "https://api.openverse.org/v1/audio/"
 TTS_VOICE = "en_US-joe-medium"
 TTS_MODEL_DIR = ROOT / ".tts-models"
+IMPACT_MIN_SECONDS = 8.0
+IMPACT_MAX_SECONDS = 14.5
 OPENVERSE_TOKEN_URL = "https://api.openverse.org/v1/auth_tokens/token/"
 FALLBACK_SEARCH = "calm sunrise nature"
 MUSIC_SEARCHES = (
@@ -63,7 +66,7 @@ WIDTH = 1080
 HEIGHT = 1920
 FPS = 30
 HASHTAGS = "#motivation #discipline #success #mindset #shorts"
-TRANSITION_SECONDS = 0.28
+TRANSITION_SECONDS = 0.08
 CLIP_COUNT = 3  # Legacy single-quote helper compatibility.
 HOOKS = {
     "discipline": ("DO IT ANYWAY.", "STOP NEGOTIATING.", "KEEP THE PROMISE.", "NO MORE EXCUSES."),
@@ -304,6 +307,101 @@ Style: Channel,Poppins SemiBold,30,&H10FFFFFF,&H10FFFFFF,&H60000000,&H50000000,-
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 {chr(10).join(events)}
+"""
+
+
+def chunk_impact_text(text: str, max_words: int = 10) -> list[str]:
+    """Split a concise quote into natural, mobile-sized spoken phrases."""
+    words = re.findall(r"\S+", re.sub(r"\s+", " ", text).strip())
+    if not words:
+        raise ShortsError("Impact quote is empty")
+    chunks: list[str] = []
+    current: list[str] = []
+    for word in words:
+        current.append(word)
+        terminal = word.endswith((".", "!", "?"))
+        soft_break = word.endswith((",", ";")) and len(current) >= 5
+        if len(current) >= max_words or terminal or soft_break:
+            chunks.append(" ".join(current))
+            current = []
+    if current:
+        chunks.append(" ".join(current))
+    if len(chunks) > 4:
+        balanced_width = max(1, (len(words) + 3) // 4)
+        chunks = [
+            " ".join(words[index:index + balanced_width])
+            for index in range(0, len(words), balanced_width)
+        ]
+    if len(chunks) >= 2 and len(chunks[-1].split()) <= 2:
+        previous = chunks[-2].split()
+        orphan = chunks[-1].split()
+        move_count = min(3, max(0, len(previous) - 4))
+        if move_count:
+            chunks[-2] = " ".join(previous[:-move_count])
+            chunks[-1] = " ".join(previous[-move_count:] + orphan)
+    normalized: list[str] = []
+    capitalize_next = True
+    for chunk in chunks:
+        if capitalize_next:
+            chunk = chunk[:1].upper() + chunk[1:]
+        normalized.append(chunk)
+        capitalize_next = chunk.endswith((".", "!", "?"))
+    return normalized
+
+
+def impact_beats(story: dict[str, Any], hook: str) -> list[dict[str, str]]:
+    """Condense a full catalog story into an original 2–4 phrase impact quote."""
+    if story["id"] == "manual":
+        text = hook
+        visual = story["hook_visual"]
+    else:
+        turns = [beat for beat in story["beats"] if beat["phase"] == "turn"]
+        payoff = next(beat for beat in reversed(story["beats"]) if beat["phase"] == "payoff")
+        chosen_turn = turns[0] if turns else story["beats"][-2]
+        text = f"{chosen_turn['text']} {payoff['text']}"
+        visual = chosen_turn["visual_search"] or story["hook_visual"]
+    phrases = chunk_impact_text(text)
+    phases = ["payoff"] if len(phrases) == 1 else (
+        ["hook"] + ["turn"] * max(0, len(phrases) - 2) + ["payoff"]
+    )
+    return [
+        {"phase": phase, "text": phrase, "visual_search": visual}
+        for phase, phrase in zip(phases, phrases, strict=True)
+    ]
+
+
+def build_impact_subtitles(
+    beats: list[dict[str, str]], durations: list[float], channel_name: str
+) -> str:
+    """Minimal reference-inspired captions: one short white phrase at a time."""
+    if len(beats) != len(durations) or not beats:
+        raise ShortsError("Impact captions and durations must match")
+    events: list[str] = []
+    start = 0.0
+    for beat, duration in zip(beats, durations, strict=True):
+        end = start + duration
+        caption = ass_escape(wrap_caption(beat["text"], width=36, max_lines=2))
+        events.append(
+            f"Dialogue: 2,{seconds_to_ass(start)},{seconds_to_ass(end)},Impact,,0,0,0,,"
+            fr"{{\an5\pos(540,780)\fad(70,100)}}{caption}"
+        )
+        start = end
+    return fr"""[Script Info]
+ScriptType: v4.00+
+PlayResX: {WIDTH}
+PlayResY: {HEIGHT}
+WrapStyle: 2
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: Impact,Poppins SemiBold,54,&H00FFFFFF,&H00FFFFFF,&HC8000000,&H50000000,0,0,0,0,100,100,0,0,1,3,1,5,95,95,0,1
+Style: Channel,Poppins SemiBold,28,&H38FFFFFF,&H38FFFFFF,&H90000000,&H40000000,-1,0,0,0,100,100,1,0,1,2,0,2,60,60,125,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+{chr(10).join(events)}
+Dialogue: 3,0:00:00.00,{seconds_to_ass(sum(durations))},Channel,,0,0,0,,{{\an2\pos(540,1700)}}{ass_escape(channel_name)}
 """
 
 
@@ -788,7 +886,7 @@ def run_ffmpeg(
     if not footage or len(footage) != len(durations):
         raise ShortsError("Footage clips and beat durations must be non-empty and match")
     total_seconds = sum(durations)
-    if not 19.5 <= total_seconds <= MAX_SECONDS + 0.1:
+    if not IMPACT_MIN_SECONDS <= total_seconds <= IMPACT_MAX_SECONDS + 0.1:
         raise ShortsError(f"Rendered duration {total_seconds:.1f}s is outside the safe range")
     font = locate_font()
     subtitles_path = ffmpeg_filter_path(subtitles_file)
@@ -796,9 +894,12 @@ def run_ffmpeg(
     filters: list[str] = []
     for index, duration in enumerate(durations):
         clip_duration = duration + (TRANSITION_SECONDS if index < len(durations) - 1 else 0)
+        punch_scale = 1080 + index * 65
+        punch_height = 1920 + index * 116
         filters.append(
-            f"[{index}:v]scale={WIDTH}:{HEIGHT}:force_original_aspect_ratio=increase,"
-            f"crop={WIDTH}:{HEIGHT},fps={FPS},trim=duration={clip_duration:.3f},"
+            f"[{index}:v]scale={punch_scale}:{punch_height}:force_original_aspect_ratio=increase,"
+            f"crop={WIDTH}:{HEIGHT}:(iw-ow)/2:(ih-oh)/2,fps={FPS},"
+            f"trim=duration={clip_duration:.3f},"
             f"setpts=PTS-STARTPTS[v{index}]"
         )
     current = "v0"
@@ -812,24 +913,25 @@ def run_ffmpeg(
         current = output_label
         elapsed += durations[index]
     filters.append(
-        f"[{current}]eq=brightness=-0.08:saturation=0.92,"
-        "drawbox=x=0:y=0:w=iw:h=ih:color=black@0.10:t=fill,"
+        f"[{current}]hue=s=0,eq=contrast=1.24:brightness=-0.055,"
+        "unsharp=5:5:0.65:3:3:0.25,"
+        "drawbox=x=0:y=0:w=iw:h=ih:color=black@0.06:t=fill,"
         f"subtitles='{subtitles_path}':fontsdir='{fonts_dir}',"
-        "drawbox=x=0:y=ih-8:w=iw:h=8:color=0xFFD700@0.88:t=fill,"
         f"trim=duration={total_seconds:.3f},format=yuv420p[v]"
     )
     music_index = len(footage)
     narration_index = music_index + 1
     filters.append(
-        f"[{music_index}:a]volume=0.13,afade=t=in:st=0:d=1.2,"
-        f"afade=t=out:st={max(0, total_seconds - 2.2):.3f}:d=2.2,"
+        f"[{music_index}:a]volume=0.10,afade=t=in:st=0:d=0.45,"
+        f"afade=t=out:st={max(0, total_seconds - 1.1):.3f}:d=1.1,"
         f"atrim=duration={total_seconds:.3f},asetpts=PTS-STARTPTS[music];"
         f"[{narration_index}:a]highpass=f=75,lowpass=f=12000,"
         "loudnorm=I=-16:TP=-1.5:LRA=11,asplit=2[voice_sc][voice_mix];"
         "[music][voice_sc]sidechaincompress=threshold=0.025:ratio=10:"
         "attack=20:release=450[ducked];"
         "[ducked][voice_mix]amix=inputs=2:duration=longest:normalize=0,"
-        f"alimiter=limit=0.95,atrim=duration={total_seconds:.3f}[a]"
+        "loudnorm=I=-14:TP=-2:LRA=7,"
+        f"alimiter=limit=0.79:level=false,atrim=duration={total_seconds:.3f}[a]"
     )
     video_filter = ";".join(filters)
     command = ["ffmpeg", "-hide_banner", "-y"]
@@ -946,6 +1048,64 @@ def synthesize_narration(text: str, output: Path, voice_file: Path | None = None
     }
 
 
+def synthesize_impact_narration(
+    beats: list[dict[str, str]], output: Path, voice_file: Path | None = None
+) -> tuple[dict[str, Any], list[float]]:
+    """Synthesize phrase-by-phrase with changing pace and energy."""
+    if voice_file:
+        asset = synthesize_narration(" ".join(beat["text"] for beat in beats), output, voice_file)
+        weights = [max(1, len(beat["text"].split())) for beat in beats]
+        total_weight = sum(weights)
+        durations = [asset["duration_seconds"] * weight / total_weight for weight in weights]
+        return asset, durations
+
+    model = TTS_MODEL_DIR / f"{TTS_VOICE}.onnx"
+    config = TTS_MODEL_DIR / f"{TTS_VOICE}.onnx.json"
+    if not model.is_file() or model.stat().st_size < 50_000_000 or not config.is_file():
+        raise ShortsError(f"Piper voice {TTS_VOICE} is missing or incomplete")
+    voice = PiperVoice.load(str(model), config_path=str(config))
+    profiles = [
+        SynthesisConfig(length_scale=1.02, noise_scale=0.58, noise_w_scale=0.72, volume=0.82),
+        SynthesisConfig(length_scale=0.93, noise_scale=0.64, noise_w_scale=0.80, volume=1.05),
+        SynthesisConfig(length_scale=1.07, noise_scale=0.70, noise_w_scale=0.86, volume=1.28),
+    ]
+    durations: list[float] = []
+    with wave.open(str(output), "wb") as wav_file:
+        for index, beat in enumerate(beats):
+            before = wav_file.tell()
+            profile = profiles[min(index, len(profiles) - 1)]
+            voice.synthesize_wav(
+                beat["text"], wav_file, syn_config=profile, set_wav_format=index == 0
+            )
+            pause = 0.10 if index < len(beats) - 1 else 0.22
+            pause_frames = round(wav_file.getframerate() * pause)
+            wav_file.writeframes(
+                b"\x00" * pause_frames * wav_file.getsampwidth() * wav_file.getnchannels()
+            )
+            durations.append((wav_file.tell() - before) / wav_file.getframerate())
+    total = sum(durations)
+    if total > IMPACT_MAX_SECONDS:
+        speed = min(1.35, total / (IMPACT_MAX_SECONDS - 0.25))
+        fitted = output.with_name("narration-impact-fitted.wav")
+        result = subprocess.run(
+            ["ffmpeg", "-hide_banner", "-y", "-i", str(output), "-af", f"atempo={speed:.5f}", str(fitted)],
+            text=True, capture_output=True,
+        )
+        if result.returncode != 0:
+            raise ShortsError("Unable to fit impact narration inside 14.5 seconds")
+        fitted.replace(output)
+        durations = [duration / speed for duration in durations]
+        total = sum(durations)
+    asset = {
+        "name": TTS_VOICE,
+        "license": "CC0 voice dataset; Piper engine GPL-3.0",
+        "source_url": "https://huggingface.co/rhasspy/piper-voices/tree/main/en/en_US/joe/medium",
+        "duration_seconds": round(total, 3),
+        "delivery": "phrase-level dynamic pace and emphasis",
+    }
+    return asset, durations
+
+
 def write_metadata(metadata: dict[str, Any], path: Path) -> None:
     path.write_text(json.dumps(metadata, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
@@ -1045,11 +1205,10 @@ def main() -> None:
         state.setdefault("cycle", 1)
         state_changed = True
 
-    beats = story_beats(selected, hook)
+    beats = impact_beats(selected, hook)
     if args.search.strip():
         beats = [{**beat, "visual_search": args.search.strip()} for beat in beats]
-    durations = estimate_beat_durations(beats)
-    duration_seconds = sum(durations)
+    duration_seconds = 12.0
 
     if args.music_file:
         if not args.music_file.is_file():
@@ -1065,7 +1224,7 @@ def main() -> None:
     else:
         music_asset = search_openverse_audio(
             queries=selected["music_searches"],
-            minimum_seconds=duration_seconds,
+            minimum_seconds=IMPACT_MAX_SECONDS + 0.5,
             rng=rng,
         )
         music = Path()
@@ -1077,10 +1236,10 @@ def main() -> None:
     with tempfile.TemporaryDirectory(prefix="youtube-short-") as temp_name:
         temporary = Path(temp_name)
         narration = temporary / "narration.wav"
-        voice_asset = synthesize_narration(story_script(selected, hook), narration, args.voice_file)
-        narration_seconds = max(MIN_SECONDS, min(MAX_SECONDS, voice_asset["duration_seconds"] + 0.45))
-        estimated_total = sum(durations)
-        durations = [round(value * narration_seconds / estimated_total, 3) for value in durations]
+        voice_asset, durations = synthesize_impact_narration(beats, narration, args.voice_file)
+        duration_seconds = sum(durations)
+        if duration_seconds < IMPACT_MIN_SECONDS:
+            durations[-1] += IMPACT_MIN_SECONDS - duration_seconds
         duration_seconds = sum(durations)
         if args.footage_file:
             if not args.footage_file.is_file():
@@ -1096,12 +1255,13 @@ def main() -> None:
             api_key = os.environ.get("PEXELS_API_KEY", "").strip()
             if not api_key:
                 raise ShortsError("PEXELS_API_KEY is required")
-            assets = search_pexels_for_beats(beats, api_key=api_key, rng=rng)
-            footage = []
-            for index, asset in enumerate(assets, start=1):
-                clip = temporary / f"pexels-{index}.mp4"
-                download_file(asset["download_url"], clip)
-                footage.append(clip)
+            primary_asset = search_pexels_clips(
+                beats[0]["visual_search"], api_key=api_key, count=1, rng=rng
+            )[0]
+            primary_clip = temporary / "pexels-impact.mp4"
+            download_file(primary_asset["download_url"], primary_clip)
+            assets = [{**primary_asset, "beat_index": index} for index in range(len(beats))]
+            footage = [primary_clip] * len(beats)
 
         if not args.music_file:
             music = temporary / "openverse-music.mp3"
@@ -1109,7 +1269,7 @@ def main() -> None:
 
         subtitles_file = temporary / "captions.ass"
         subtitles_file.write_text(
-            build_story_subtitles(beats, durations, channel_name),
+            build_impact_subtitles(beats, durations, channel_name),
             encoding="utf-8",
             newline="\n",
         )
@@ -1130,6 +1290,11 @@ def main() -> None:
     metadata["tts_license"] = voice_asset["license"]
     metadata["tts_source_url"] = voice_asset["source_url"]
     metadata["narration_duration_seconds"] = voice_asset["duration_seconds"]
+    metadata["format"] = "impact_quote"
+    metadata["script"] = " ".join(beat["text"] for beat in beats)
+    metadata["quote_word_count"] = sum(len(beat["text"].split()) for beat in beats)
+    metadata["visual_style"] = "high-contrast monochrome punch-in"
+    metadata["audio_target_lufs"] = -14
     if args.story_id:
         metadata["quote_id"] = "manual"
         metadata["preview_story_id"] = selected["id"]
