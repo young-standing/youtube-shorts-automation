@@ -1,6 +1,6 @@
 # GitHub-only YouTube Shorts setup
 
-This guide configures the existing scheduled workflow in `.github/workflows/create-short.yml`. It renders a 25–40 second English motivational micro-story entirely on GitHub's `ubuntu-latest` runner and uploads it with the official YouTube Data API. Scheduled uploads are public; manual uploads remain private by default.
+This guide configures the existing scheduled workflow in `.github/workflows/create-short.yml`. It renders an 8–14 second cinematic English motivational quote entirely on GitHub's `ubuntu-latest` runner and uploads it with the official YouTube Data API. Scheduled uploads are public; manual uploads remain private by default.
 
 ## What you need
 
@@ -106,7 +106,7 @@ After a successful YouTube upload, the state update uses a temporary branch, rem
 ## 7. Run the first private manual test
 
 1. Open the repository's **Actions** tab.
-2. Select **Create scheduled YouTube micro-stories**.
+2. Select **Create scheduled YouTube impact quotes**.
 3. Choose **Run workflow**.
 4. Leave the quote and Pexels search fields empty for a catalog-driven test.
 5. Keep **privacy status** set to `private`.
@@ -114,7 +114,7 @@ After a successful YouTube upload, the state update uses a temporary branch, rem
 
 You may optionally enter an original English quote and a Pexels search phrase. Manual input is passed through environment variables rather than inserted into shell commands.
 
-For a deterministic non-consuming test, enter a `story_id` such as `s001`. When the run completes, open YouTube Studio and verify that the video is private, vertical, 25–40 seconds, correctly cropped, readable, visually matched to each beat, and contains the Openverse/Pexels source details.
+For a deterministic non-consuming test, enter a `story_id` such as `s001`. When the run completes, open YouTube Studio and verify that the video is private, vertical, 8–14 seconds, correctly cropped, readable, visually coherent, and contains the Openverse/Pexels source details.
 
 ## 8. Inspect logs and artifacts
 
@@ -132,9 +132,9 @@ New or unaudited Google API projects can have API uploads restricted to private 
 
 GitHub runs the workflow every day at `05:00`, `08:00`, `11:00`, and `14:00` in `Asia/Yangon`. The cron expressions are stored in UTC, so their `:30` minute values become exact-hour runs in Myanmar time. GitHub schedules can still be delayed during high load.
 
-`data/stories.json` contains 500 original, quality-checked micro-stories across transformation, failure/comeback, relatable pain, future-self, disappear/rebuild, and hard-truth-through-story. Every story stores hook candidates, concrete beats, matching visual searches, titles, pillar, topic, perspective, ending concept, and music mood. At four uploads per day the initial catalog lasts 125 days. A successfully uploaded entry is permanently removed instead of being recycled. When the catalog is empty, rendering stops with a clear refill error. Manual quotes and explicit `story_id` preview runs do not consume a catalog entry. The older `data/quotes.json` remains in the repository as a legacy catalog but scheduled runs no longer select from it.
+`data/stories.json` initially contained 500 original, quality-checked micro-stories across transformation, failure/comeback, relatable pain, future-self, disappear/rebuild, and hard-truth-through-story. Every story stores hook candidates, concrete beats, matching visual searches, titles, pillar, topic, perspective, ending concept, and music mood. At four uploads per day the initial catalog lasts 125 days. A successfully uploaded entry is permanently removed instead of being recycled, so the live count decreases over time. When the catalog is empty, rendering stops with a clear refill error. Manual quotes and explicit `story_id` preview runs do not consume a catalog entry. The older `data/quotes.json` remains in the repository as a legacy catalog but scheduled runs no longer select from it.
 
-Narration is generated locally on the GitHub runner with Piper and the `en_US-joe-medium` voice. Piper's engine is GPL-3.0 and that voice's model card identifies its dataset as CC0; no API key or paid TTS account is required. The workflow caches the model after its first download. FFmpeg normalizes the narration and automatically ducks the Openverse piano beneath speech. Voice name, source, license, and narration duration are recorded in each video's metadata.
+Narration is generated locally on the GitHub runner with Piper and the `en_US-joe-medium` voice. Piper's engine is GPL-3.0 and that voice's model card identifies its dataset as CC0; no API key or paid TTS account is required. The workflow caches the model after its first download. Each phrase receives a different pace, energy, and emphasis profile. FFmpeg targets approximately -14 LUFS and automatically ducks the Openverse piano beneath speech. Voice name, source, license, and narration duration are recorded in each video's metadata.
 
 ## GitHub Actions minutes
 

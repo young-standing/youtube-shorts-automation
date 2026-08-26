@@ -1,4 +1,4 @@
-name: Create scheduled YouTube micro-stories
+name: Create scheduled YouTube impact quotes
 
 on:
   schedule:
@@ -88,7 +88,7 @@ jobs:
       - name: Validate automation configuration
         run: python -m scripts.validate_config --require-youtube
 
-      - name: Render 25-40 second micro-story
+      - name: Render 8-14 second cinematic impact quote
         id: render
         run: python -m scripts.render_short
 
@@ -125,7 +125,7 @@ jobs:
             fi
 
             git add data/state.json data/stories.json data/quotes.json
-            git commit -m "Consume uploaded YouTube micro-story [skip ci]"
+            git commit -m "Consume uploaded YouTube impact quote [skip ci]"
             if git push origin "HEAD:$GITHUB_REF_NAME"; then
               echo "Quote state persisted."
               exit 0

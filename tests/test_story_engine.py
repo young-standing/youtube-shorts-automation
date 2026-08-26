@@ -7,8 +7,10 @@ import yaml
 from scripts.merge_state import merge_states
 from scripts.render_short import (
     STORIES_PATH,
+    build_impact_subtitles,
     build_story_metadata,
     build_story_subtitles,
+    impact_beats,
     make_manual_story,
 )
 from scripts.story_engine import (
@@ -208,13 +210,15 @@ def test_workflow_yaml_preserves_schedule_upload_and_success_only_consumption():
 def test_story_json_round_trips_as_utf8():
     raw = STORIES_PATH.read_text(encoding="utf-8")
     payload = json.loads(raw)
-    assert payload[0]["id"] == "s001"
+    assert payload
+    assert all(str(item["id"]).startswith("s") for item in payload)
 
 
-def test_catalog_contains_500_quality_checked_stories():
+def test_catalog_is_drawn_from_500_quality_checked_stories():
     catalog = stories()
-    assert len(catalog) == 500
-    assert len({story["id"] for story in catalog}) == 500
+    assert 1 <= len(catalog) <= 500
+    assert len({story["id"] for story in catalog}) == len(catalog)
+    assert all(1 <= int(story["id"][1:]) <= 500 for story in catalog)
     assert set(story["pillar"] for story in catalog) == {
         "transformation", "failure_comeback", "relatable_pain", "future_self",
         "disappear_rebuild", "hard_truth_story",
@@ -229,3 +233,28 @@ def test_workflow_installs_and_downloads_local_tts_voice():
     assert "piper-tts" in requirements
     assert "en_US-joe-medium" in workflow
     assert "actions/cache@v4" in workflow
+
+
+def test_impact_quotes_are_short_original_and_caption_safe():
+    catalog = stories()
+    scripts = []
+    for selected in catalog:
+        beats = impact_beats(selected, select_hook(selected))
+        text = " ".join(beat["text"] for beat in beats)
+        scripts.append(text.casefold())
+        assert 2 <= len(beats) <= 4
+        assert 12 <= word_count(text) <= 40
+        assert all(word_count(beat["text"]) <= 14 for beat in beats)
+        assert word_count(beats[-1]["text"]) >= 3
+    assert len(scripts) == len(set(scripts))
+
+
+def test_impact_captions_match_reference_style_and_keep_branding():
+    selected = stories()[0]
+    beats = impact_beats(selected, select_hook(selected))
+    durations = [3.0] * len(beats)
+    subtitles = build_impact_subtitles(beats, durations, "ORDERLESS")
+    assert subtitles.count("Dialogue: 2,") == len(beats)
+    assert "Style: Impact" in subtitles
+    assert r"\pos(540,780)" in subtitles
+    assert "ORDERLESS" in subtitles
