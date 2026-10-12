@@ -8,15 +8,19 @@ from scripts.reddit_source import (
     parse_reddit_rss,
     parse_subreddits,
     reddit_video_url,
+    rank_clip_posts,
     select_clip_posts,
     select_fact_posts,
 )
 from scripts.render_idol_short import (
+    IdolShortError,
     build_metadata,
     build_segments,
     build_word_captions,
+    download_clip_pool,
     narration_text,
     reddit_hls_url,
+    reddit_manifest_urls,
     word_count,
 )
 
@@ -118,6 +122,10 @@ def test_reddit_video_url_accepts_only_reddit_hosted_video():
     safe = raw_post("clip1", "Jungkook live performance", video=True)
     assert reddit_video_url(safe).startswith("https://v.redd.it/")
     assert reddit_hls_url(reddit_video_url(safe)) == "https://v.redd.it/clip1/HLSPlaylist.m3u8"
+    assert reddit_manifest_urls(reddit_video_url(safe)) == [
+        "https://v.redd.it/clip1/HLSPlaylist.m3u8",
+        "https://v.redd.it/clip1/DASHPlaylist.mpd",
+    ]
     safe["secure_media"]["reddit_video"]["fallback_url"] = "https://evil.example/clip.mp4"
     assert reddit_video_url(safe) == ""
 
@@ -144,9 +152,36 @@ def test_fact_selection_avoids_used_sources():
 
 def test_clip_selection_requires_distinct_safe_reddit_videos():
     posts = normalized_posts()
+    ranked = rank_clip_posts(posts, "Jungkook")
     selected = select_clip_posts(posts, "Jungkook", count=4)
+    assert len(ranked) == 4
     assert len(selected) == 4
     assert len({post["video_url"] for post in selected}) == 4
+
+
+def test_download_pool_replaces_a_dead_reddit_clip(tmp_path):
+    attempts: list[str] = []
+
+    def fake_downloader(url, destination, *, user_agent):
+        attempts.append(url)
+        if len(attempts) == 1:
+            raise IdolShortError("403 Forbidden")
+        destination.write_bytes(b"video" * 3000)
+
+    candidates = rank_clip_posts(normalized_posts(), "Jungkook")
+    local_clips, selected = download_clip_pool(
+        candidates,
+        count=3,
+        directory=tmp_path,
+        user_agent="test-agent",
+        downloader=fake_downloader,
+    )
+
+    assert len(attempts) == 4
+    assert len(local_clips) == 3
+    assert len(selected) == 3
+    assert all(path.stat().st_size >= 10_000 for path in local_clips)
+    assert attempts[0] not in {post["video_url"] for post in selected}
 
 
 def test_three_or_four_fact_script_has_hook_numbered_facts_and_cta():
