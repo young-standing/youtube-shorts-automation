@@ -1,159 +1,61 @@
-# GitHub-only YouTube Shorts setup
+# Setup: AI-written Reddit idol Shorts
 
-This guide configures the existing scheduled workflow in `.github/workflows/create-short.yml`. It renders an 8–14 second cinematic English motivational quote entirely on GitHub's `ubuntu-latest` runner and uploads it with the official YouTube Data API. Scheduled uploads are public; manual uploads remain private by default.
+## Prerequisites
 
-## What you need
+- GitHub Actions enabled
+- YouTube OAuth upload credentials
+- Openverse API credentials for CC0/Public Domain music
+- No Reddit client credentials are needed
 
-- A GitHub repository with Actions enabled.
-- A YouTube channel on the Google account you will authorize.
-- A free Pexels API key.
-- Python 3.12 for the one-time local OAuth helper.
-- Internet access to retrieve CC0/Public Domain sad-piano audio through Openverse.
+Do not commit OAuth files, tokens, or API secrets.
 
-Do not place API keys, OAuth credentials, tokens, or `client_secret.json` in the repository.
+## GitHub secrets and variables
 
-## 1. Get a free Pexels API key
+Under **Settings → Secrets and variables → Actions**, add:
 
-1. Create or sign in to a Pexels account.
-2. Open the [Pexels API page](https://www.pexels.com/api/).
-3. Request an API key and accept the API terms.
-4. Keep the key available for the GitHub Secret step below.
-
-The renderer uses the official `GET /v1/videos/search` endpoint with portrait and medium-size filters. It records the Pexels creator and source page in every YouTube description.
-
-## 2. Create the Google Cloud OAuth client
-
-1. Open [Google Cloud Console](https://console.cloud.google.com/).
-2. Create a project or select a dedicated project for this automation.
-3. Open **APIs & Services > Library**.
-4. Search for **YouTube Data API v3** and enable it.
-5. Configure **Google Auth Platform / OAuth consent screen**.
-6. If the audience is External and the app is in Testing, add your own Google account as a test user.
-7. Open **Clients** (or **Credentials > Create credentials > OAuth client ID**).
-8. Choose **Desktop app**. Do not choose a service account; YouTube uploads require user OAuth authorization.
-9. Download the JSON credentials file and save it in the repository root locally as `client_secret.json`.
-
-`client_secret.json` is ignored by Git and must never be committed.
-
-### Important seven-day Testing limitation
-
-For an External OAuth consent screen whose publishing status remains **Testing**, Google normally issues a refresh token that expires in seven days when non-basic scopes such as YouTube upload are requested. After it expires, scheduled uploads fail until you run the helper again. Move the OAuth app to Production and complete any Google requirements that apply to your app before relying on long-term unattended uploads. See [Google OAuth refresh-token expiration](https://developers.google.com/identity/protocols/oauth2#expiration).
-
-## 3. Generate the refresh token locally
-
-Create a virtual environment and install dependencies:
-
-```bash
-python -m venv .venv
-source .venv/bin/activate
-python -m pip install --upgrade pip
-pip install -r requirements.txt
-python scripts/get_refresh_token.py
-```
-
-Windows PowerShell activation is:
-
-```powershell
-py -3.12 -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-python scripts\get_refresh_token.py
-```
-
-Your browser opens Google's consent page. Sign in with the account that owns the target YouTube channel. The helper requests only `https://www.googleapis.com/auth/youtube.upload` and requests offline access. It prints:
-
-- `YOUTUBE_CLIENT_ID`
-- `YOUTUBE_CLIENT_SECRET`
-- `YOUTUBE_REFRESH_TOKEN`
-
-Copy them directly to GitHub Secrets. The helper does not save the refresh token. Do not paste its terminal output into an issue, commit, screenshot, or workflow log. Delete the local `client_secret.json` after setup if you no longer need it.
-
-## 4. Add GitHub Secrets and the channel variable
-
-On GitHub, open **Settings > Secrets and variables > Actions**.
-
-Under **Secrets**, create these six repository secrets:
-
-| Secret | Value |
+| Name | Type |
 |---|---|
-| `PEXELS_API_KEY` | Pexels API key |
-| `OPENVERSE_CLIENT_ID` | Client ID from free Openverse API registration |
-| `OPENVERSE_CLIENT_SECRET` | Client secret from free Openverse API registration |
-| `YOUTUBE_CLIENT_ID` | Value printed by the helper |
-| `YOUTUBE_CLIENT_SECRET` | Value printed by the helper |
-| `YOUTUBE_REFRESH_TOKEN` | Value printed by the helper |
+| `OPENVERSE_CLIENT_ID` | Secret |
+| `OPENVERSE_CLIENT_SECRET` | Secret |
+| `YOUTUBE_CLIENT_ID` | Secret |
+| `YOUTUBE_CLIENT_SECRET` | Secret |
+| `YOUTUBE_REFRESH_TOKEN` | Secret |
+| `CHANNEL_NAME` | Variable |
+| `REDDIT_USER_AGENT` | Optional variable |
 
-Under **Variables**, add:
+The workflow uses the built-in `GITHUB_TOKEN` with `models: read` for the GitHub Models rewrite. It does not require `REDDIT_CLIENT_ID` or `REDDIT_CLIENT_SECRET`.
 
-| Variable | Value |
-|---|---|
-| `CHANNEL_NAME` | The short channel name displayed near the bottom of each video |
+## Manual run
 
-Secrets are passed only as environment variables. Upload scripts never print their values.
+Open **Actions → Create AI-written Reddit idol Short → Run workflow**.
 
-## 5. Automatic energetic motivational music
+- `idol`: enter an idol or leave blank for rotation
+- `fact_count`: choose 3 or 4
+- `subreddits`: general communities; the source layer also adds a mapped fan community
+- `ai_script_mode`: `auto` is recommended; `required` fails if GitHub Models is unavailable; `fallback` is deterministic and does not call a model
 
-No repository MP3 is required. Every run authenticates with the free Openverse credentials, searches for uplifting, epic, powerful, or cinematic motivational music, accepts only CC0/Public Domain results long enough for the quote, downloads one result, and records its title, creator, license, and source URL in the generated metadata and YouTube description.
+Every successful run uploads as **public**. The four scheduled runs also upload as public.
 
-## 6. Push the project and check Actions permissions
+## What the AI receives
 
-Commit and push the implementation, quotes, and state to the default branch. The scheduled event only runs workflows that exist on the default branch.
+The model receives normalized Reddit signals only: source ID, title, subreddit, score, and comment count. It is instructed to rewrite those signals into spoken commentary and never invent dates, numbers, quotes, or achievements. The raw Reddit title is not used as the complete narration beat.
 
-The workflow needs permission to update `data/state.json` and consume entries from `data/quotes.json`. Under **Settings > Actions > General > Workflow permissions**, allow **Read and write permissions** if repository or organization policy does not already permit the workflow's declared `contents: write` permission.
+If the model call fails in `auto`, the renderer uses a source-grounded editorial fallback and records `script_engine: editorial_fallback` in `output/metadata.json`. In a successful model run it records `script_engine: github_models` and the model name.
 
-After a successful YouTube upload, the state update uses a temporary branch, removes the uploaded script from the available catalog, merges the rendered state with the latest remote state, and retries conflicts three times. Failed renders or uploads do not consume a script. A persistence failure is non-fatal and does not undo a completed upload.
+## Caption and visual treatment
 
-## 7. Run the first private manual test
+The renderer creates one timed ASS event per spoken word. Captions use the bundled Poppins font, hot pink fill, a heavy black outline, yellow emphasis for numbers/highlight terms, and red emphasis for warning words. The caption sits at approximately `y=1120` inside the 1080×1920 safe area. Clips are cut about every 4.6 seconds with blurred background fill behind the centered source video.
 
-1. Open the repository's **Actions** tab.
-2. Select **Create scheduled YouTube impact quotes**.
-3. Choose **Run workflow**.
-4. Leave the quote and Pexels search fields empty for a catalog-driven test.
-5. Keep **privacy status** set to `private`.
-6. Run the workflow.
+## Rights and accuracy
 
-You may optionally enter an original English quote and a Pexels search phrase. Manual input is passed through environment variables rather than inserted into shell commands.
-
-For a deterministic non-consuming test, enter a quote ID such as `m001` in the quote/story ID field. When the run completes, open YouTube Studio and verify that the video is private, vertical, 8–14 seconds, correctly cropped, readable, energetic, and contains the Openverse/Pexels source details.
-
-## 8. Inspect logs and artifacts
-
-Open the workflow run and expand individual steps for clear validation, Pexels, FFmpeg, state, and YouTube errors. OAuth secret values are not printed.
-
-The **Artifacts** section contains `output/short.mp4` and `output/metadata.json` even when the YouTube upload fails, as long as rendering succeeded. Artifacts are retained for two days to limit storage usage. Generated MP4 files are ignored by Git and are never committed.
-
-## 9. Scheduled public uploads
-
-The 5:00 AM, 8:00 AM, 11:00 AM, and 2:00 PM schedules upload as `public`. Manual runs still default to `private`, but offer `unlisted` and `public` choices. Keep reviewing footage, music licenses, metadata, and channel-policy compliance because scheduled public uploads do not include a human approval step.
-
-New or unaudited Google API projects can have API uploads restricted to private visibility regardless of the requested setting. Follow Google's audit and verification requirements rather than attempting to bypass the restriction.
-
-## Schedule and quote rotation
-
-GitHub runs the workflow every day at `05:00`, `08:00`, `11:00`, and `14:00` in `Asia/Yangon`. The cron expressions are stored in UTC, so their `:30` minute values become exact-hour runs in Myanmar time. GitHub schedules can still be delayed during high load.
-
-`data/quotes.json` is the active idea bank of original motivational quotes across discipline, success, healing, confidence, growth, and consistency. A successfully uploaded entry is permanently removed instead of being recycled, so the live count decreases over time. When the catalog is empty, rendering stops with a clear refill error. Manual text and explicit ID preview runs do not consume a catalog entry. `data/stories.json` remains available only for legacy previews.
-
-Narration is generated locally on the GitHub runner with Piper and the `en_US-joe-medium` voice. Piper's engine is GPL-3.0 and that voice's model card identifies its dataset as CC0; no API key or paid TTS account is required. The workflow caches the model after its first download. Each phrase receives a faster, escalating pace, energy, and emphasis profile. FFmpeg targets approximately -14 LUFS and lightly ducks the energetic Openverse music beneath speech. Voice name, source, license, and narration duration are recorded in each video's metadata.
-
-## GitHub Actions minutes
-
-Standard GitHub-hosted runners are free for public repositories. Private repositories consume the Actions minutes and storage included with the repository owner's plan; usage beyond the allowance may be billed or blocked. Four daily FFmpeg renders can consume a meaningful portion of a private repository's allowance. Review **Settings > Billing and licensing** regularly. See [GitHub Actions billing](https://docs.github.com/en/billing/concepts/product-billing/github-actions).
-
-## Copyright and repetitive-content considerations
-
-- Pexels access does not transfer rights to trademarks, recognizable people, music, or third-party material depicted in footage. Review the asset and Pexels license before publishing.
-- Openverse indexes third-party media. The workflow filters for CC0/Public Domain audio and records the source, but periodically review source links and YouTube claims.
-- Do not copy famous quotations or imply endorsement by a real person.
-- Automated template videos may be considered repetitive or low-value content. Meaningful human review, distinct creative editing, original commentary, and genuine variation are important, especially for monetization.
-- Review every artifact and metadata file before making uploads public. Automation does not replace compliance with YouTube policies, copyright law, or license terms.
+Reddit hosting is not a reuse license. Source URLs are recorded for audit, but public publication still requires the operator to review permissions and claims. The AI prompt reduces invention risk; it does not independently verify Reddit claims.
 
 ## Local checks
 
-Run unit tests without uploading anything:
-
-```bash
-pytest -q tests/test_youtube_shorts.py
+```powershell
+pip install -r requirements.txt
+pytest -q
+python -m scripts.validate_config --mode reddit-ai
 ```
 
-The test suite covers permanent script consumption, safe text wrapping, metadata/title generation, Openverse filtering, and state merging. The upload script is never invoked by these tests.
+A real render additionally needs FFmpeg, the cached Piper voice, network access, and the configured YouTube/Openverse credentials.
