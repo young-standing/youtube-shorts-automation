@@ -182,17 +182,17 @@ def test_manual_quote_override_remains_backward_compatible():
     assert all(beat["visual_search"] == "writer desk night" for beat in beats)
 
 
-def test_manual_and_scheduled_idol_runs_publish_public_without_reddit_credentials():
+def test_explicit_story_preview_is_documented_as_non_consuming():
     workflow = (ROOT / ".github" / "workflows" / "create-short.yml").read_text(
         encoding="utf-8"
     )
-    assert "Optional idol name; blank rotates data/idols.json" in workflow
-    assert "INPUT_PRIVACY_STATUS: public" in workflow
-    assert "Upload directly to YouTube as public" in workflow
-    assert "rights_confirmed" not in workflow
-    assert "python -m scripts.render_idol_short" in workflow
-    assert "REDDIT_CLIENT_ID" not in workflow
-    assert "REDDIT_CLIENT_SECRET" not in workflow
+    assert "Optional quote/story ID for a non-consuming private test" in workflow
+    assert 'if args.story_id:' in (ROOT / "scripts" / "render_short.py").read_text(
+        encoding="utf-8"
+    )
+    assert 'metadata["quote_id"] = "manual"' in (
+        ROOT / "scripts" / "render_short.py"
+    ).read_text(encoding="utf-8")
 
 
 def test_workflow_yaml_preserves_schedule_upload_and_success_only_consumption():
@@ -203,8 +203,7 @@ def test_workflow_yaml_preserves_schedule_upload_and_success_only_consumption():
     assert text.count("- cron:") == 4
     assert "python -m scripts.upload_youtube" in text
     assert "steps.youtube.outcome == 'success'" in text
-    assert "scripts.merge_reddit_state" in text
-    assert "git add data/reddit_state.json" in text
+    assert "data/stories.json|data/quotes.json" in text
     assert "INPUT_PRIVACY_STATUS" in text
 
 
