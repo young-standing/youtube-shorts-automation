@@ -20,7 +20,6 @@ from typing import Any, Iterable
 from urllib.parse import urlparse
 
 import requests
-from piper import PiperVoice, SynthesisConfig
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
@@ -1079,6 +1078,8 @@ def synthesize_impact_narration(
     config = TTS_MODEL_DIR / f"{TTS_VOICE}.onnx.json"
     if not model.is_file() or model.stat().st_size < 50_000_000 or not config.is_file():
         raise ShortsError(f"Piper voice {TTS_VOICE} is missing or incomplete")
+    from piper import PiperVoice, SynthesisConfig
+
     voice = PiperVoice.load(str(model), config_path=str(config))
     profiles = [
         SynthesisConfig(length_scale=0.95, noise_scale=0.62, noise_w_scale=0.78, volume=1.00),
