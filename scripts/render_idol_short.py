@@ -26,8 +26,8 @@ from scripts.reddit_source import (
     RedditSourceError,
     choose_idol,
     parse_subreddits,
-    rank_clip_posts,
     reddit_post_url,
+    select_clip_posts,
     select_fact_posts,
 )
 from scripts.render_short import (
@@ -322,14 +322,6 @@ def reddit_hls_url(value: str) -> str:
     return f"https://v.redd.it/{media_id}/HLSPlaylist.m3u8" if media_id else ""
 
 
-def reddit_manifest_urls(value: str) -> list[str]:
-    hls = reddit_hls_url(value)
-    if not hls:
-        return []
-    base = hls.rsplit("/", 1)[0]
-    return [hls, f"{base}/DASHPlaylist.mpd"]
-
-
 def download_reddit_video(
     url: str,
     destination: Path,
@@ -376,80 +368,45 @@ def download_reddit_video(
     if written >= 10_000:
         return
 
-    manifest_urls = reddit_manifest_urls(url)
-    if not manifest_urls:
+    playlist_url = reddit_hls_url(url)
+    if not playlist_url:
         raise IdolShortError(f"Unable to download Reddit video: {direct_error or 'empty response'}")
     ffmpeg_headers = f"User-Agent: {user_agent}\r\nReferer: https://www.reddit.com/\r\n"
-    manifest_errors: list[str] = []
-    for manifest_url in manifest_urls:
+    result = subprocess.run(
+        [
+            "ffmpeg",
+            "-hide_banner",
+            "-y",
+            "-protocol_whitelist",
+            "https,tls,tcp,http,crypto",
+            "-headers",
+            ffmpeg_headers,
+            "-i",
+            playlist_url,
+            "-t",
+            "180",
+            "-map",
+            "0:v:0",
+            "-an",
+            "-c:v",
+            "copy",
+            "-movflags",
+            "+faststart",
+            str(destination),
+        ],
+        text=True,
+        capture_output=True,
+    )
+    size = destination.stat().st_size if destination.exists() else 0
+    if result.returncode != 0 or size < 10_000:
         destination.unlink(missing_ok=True)
-        result = subprocess.run(
-            [
-                "ffmpeg",
-                "-hide_banner",
-                "-y",
-                "-protocol_whitelist",
-                "https,tls,tcp,http,crypto",
-                "-headers",
-                ffmpeg_headers,
-                "-i",
-                manifest_url,
-                "-t",
-                "180",
-                "-map",
-                "0:v:0",
-                "-an",
-                "-c:v",
-                "copy",
-                "-movflags",
-                "+faststart",
-                str(destination),
-            ],
-            text=True,
-            capture_output=True,
+        tail = "\n".join(result.stderr.splitlines()[-20:])
+        raise IdolShortError(
+            f"Reddit direct media and HLS fallback both failed. Direct: {direct_error}.\n{tail}"
         )
-        size = destination.stat().st_size if destination.exists() else 0
-        if result.returncode == 0 and 10_000 <= size <= MAX_DOWNLOAD_BYTES:
-            return
+    if size > MAX_DOWNLOAD_BYTES:
         destination.unlink(missing_ok=True)
-        tail = " | ".join(result.stderr.splitlines()[-3:])
-        manifest_errors.append(f"{manifest_url.rsplit('/', 1)[-1]}: {tail}")
-    raise IdolShortError(
-        "Reddit direct media plus HLS/DASH manifests failed. "
-        f"Direct: {direct_error or 'empty response'}. " + "; ".join(manifest_errors)
-    )
-
-
-def download_clip_pool(
-    candidates: list[dict[str, Any]],
-    *,
-    count: int,
-    directory: Path,
-    user_agent: str,
-    downloader=download_reddit_video,
-) -> tuple[list[Path], list[dict[str, Any]]]:
-    local_clips: list[Path] = []
-    selected: list[dict[str, Any]] = []
-    errors: list[str] = []
-    max_attempts = min(len(candidates), max(12, count * 4))
-    for attempt, post in enumerate(candidates[:max_attempts], start=1):
-        clip_path = directory / f"reddit-{len(local_clips) + 1}.mp4"
-        try:
-            downloader(post["video_url"], clip_path, user_agent=user_agent)
-        except IdolShortError as exc:
-            errors.append(f"attempt {attempt}: {exc}")
-            clip_path.unlink(missing_ok=True)
-            print(f"Skipping unavailable Reddit clip {attempt}/{max_attempts}")
-            continue
-        selected.append(post)
-        local_clips.append(clip_path)
-        if len(local_clips) == count:
-            return local_clips, selected
-    recent_errors = " | ".join(errors[-3:])
-    raise IdolShortError(
-        f"Downloaded only {len(local_clips)} of {count} Reddit clips after "
-        f"{max_attempts} attempts. {recent_errors}"
-    )
+        raise IdolShortError("Reddit HLS clip exceeded the 150 MB download limit")
 
 
 def render_video(
@@ -660,16 +617,12 @@ def main() -> None:
         count=args.fact_count,
         excluded_urls=state["used_fact_urls"],
     )
-    clip_candidates = rank_clip_posts(
+    clips = select_clip_posts(
         posts,
         idol,
+        count=args.fact_count,
         excluded_urls=state["used_clip_urls"],
     )
-    if len(clip_candidates) < args.fact_count:
-        raise RedditSourceError(
-            f"Reddit returned only {len(clip_candidates)} safe hosted {idol} clips; "
-            f"need {args.fact_count}."
-        )
     segments = build_segments(idol, facts)
     script = narration_text(segments)
     if not 95 <= word_count(script) <= 180:
@@ -689,12 +642,11 @@ def main() -> None:
             encoding="utf-8",
             newline="\n",
         )
-        local_clips, clips = download_clip_pool(
-            clip_candidates,
-            count=args.fact_count,
-            directory=temporary,
-            user_agent=user_agent,
-        )
+        local_clips: list[Path] = []
+        for index, post in enumerate(clips, start=1):
+            clip_path = temporary / f"reddit-{index}.mp4"
+            download_reddit_video(post["video_url"], clip_path, user_agent=user_agent)
+            local_clips.append(clip_path)
 
         if args.music_file:
             if not args.music_file.is_file():
