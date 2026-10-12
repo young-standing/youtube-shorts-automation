@@ -1,63 +1,35 @@
-# AI-written Reddit idol Shorts
+# GitHub-only cinematic motivational quote automation
 
-This project creates public 55–65 second vertical YouTube Shorts about K-pop idols. Reddit is used to discover source signals and hosted clips; the narration is rewritten into original commentary by GitHub Models when available.
+Create and upload original, concise English motivational impact quotes using only GitHub Actions, the free Pexels Videos API, CC0/Public Domain energetic music from Openverse, FFmpeg, and the official YouTube Data API.
 
-## Format
+The project does not require n8n, a VM, a database, paid rendering services, or paid AI APIs. Scheduled uploads are public; manual runs remain private by default.
 
-- 1080×1920, 30 fps, H.264/AAC
-- three or four source-backed story beats per Short
-- AI-written hook, fact commentary, and CTA rather than reading Reddit post titles verbatim
-- one-word-at-a-time Poppins captions inspired by the supplied reference: hot pink, black outline, yellow/red emphasis, lower-middle safe area
-- a visual treatment about every 4.6 seconds with blurred vertical fill for non-9:16 clips
-- local Piper narration and low-volume CC0/Public Domain Openverse music
-- direct public YouTube upload four times daily at 05:00, 08:00, 11:00, and 14:00 Myanmar time
+## What it does
 
-## Source and AI behavior
+- Runs every day at 5:00 AM, 8:00 AM, 11:00 AM, and 2:00 PM in `Asia/Yangon`, with manual runs supported.
+- Selects from an original motivational quote bank and renders each quote as a unique 8–14 second Short.
+- Rotates discipline, success, healing, confidence, growth, and consistency themes.
+- Permanently removes each quote only after its YouTube upload succeeds, so uploaded scripts never repeat.
+- Uses one coherent portrait clip per Short, with monochrome contrast and phrase-synchronized punch-ins instead of unrelated scene changes.
+- Creates English narration locally with Piper's `en_US-joe-medium` CC0 voice, varying pace, energy, and emphasis phrase by phrase.
+- Downloads uplifting, epic, or cinematic motivational music from Openverse, restricted to CC0 or Public Domain audio, then ducks it under narration.
+- Renders 1080×1920 H.264/AAC Shorts with minimal centered white captions, subtle `ORDERLESS` branding, and a final audio target near -14 LUFS.
+- Saves analytics-ready metadata including theme, duration, title, script, music source, and visual searches.
+- Uploads through the official YouTube Data API using resumable upload and retries.
+- Saves two-day debugging artifacts and persists rich anti-repetition history safely.
 
-`data/idols.json` controls the idol rotation. Public Reddit fetching is credential-free and uses JSON/RSS/Old Reddit/archive fallbacks. Reddit client secrets are not required.
+The established schedule, secrets, OAuth flow, YouTube uploader, Pexels/Openverse integrations, public/private behavior, and success-only consumption logic are preserved. The project does not add a paid API.
 
-`scripts/ai_script.py` sends only normalized source signals—title, subreddit, score, and comment count—to the configured GitHub Models endpoint. The prompt explicitly forbids inventing facts and requires JSON with a hook, exactly three or four fact beats, and a CTA. The renderer stores `script_engine`, `script_model`, and `script_prompt_version` in `output/metadata.json`.
+## Start here
 
-`AI_SCRIPT_MODE=auto` uses GitHub Models when the workflow token is accepted and falls back to source-grounded editorial commentary if the model is unavailable. `required` fails instead of falling back. `fallback` never calls a model and is useful for local smoke tests.
+Follow [SETUP.md](SETUP.md) from beginning to end and configure the required GitHub Secrets and `CHANNEL_NAME` repository variable. Openverse credentials are free and keep scheduled searches within authenticated rate limits.
 
-Reddit popularity is a source signal, not factual verification. Every selected fact and clip permalink is recorded in metadata and the YouTube description. The operator remains responsible for copyright permission, attribution, fact checking, and YouTube policy compliance.
-
-## GitHub Actions
-
-The active workflow is `.github/workflows/create-short.yml`.
-
-Required repository secrets:
-
-- `OPENVERSE_CLIENT_ID`
-- `OPENVERSE_CLIENT_SECRET`
-- `YOUTUBE_CLIENT_ID`
-- `YOUTUBE_CLIENT_SECRET`
-- `YOUTUBE_REFRESH_TOKEN`
-
-Required repository variable:
-
-- `CHANNEL_NAME`
-
-Optional repository variable:
-
-- `REDDIT_USER_AGENT`
-
-The workflow grants `models: read` to the built-in GitHub token and uses `https://models.github.ai/inference/chat/completions` with `openai/gpt-4o-mini`. No Reddit client ID or secret is used.
-
-## Files
-
-- `scripts/ai_script.py` — structured AI rewrite and safe fallback
-- `scripts/reddit_source.py` — credential-free Reddit discovery and filtering
-- `scripts/render_idol_short.py` — narration, reference-style captions, clip recovery, FFmpeg render, and metadata
-- `scripts/merge_reddit_state.py` — conflict-safe source rotation
-- `data/reddit_state.json` — previously used sources and idols
-
-## Validation
+Run local feature tests with:
 
 ```bash
 pip install -r requirements.txt
 pytest -q
-python -m scripts.validate_config --mode reddit-ai
+python -m scripts.preview_stories --count 3
 ```
 
-The tests do not upload to YouTube or call Reddit. The full Actions run performs the network discovery, AI rewrite, render, public upload, and state persistence.
+No real YouTube upload is performed by the tests.
