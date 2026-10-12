@@ -291,11 +291,10 @@ def is_safe_clip_post(post: dict[str, Any], idol: str) -> bool:
     )
 
 
-def select_clip_posts(
+def rank_clip_posts(
     posts: Iterable[dict[str, Any]],
     idol: str,
     *,
-    count: int,
     excluded_urls: Iterable[str] = (),
 ) -> list[dict[str, Any]]:
     excluded = set(excluded_urls)
@@ -312,8 +311,19 @@ def select_clip_posts(
             continue
         selected.append(post)
         seen_videos.add(post["video_url"])
-        if len(selected) == count:
-            return selected
+    return selected
+
+
+def select_clip_posts(
+    posts: Iterable[dict[str, Any]],
+    idol: str,
+    *,
+    count: int,
+    excluded_urls: Iterable[str] = (),
+) -> list[dict[str, Any]]:
+    selected = rank_clip_posts(posts, idol, excluded_urls=excluded_urls)
+    if len(selected) >= count:
+        return selected[:count]
     raise RedditSourceError(
         f"Reddit returned only {len(selected)} safe hosted {idol} clips; need {count}. "
         "Try broader subreddits or a different idol."
