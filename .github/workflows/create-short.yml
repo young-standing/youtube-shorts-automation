@@ -1,68 +1,58 @@
-name: Create AI-written Reddit idol Short
+name: Create scheduled YouTube impact quotes
 
 on:
   schedule:
-    - cron: "30 22 * * *" # Myanmar time 05:00
-    - cron: "30 1 * * *"  # Myanmar time 08:00
-    - cron: "30 4 * * *"  # Myanmar time 11:00
-    - cron: "30 7 * * *"  # Myanmar time 14:00
+    - cron: "30 22 * * *" # မြန်မာအချိန် မနက် 5:00
+    - cron: "30 1 * * *"  # မြန်မာအချိန် မနက် 8:00
+    - cron: "30 4 * * *"  # မြန်မာအချိန် မနက် 11:00
+    - cron: "30 7 * * *"  # မြန်မာအချိန် နေ့လယ် 2:00
   workflow_dispatch:
     inputs:
-      idol:
-        description: "Optional idol; blank rotates data/idols.json"
+      quote:
+        description: "Optional original English quote override"
         required: false
         type: string
-      fact_count:
-        description: "Number of source-backed story beats"
-        required: true
-        default: "4"
-        type: choice
-        options:
-          - "4"
-          - "3"
-      subreddits:
-        description: "Comma-separated Reddit communities"
-        required: true
-        default: "kpop,kpopthoughts,kpop_uncensored"
+      story_id:
+        description: "Optional quote/story ID for a non-consuming private test"
+        required: false
         type: string
-      ai_script_mode:
-        description: "AI rewrite mode; auto falls back safely if model access is unavailable"
+      pexels_search:
+        description: "Optional Pexels video search phrase"
+        required: false
+        type: string
+      privacy_status:
+        description: "YouTube privacy status"
         required: true
-        default: auto
+        default: private
         type: choice
         options:
-          - auto
-          - required
-          - fallback
+          - private
+          - unlisted
+          - public
 
 permissions:
   contents: write
-  models: read
 
 concurrency:
-  group: ai-reddit-short-${{ github.ref }}
+  group: youtube-shorts-render-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
   create-short:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 20
     env:
-      GITHUB_TOKEN: ${{ github.token }}
-      AI_SCRIPT_MODE: ${{ github.event_name == 'workflow_dispatch' && inputs.ai_script_mode || 'auto' }}
-      AI_SCRIPT_MODEL: openai/gpt-4o-mini
-      AI_SCRIPT_ENDPOINT: https://models.github.ai/inference/chat/completions
-      REDDIT_USER_AGENT: ${{ vars.REDDIT_USER_AGENT }}
+      PEXELS_API_KEY: ${{ secrets.PEXELS_API_KEY }}
       OPENVERSE_CLIENT_ID: ${{ secrets.OPENVERSE_CLIENT_ID }}
       OPENVERSE_CLIENT_SECRET: ${{ secrets.OPENVERSE_CLIENT_SECRET }}
       YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
       YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
       YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
       CHANNEL_NAME: ${{ vars.CHANNEL_NAME }}
-      INPUT_IDOL: ${{ github.event_name == 'workflow_dispatch' && inputs.idol || '' }}
-      INPUT_FACT_COUNT: ${{ github.event_name == 'workflow_dispatch' && inputs.fact_count || '4' }}
-      INPUT_SUBREDDITS: ${{ github.event_name == 'workflow_dispatch' && inputs.subreddits || 'kpop,kpopthoughts,kpop_uncensored' }}
-      INPUT_PRIVACY_STATUS: public
+      INPUT_QUOTE: ${{ github.event_name == 'workflow_dispatch' && inputs.quote || '' }}
+      INPUT_STORY_ID: ${{ github.event_name == 'workflow_dispatch' && inputs.story_id || '' }}
+      INPUT_PEXELS_SEARCH: ${{ github.event_name == 'workflow_dispatch' && inputs.pexels_search || '' }}
+      INPUT_PRIVACY_STATUS: ${{ github.event_name == 'workflow_dispatch' && inputs.privacy_status || 'public' }}
 
     steps:
       - name: Check out repository
@@ -95,52 +85,63 @@ jobs:
           python -m piper.download_voices --data-dir .tts-models en_US-joe-medium
           test "$(stat -c%s .tts-models/en_US-joe-medium.onnx)" -gt 50000000
 
-      - name: Validate AI Reddit Short configuration
-        run: python -m scripts.validate_config --mode reddit-ai --require-youtube
+      - name: Validate automation configuration
+        run: python -m scripts.validate_config --require-youtube
 
-      - name: Render AI-written 55-65 second Short
+      - name: Render energetic 8-14 second motivational quote
         id: render
-        run: python -m scripts.render_idol_short
+        run: python -m scripts.render_short
 
-      - name: Upload directly to YouTube as public
+      - name: Upload to YouTube
         id: youtube
         run: python -m scripts.upload_youtube
 
-      - name: Persist Reddit source rotation safely
+      - name: Persist quote usage state safely
         if: ${{ always() && steps.render.outcome == 'success' && steps.youtube.outcome == 'success' }}
         continue-on-error: true
         shell: bash
         run: |
           set -euo pipefail
-          snapshot="$RUNNER_TEMP/rendered-reddit-state.json"
-          cp data/reddit_state.json "$snapshot"
+          snapshot="$RUNNER_TEMP/rendered-state.json"
+          cp data/state.json "$snapshot"
+          consumed_id="$(python -c 'import json; print(json.load(open("output/metadata.json", encoding="utf-8"))["quote_id"])')"
+          catalog_file="$(python -c 'import json; print(json.load(open("output/metadata.json", encoding="utf-8")).get("catalog_file", "data/quotes.json"))')"
+          case "$catalog_file" in
+            data/stories.json|data/quotes.json) ;;
+            *) echo "Unexpected catalog path: $catalog_file" >&2; exit 1 ;;
+          esac
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           for attempt in 1 2 3; do
             git fetch origin "$GITHUB_REF_NAME"
-            git checkout -B reddit-state-update "origin/$GITHUB_REF_NAME"
-            python -m scripts.merge_reddit_state data/reddit_state.json "$snapshot" --output data/reddit_state.json
-            if git diff --quiet -- data/reddit_state.json; then
-              echo "No Reddit rotation state change to persist."
+            git checkout -B shorts-state-update "origin/$GITHUB_REF_NAME"
+            python -m scripts.merge_state data/state.json "$snapshot" --output data/state.json
+            python -m scripts.consume_quote "$catalog_file" "$consumed_id" --output "$catalog_file"
+
+            if git diff --quiet -- data/state.json data/stories.json data/quotes.json; then
+              echo "No quote state change to persist."
               exit 0
             fi
-            git add data/reddit_state.json
-            git commit -m "Persist Reddit source rotation [skip ci]"
+
+            git add data/state.json data/stories.json data/quotes.json
+            git commit -m "Consume uploaded YouTube impact quote [skip ci]"
             if git push origin "HEAD:$GITHUB_REF_NAME"; then
-              echo "Reddit rotation state persisted."
+              echo "Quote state persisted."
               exit 0
             fi
+            echo "State push conflict on attempt $attempt; retrying with latest branch."
             sleep $((attempt * 2))
           done
-          echo "Reddit state could not be persisted after three attempts." >&2
+
+          echo "Quote state could not be persisted after three attempts." >&2
           exit 1
 
       - name: Upload render artifacts
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ai-reddit-short-${{ github.run_id }}
+          name: youtube-short-${{ github.run_id }}
           path: |
             output/short.mp4
             output/metadata.json
