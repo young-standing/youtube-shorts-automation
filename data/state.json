@@ -239,82 +239,10 @@
     "m097",
     "m301",
     "m296",
-    "m230"
+    "m230",
+    "m313"
   ],
   "history": [
-    {
-      "id": "s006",
-      "used_at": "2026-08-13T23:10:26+00:00",
-      "pillar": "transformation",
-      "topic": "learning a skill",
-      "theme": "feeling behind",
-      "perspective": "future_self",
-      "hook_type": "future_contrast",
-      "hook": "A year later, your first design still looked terrible.",
-      "title": "The Ugly First Portfolio",
-      "ending_concept": "visible progress came from preserving imperfect beginnings",
-      "key_phrases": [
-        "terrible first design",
-        "kept every version"
-      ],
-      "similarity_terms": [
-        "after",
-        "another",
-        "bad",
-        "became",
-        "clearer",
-        "compared",
-        "could",
-        "day",
-        "deleting",
-        "design",
-        "did",
-        "every",
-        "evidence",
-        "exposed",
-        "far",
-        "favorite",
-        "felt",
-        "fifty",
-        "file",
-        "finally",
-        "first",
-        "four",
-        "how",
-        "imaginary",
-        "intentional",
-        "kept",
-        "later",
-        "looked",
-        "nine",
-        "not",
-        "one",
-        "people",
-        "potential",
-        "protecting",
-        "rebuilt",
-        "repetition",
-        "saved",
-        "seven",
-        "show",
-        "showed",
-        "showing",
-        "still",
-        "talent",
-        "terrible",
-        "thing",
-        "travel",
-        "tutorial",
-        "two",
-        "understand",
-        "version",
-        "weak",
-        "weekly",
-        "weeks",
-        "work",
-        "year"
-      ]
-    },
     {
       "id": "s382",
       "used_at": "2026-08-14T05:53:02+00:00",
@@ -2730,6 +2658,10 @@
     {
       "id": "m230",
       "used_at": "2026-11-03T12:09:05+00:00"
+    },
+    {
+      "id": "m313",
+      "used_at": "2026-11-03T15:23:57+00:00"
     }
   ]
 }
