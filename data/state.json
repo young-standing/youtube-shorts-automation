@@ -242,83 +242,10 @@
     "m230",
     "m313",
     "m205",
-    "m303"
+    "m303",
+    "m490"
   ],
   "history": [
-    {
-      "id": "s022",
-      "used_at": "2026-08-15T04:54:52+00:00",
-      "pillar": "future_self",
-      "topic": "health neglect",
-      "theme": "fear of consequences",
-      "perspective": "he",
-      "hook_type": "future_warning",
-      "hook": "At 38, climbing two flights made him remember every skipped walk.",
-      "title": "The Staircase at 38",
-      "ending_concept": "health debt accrued invisibly",
-      "key_phrases": [
-        "ordinary staircase",
-        "walk after lunch"
-      ],
-      "similarity_terms": [
-        "accumulated",
-        "after",
-        "always",
-        "annual",
-        "becomes",
-        "busy",
-        "climbing",
-        "closer",
-        "days",
-        "deadlines",
-        "disappeared",
-        "each",
-        "especially",
-        "every",
-        "felt",
-        "flights",
-        "future",
-        "grows",
-        "information",
-        "into",
-        "like",
-        "longer",
-        "looked",
-        "lunch",
-        "made",
-        "meeting",
-        "minutes",
-        "not",
-        "nothing",
-        "ordinary",
-        "promises",
-        "protects",
-        "punishment",
-        "remember",
-        "return",
-        "rewarded",
-        "sitting",
-        "skipped",
-        "slowly",
-        "staircase",
-        "starts",
-        "strength",
-        "ten",
-        "today",
-        "training",
-        "twelve",
-        "twice",
-        "two",
-        "under",
-        "urgent",
-        "walk",
-        "walking",
-        "week",
-        "while",
-        "work",
-        "years"
-      ]
-    },
     {
       "id": "s015",
       "used_at": "2026-08-15T07:51:54+00:00",
@@ -2509,6 +2436,10 @@
     {
       "id": "m303",
       "used_at": "2026-11-04T07:41:34+00:00"
+    },
+    {
+      "id": "m490",
+      "used_at": "2026-11-04T12:21:42+00:00"
     }
   ]
 }
