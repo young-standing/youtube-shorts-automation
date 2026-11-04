@@ -243,78 +243,10 @@
     "m313",
     "m205",
     "m303",
-    "m490"
+    "m490",
+    "m267"
   ],
   "history": [
-    {
-      "id": "s015",
-      "used_at": "2026-08-15T07:51:54+00:00",
-      "pillar": "relatable_pain",
-      "topic": "lost direction",
-      "theme": "feeling behind",
-      "perspective": "first_person",
-      "hook_type": "confession",
-      "hook": "My diploma arrived before any direction did.",
-      "title": "I Stopped Pretending to Have a Plan",
-      "ending_concept": "direction emerged from experiments",
-      "key_phrases": [
-        "no idea what Tuesday was for",
-        "three small experiments"
-      ],
-      "similarity_terms": [
-        "any",
-        "applied",
-        "arrived",
-        "asked",
-        "before",
-        "certainty",
-        "check",
-        "choosing",
-        "clock",
-        "designer",
-        "did",
-        "diploma",
-        "direction",
-        "everywhere",
-        "experiments",
-        "feel",
-        "felt",
-        "find",
-        "forget",
-        "found",
-        "helped",
-        "honest",
-        "jobs",
-        "longer",
-        "lost",
-        "made",
-        "mentor",
-        "not",
-        "offers",
-        "one",
-        "path",
-        "permanent",
-        "purpose",
-        "rejections",
-        "run",
-        "shadowed",
-        "shop",
-        "single",
-        "small",
-        "step",
-        "taking",
-        "task",
-        "testing",
-        "three",
-        "too",
-        "two",
-        "volunteered",
-        "wanted",
-        "week",
-        "worth",
-        "wrong"
-      ]
-    },
     {
       "id": "s087",
       "used_at": "2026-08-15T22:45:27+00:00",
@@ -2440,6 +2372,10 @@
     {
       "id": "m490",
       "used_at": "2026-11-04T12:21:42+00:00"
+    },
+    {
+      "id": "m267",
+      "used_at": "2026-11-04T15:38:48+00:00"
     }
   ]
 }
