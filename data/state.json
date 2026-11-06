@@ -248,74 +248,10 @@
     "m211",
     "m486",
     "m489",
-    "m112"
+    "m112",
+    "m067"
   ],
   "history": [
-    {
-      "id": "s001",
-      "used_at": "2026-08-17T05:06:24+00:00",
-      "pillar": "transformation",
-      "topic": "procrastination",
-      "theme": "wasting early twenties",
-      "perspective": "she",
-      "hook_type": "specific_time",
-      "hook": "At 24, her biggest project was still a blank page.",
-      "title": "She Stopped Waiting to Feel Ready",
-      "ending_concept": "finishing replaced fantasy with evidence",
-      "key_phrases": [
-        "unfinished document",
-        "twenty ugly minutes"
-      ],
-      "similarity_terms": [
-        "arriving",
-        "badly",
-        "before",
-        "biggest",
-        "blank",
-        "collecting",
-        "confidence",
-        "could",
-        "deleting",
-        "did",
-        "dream",
-        "evenings",
-        "every",
-        "feel",
-        "file",
-        "finish",
-        "friends",
-        "grew",
-        "kept",
-        "minutes",
-        "more",
-        "night",
-        "not",
-        "page",
-        "posted",
-        "productivity",
-        "project",
-        "promised",
-        "promotions",
-        "proof",
-        "rang",
-        "resisted",
-        "same",
-        "serious",
-        "set",
-        "still",
-        "stopped",
-        "thirty",
-        "timer",
-        "tomorrow",
-        "twenty",
-        "ugly",
-        "videos",
-        "while",
-        "would",
-        "wrote",
-        "yet"
-      ]
-    },
     {
       "id": "s018",
       "used_at": "2026-08-17T08:07:39+00:00",
@@ -2095,6 +2031,10 @@
     {
       "id": "m112",
       "used_at": "2026-11-06T08:07:04+00:00"
+    },
+    {
+      "id": "m067",
+      "used_at": "2026-11-06T15:15:48+00:00"
     }
   ]
 }
