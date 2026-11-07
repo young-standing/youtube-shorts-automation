@@ -249,82 +249,10 @@
     "m486",
     "m489",
     "m112",
-    "m067"
+    "m067",
+    "m169"
   ],
   "history": [
-    {
-      "id": "s018",
-      "used_at": "2026-08-17T08:07:39+00:00",
-      "pillar": "relatable_pain",
-      "topic": "social media",
-      "theme": "wasting time",
-      "perspective": "future_self",
-      "hook_type": "time_loss",
-      "hook": "Your screen-time report said 46 hours. You remembered almost none of them.",
-      "title": "The 46 Hours You Couldn't Remember",
-      "ending_concept": "friction restored conscious choice",
-      "key_phrases": [
-        "forty-six hours",
-        "phone outside bedroom"
-      ],
-      "similarity_terms": [
-        "again",
-        "almost",
-        "apps",
-        "awareness",
-        "became",
-        "bedroom",
-        "break",
-        "charger",
-        "choose",
-        "created",
-        "deleting",
-        "doorway",
-        "entering",
-        "even",
-        "every",
-        "everywhere",
-        "feel",
-        "felt",
-        "first",
-        "five",
-        "forgot",
-        "harmless",
-        "heavier",
-        "highlights",
-        "hours",
-        "inconvenience",
-        "life",
-        "logged",
-        "made",
-        "moved",
-        "nights",
-        "none",
-        "not",
-        "noticing",
-        "other",
-        "out",
-        "outside",
-        "people",
-        "recovered",
-        "reinstalling",
-        "remembered",
-        "report",
-        "said",
-        "screen",
-        "scrolled",
-        "seconds",
-        "short",
-        "some",
-        "still",
-        "thing",
-        "time",
-        "unfinished",
-        "until",
-        "without",
-        "worked"
-      ]
-    },
     {
       "id": "s151",
       "used_at": "2026-08-18T05:00:48+00:00",
@@ -2035,6 +1963,10 @@
     {
       "id": "m067",
       "used_at": "2026-11-06T15:15:48+00:00"
+    },
+    {
+      "id": "m169",
+      "used_at": "2026-11-07T07:27:48+00:00"
     }
   ]
 }
