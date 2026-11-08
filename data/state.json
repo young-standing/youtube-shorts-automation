@@ -251,84 +251,10 @@
     "m112",
     "m067",
     "m169",
-    "m256"
+    "m256",
+    "m036"
   ],
   "history": [
-    {
-      "id": "s475",
-      "used_at": "2026-08-18T08:02:33+00:00",
-      "pillar": "future_self",
-      "topic": "language",
-      "theme": "embarrassment",
-      "perspective": "he",
-      "hook_type": "relatable_moment",
-      "hook": "At 9:37 AM, Jonah ordered lunch by pointing at the menu again.",
-      "title": "Day 24: The Pointed Menu",
-      "ending_concept": "fluency began with imperfect exposure",
-      "key_phrases": [
-        "pointed menu",
-        "asked the cashier one memorized question"
-      ],
-      "similarity_terms": [
-        "after",
-        "again",
-        "answered",
-        "asked",
-        "attempt",
-        "avoid",
-        "became",
-        "become",
-        "began",
-        "behind",
-        "cashier",
-        "change",
-        "comfortable",
-        "continued",
-        "create",
-        "day",
-        "did",
-        "dismiss",
-        "each",
-        "excuses",
-        "exercises",
-        "experiment",
-        "exposure",
-        "finally",
-        "fluency",
-        "friday",
-        "grammar",
-        "hiding",
-        "imperfect",
-        "impossible",
-        "jonah",
-        "languages",
-        "lunch",
-        "meanwhile",
-        "memorized",
-        "menu",
-        "mistakes",
-        "new",
-        "not",
-        "one",
-        "ordered",
-        "ordinary",
-        "perfect",
-        "place",
-        "pointing",
-        "preparation",
-        "privately",
-        "public",
-        "question",
-        "sentence",
-        "stranger",
-        "studied",
-        "switching",
-        "usable",
-        "used",
-        "voice",
-        "without"
-      ]
-    },
     {
       "id": "s072",
       "used_at": "2026-08-18T22:48:27+00:00",
@@ -1891,6 +1817,10 @@
     {
       "id": "m256",
       "used_at": "2026-11-07T14:16:12+00:00"
+    },
+    {
+      "id": "m036",
+      "used_at": "2026-11-08T07:37:43+00:00"
     }
   ]
 }
