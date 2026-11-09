@@ -257,74 +257,10 @@
     "m343",
     "m434",
     "m077",
-    "m098"
+    "m098",
+    "m299"
   ],
   "history": [
-    {
-      "id": "s004",
-      "used_at": "2026-08-21T22:48:29+00:00",
-      "pillar": "transformation",
-      "topic": "fitness restart",
-      "theme": "embarrassment",
-      "perspective": "you",
-      "hook_type": "relatable_moment",
-      "hook": "Your old running shoes still had clean soles.",
-      "title": "The Workout You Almost Quit",
-      "ending_concept": "identity changed through a deliberately tiny start",
-      "key_phrases": [
-        "clean soles",
-        "one slow block"
-      ],
-      "similarity_terms": [
-        "again",
-        "ambitious",
-        "another",
-        "anything",
-        "barely",
-        "became",
-        "being",
-        "block",
-        "body",
-        "changed",
-        "clean",
-        "comparison",
-        "day",
-        "every",
-        "finally",
-        "four",
-        "instead",
-        "looked",
-        "made",
-        "next",
-        "old",
-        "one",
-        "prove",
-        "reason",
-        "relationship",
-        "remembered",
-        "restart",
-        "running",
-        "same",
-        "session",
-        "shoes",
-        "slow",
-        "small",
-        "soles",
-        "starting",
-        "still",
-        "stop",
-        "stronger",
-        "thought",
-        "tracking",
-        "unbearable",
-        "used",
-        "walked",
-        "weak",
-        "week",
-        "without",
-        "would"
-      ]
-    },
     {
       "id": "s190",
       "used_at": "2026-08-22T04:58:16+00:00",
@@ -1470,6 +1406,10 @@
     {
       "id": "m098",
       "used_at": "2026-11-09T13:09:57+00:00"
+    },
+    {
+      "id": "m299",
+      "used_at": "2026-11-09T17:44:10+00:00"
     }
   ]
 }
