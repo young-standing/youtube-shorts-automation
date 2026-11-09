@@ -254,82 +254,10 @@
     "m256",
     "m036",
     "m370",
-    "m343"
+    "m343",
+    "m434"
   ],
   "history": [
-    {
-      "id": "s017",
-      "used_at": "2026-08-20T05:02:09+00:00",
-      "pillar": "relatable_pain",
-      "topic": "family pressure",
-      "theme": "comparison",
-      "perspective": "unnamed",
-      "hook_type": "conversation_detail",
-      "hook": "Their cousin's promotion was served beside the rice again.",
-      "title": "The Question at Dinner",
-      "ending_concept": "private progress did not need family approval",
-      "key_phrases": [
-        "question at dinner",
-        "private scoreboard"
-      ],
-      "similarity_terms": [
-        "again",
-        "applications",
-        "become",
-        "beside",
-        "chose",
-        "counted",
-        "cousin",
-        "dessert",
-        "did",
-        "dinner",
-        "drove",
-        "else",
-        "even",
-        "evening",
-        "feeling",
-        "finished",
-        "forward",
-        "half",
-        "home",
-        "hours",
-        "late",
-        "life",
-        "listed",
-        "measures",
-        "measuring",
-        "money",
-        "moved",
-        "never",
-        "not",
-        "nothing",
-        "numbers",
-        "offered",
-        "opinions",
-        "performative",
-        "plans",
-        "practiced",
-        "private",
-        "promotion",
-        "race",
-        "relatives",
-        "rice",
-        "saved",
-        "scoreboard",
-        "sent",
-        "served",
-        "sharper",
-        "slowly",
-        "someone",
-        "stopped",
-        "tape",
-        "three",
-        "timelines",
-        "what",
-        "while",
-        "wrote"
-      ]
-    },
     {
       "id": "s488",
       "used_at": "2026-08-20T08:05:04+00:00",
@@ -1684,6 +1612,10 @@
     {
       "id": "m343",
       "used_at": "2026-11-08T14:25:00+00:00"
+    },
+    {
+      "id": "m434",
+      "used_at": "2026-11-09T01:48:03+00:00"
     }
   ]
 }
