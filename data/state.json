@@ -258,85 +258,10 @@
     "m434",
     "m077",
     "m098",
-    "m299"
+    "m299",
+    "m219"
   ],
   "history": [
-    {
-      "id": "s190",
-      "used_at": "2026-08-22T04:58:16+00:00",
-      "pillar": "relatable_pain",
-      "topic": "small_business",
-      "theme": "slow progress",
-      "perspective": "unnamed",
-      "hook_type": "specific_time",
-      "hook": "At 24, Alex had repeated the same escape 17 times.",
-      "title": "Day 17: The Unsold Box",
-      "ending_concept": "listening did what hoping could not",
-      "key_phrases": [
-        "unsold box",
-        "asked five visitors what stopped the purchase"
-      ],
-      "similarity_terms": [
-        "after",
-        "alex",
-        "appeared",
-        "asked",
-        "became",
-        "buyers",
-        "calendar",
-        "change",
-        "changed",
-        "continued",
-        "could",
-        "customer",
-        "day",
-        "did",
-        "dismiss",
-        "dream",
-        "escape",
-        "evidence",
-        "experiment",
-        "feel",
-        "first",
-        "five",
-        "friend",
-        "guessing",
-        "hoping",
-        "impossible",
-        "instead",
-        "labels",
-        "lesson",
-        "listening",
-        "made",
-        "never",
-        "new",
-        "not",
-        "personal",
-        "predictable",
-        "price",
-        "prices",
-        "private",
-        "producing",
-        "purchase",
-        "quiet",
-        "reached",
-        "receipt",
-        "repeat",
-        "repeated",
-        "returned",
-        "routine",
-        "same",
-        "scent",
-        "speaking",
-        "stall",
-        "stopped",
-        "times",
-        "visitors",
-        "weekly",
-        "what",
-        "without"
-      ]
-    },
     {
       "id": "s221",
       "used_at": "2026-08-22T07:54:08+00:00",
@@ -1410,6 +1335,10 @@
     {
       "id": "m299",
       "used_at": "2026-11-09T17:44:10+00:00"
+    },
+    {
+      "id": "m219",
+      "used_at": "2026-11-10T04:13:10+00:00"
     }
   ]
 }
