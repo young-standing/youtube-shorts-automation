@@ -260,79 +260,10 @@
     "m098",
     "m299",
     "m219",
-    "m252"
+    "m252",
+    "m072"
   ],
   "history": [
-    {
-      "id": "s019",
-      "used_at": "2026-08-22T22:45:42+00:00",
-      "pillar": "future_self",
-      "topic": "unchanged habits",
-      "theme": "fear of wasting life",
-      "perspective": "future_self",
-      "hook_type": "negative_future",
-      "hook": "It is 2029, and the promise still begins with 'next Monday.'",
-      "title": "It Is 2029 and Nothing Started",
-      "ending_concept": "the feared future was built by ordinary delays",
-      "key_phrases": [
-        "next Monday",
-        "one calendar block"
-      ],
-      "similarity_terms": [
-        "2029",
-        "announcing",
-        "became",
-        "become",
-        "before",
-        "begins",
-        "bookmarked",
-        "calendar",
-        "collapsed",
-        "complete",
-        "course",
-        "dangerous",
-        "different",
-        "does",
-        "dramatically",
-        "easier",
-        "enough",
-        "evenings",
-        "familiar",
-        "hated",
-        "interruption",
-        "job",
-        "just",
-        "keep",
-        "kept",
-        "lesson",
-        "memory",
-        "monday",
-        "motivation",
-        "need",
-        "negotiates",
-        "new",
-        "next",
-        "not",
-        "nothing",
-        "now",
-        "one",
-        "open",
-        "part",
-        "personality",
-        "promise",
-        "put",
-        "return",
-        "session",
-        "stayed",
-        "still",
-        "those",
-        "tonight",
-        "while",
-        "winning",
-        "without",
-        "years"
-      ]
-    },
     {
       "id": "s365",
       "used_at": "2026-08-25T08:07:54+00:00",
@@ -1265,6 +1196,10 @@
     {
       "id": "m252",
       "used_at": "2026-11-10T12:50:49+00:00"
+    },
+    {
+      "id": "m072",
+      "used_at": "2026-11-10T15:43:08+00:00"
     }
   ]
 }
