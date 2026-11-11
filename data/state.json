@@ -262,81 +262,10 @@
     "m219",
     "m252",
     "m072",
-    "m420"
+    "m420",
+    "m242"
   ],
   "history": [
-    {
-      "id": "s027",
-      "used_at": "2026-08-26T21:58:34+00:00",
-      "pillar": "disappear_rebuild",
-      "topic": "discipline",
-      "theme": "lack of focus",
-      "perspective": "you",
-      "hook_type": "device_rule",
-      "hook": "Nobody noticed your digital silence. Your work did.",
-      "title": "Your Work Noticed the Silence",
-      "ending_concept": "attention returned through a physical boundary",
-      "key_phrases": [
-        "kitchen drawer",
-        "unfinished work"
-      ],
-      "similarity_terms": [
-        "apps",
-        "being",
-        "block",
-        "building",
-        "confused",
-        "deleting",
-        "depth",
-        "device",
-        "did",
-        "digital",
-        "disappear",
-        "disappeared",
-        "divided",
-        "drawer",
-        "empty",
-        "ended",
-        "entered",
-        "every",
-        "failed",
-        "felt",
-        "first",
-        "hour",
-        "interruption",
-        "into",
-        "life",
-        "months",
-        "more",
-        "mornings",
-        "nobody",
-        "not",
-        "noticed",
-        "notifications",
-        "phone",
-        "pieces",
-        "planning",
-        "produced",
-        "public",
-        "reach",
-        "remained",
-        "sessions",
-        "silence",
-        "six",
-        "small",
-        "something",
-        "spacious",
-        "than",
-        "thirty",
-        "too",
-        "unexpectedly",
-        "until",
-        "valuable",
-        "visible",
-        "within",
-        "work"
-      ]
-    },
     {
       "id": "m473",
       "used_at": "2026-08-27T11:38:41+00:00"
@@ -1132,6 +1061,10 @@
     {
       "id": "m420",
       "used_at": "2026-11-11T07:55:18+00:00"
+    },
+    {
+      "id": "m242",
+      "used_at": "2026-11-11T11:59:53+00:00"
     }
   ]
 }
