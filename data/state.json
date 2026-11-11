@@ -261,82 +261,10 @@
     "m299",
     "m219",
     "m252",
-    "m072"
+    "m072",
+    "m420"
   ],
   "history": [
-    {
-      "id": "s365",
-      "used_at": "2026-08-25T08:07:54+00:00",
-      "pillar": "transformation",
-      "topic": "boundary",
-      "theme": "people pleasing",
-      "perspective": "she",
-      "hook_type": "relatable_moment",
-      "hook": "At 28, Chloe had repeated the same escape 21 times.",
-      "title": "Day 21: The Honest No",
-      "ending_concept": "a believable yes required the existence of no",
-      "key_phrases": [
-        "honest no",
-        "answered one request with an honest no"
-      ],
-      "similarity_terms": [
-        "another",
-        "answered",
-        "approval",
-        "behind",
-        "being",
-        "believable",
-        "broke",
-        "calendar",
-        "chloe",
-        "confused",
-        "day",
-        "dramatic",
-        "empty",
-        "escape",
-        "evening",
-        "every",
-        "evidence",
-        "excuses",
-        "existence",
-        "explaining",
-        "followed",
-        "found",
-        "grand",
-        "grew",
-        "hard",
-        "helpful",
-        "honest",
-        "immediate",
-        "left",
-        "looked",
-        "meanwhile",
-        "minutes",
-        "new",
-        "nothing",
-        "one",
-        "pattern",
-        "producing",
-        "reached",
-        "repeated",
-        "request",
-        "required",
-        "resentment",
-        "result",
-        "routine",
-        "same",
-        "simply",
-        "smile",
-        "solution",
-        "team",
-        "times",
-        "truth",
-        "until",
-        "valued",
-        "without",
-        "yes"
-      ]
-    },
     {
       "id": "s027",
       "used_at": "2026-08-26T21:58:34+00:00",
@@ -1200,6 +1128,10 @@
     {
       "id": "m072",
       "used_at": "2026-11-10T15:43:08+00:00"
+    },
+    {
+      "id": "m420",
+      "used_at": "2026-11-11T07:55:18+00:00"
     }
   ]
 }
