@@ -11,7 +11,6 @@ from datetime import datetime, timedelta
 
 from google.auth.transport.requests import Request
 from google.oauth2.credentials import Credentials
-from google_auth_oauthlib.flow import InstalledAppFlow
 from googleapiclient.discovery import build
 from googleapiclient.http import MediaFileUpload
 
@@ -27,6 +26,7 @@ class YouTubeUploader:
         self,
         client_id: str = None,
         client_secret: str = None,
+        refresh_token: str = None,
         token_path: str = "token.pickle",
     ):
         """Initialize YouTube uploader.
@@ -34,10 +34,12 @@ class YouTubeUploader:
         Args:
             client_id: YouTube API client ID
             client_secret: YouTube API client secret
+            refresh_token: OAuth refresh token
             token_path: Path to store token
         """
         self.client_id = client_id or os.environ.get("YOUTUBE_CLIENT_ID")
         self.client_secret = client_secret or os.environ.get("YOUTUBE_CLIENT_SECRET")
+        self.refresh_token = refresh_token or os.environ.get("YOUTUBE_REFRESH_TOKEN")
         self.token_path = token_path
         self.youtube = None
 
@@ -54,28 +56,29 @@ class YouTubeUploader:
             with open(self.token_path, "rb") as token:
                 creds = pickle.load(token)
 
-        # Refresh if expired
+        # If credentials exist and are valid, use them
         if creds and creds.valid:
             pass
+        # If credentials exist but expired, refresh
         elif creds and creds.expired and creds.refresh_token:
             creds.refresh(Request())
+        # If we have refresh token directly, create credentials
+        elif self.client_id and self.client_secret and self.refresh_token:
+            creds = Credentials(
+                token=None,
+                refresh_token=self.refresh_token,
+                token_uri="https://oauth2.googleapis.com/token",
+                client_id=self.client_id,
+                client_secret=self.client_secret,
+                scopes=self.SCOPES,
+            )
+            creds.refresh(Request())
         else:
-            # Need to get new token via OAuth flow
-            if not self.client_id or not self.client_secret:
-                raise ValueError("YouTube credentials not configured")
-
-            # Create OAuth flow
-            client_config = {
-                "installed": {
-                    "client_id": self.client_id,
-                    "client_secret": self.client_secret,
-                    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-                    "token_uri": "https://oauth2.googleapis.com/token",
-                }
-            }
-
-            flow = InstalledAppFlow.from_client_config(client_config, self.SCOPES)
-            creds = flow.run_local_server(port=0)
+            raise ValueError(
+                "YouTube credentials not configured. "
+                "Set YOUTUBE_CLIENT_ID, YOUTUBE_CLIENT_SECRET, and YOUTUBE_REFRESH_TOKEN "
+                "environment variables."
+            )
 
         # Save token
         with open(self.token_path, "wb") as token:
@@ -227,7 +230,7 @@ class YouTubeUploader:
             video_path: Video file path
             thumbnail_path: Thumbnail image path
             metadata_path: Metadata JSON file path
-            output_path: Optional output path for upload result
+            output_path: Output JSON file path
 
         Returns:
             Upload result
@@ -236,22 +239,26 @@ class YouTubeUploader:
         with open(metadata_path, "r", encoding="utf-8") as f:
             metadata = json.load(f)
 
-        # Upload
+        title = metadata.get("title", "Historical Documentary")
+        description = metadata.get("description", "")
+        tags = metadata.get("tags", ["history", "documentary", "education"])
+        category_id = metadata.get("category_id", 27)
+        privacy_status = os.environ.get("DEFAULT_PRIVACY", "public")
+
+        # Upload video
         result = self.upload_video(
             video_path=video_path,
-            title=metadata.get("title", "Untitled Documentary"),
-            description=metadata.get("description", ""),
-            tags=metadata.get("tags", []),
-            category_id=metadata.get("category_id", 27),
-            privacy_status=metadata.get("privacy_status", "public"),
-            thumbnail_path=thumbnail_path,
+            title=title,
+            description=description,
+            tags=tags,
+            category_id=category_id,
+            privacy_status=privacy_status,
+            thumbnail_path=thumbnail_path if os.path.exists(thumbnail_path) else None,
         )
 
-        # Save result if output path provided
+        # Save result
         if output_path:
-            output_file = Path(output_path)
-            output_file.parent.mkdir(parents=True, exist_ok=True)
-            with open(output_file, "w") as f:
+            with open(output_path, "w") as f:
                 json.dump(result, f, indent=2)
 
         return result
@@ -259,34 +266,23 @@ class YouTubeUploader:
 
 def main():
     """Main entry point."""
-    parser = argparse.ArgumentParser(description="Upload video to YouTube")
-    parser.add_argument("--video", type=str, required=True, help="Video file path")
-    parser.add_argument("--thumbnail", type=str, required=True, help="Thumbnail path")
-    parser.add_argument("--metadata", type=str, required=True, help="Metadata JSON")
+    parser = argparse.ArgumentParser(description="Upload documentary to YouTube")
+    parser.add_argument("--video", type=str, required=True)
+    parser.add_argument("--thumbnail", type=str, required=False)
+    parser.add_argument("--metadata", type=str, required=True)
     parser.add_argument("--output", type=str, default="output/upload_result.json")
     args = parser.parse_args()
 
-    # Check credentials
-    if not os.environ.get("YOUTUBE_CLIENT_ID"):
-        print("Error: YOUTUBE_CLIENT_ID not set")
-        return
-
-    if not os.environ.get("YOUTUBE_CLIENT_SECRET"):
-        print("Error: YOUTUBE_CLIENT_SECRET not set")
-        return
-
-    # Upload
     uploader = YouTubeUploader()
+
     result = uploader.upload_documentary(
-        args.video,
-        args.thumbnail,
-        args.metadata,
-        args.output,
+        video_path=args.video,
+        thumbnail_path=args.thumbnail,
+        metadata_path=args.metadata,
+        output_path=args.output,
     )
 
-    print(f"\n✓ Video uploaded successfully!")
-    print(f"  URL: {result['video_url']}")
-    print(f"  ID: {result['video_id']}")
+    print(f"Uploaded: {result['video_url']}")
 
 
 if __name__ == "__main__":
