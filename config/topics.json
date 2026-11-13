@@ -1,0 +1,118 @@
+{
+  "series": [
+    {
+      "name": "Empire Histories",
+      "description": "Rise and fall of history's greatest empires",
+      "topics": [
+        {
+          "title": "The Rise and Fall of the Roman Empire",
+          "keywords": ["rome", "roman empire", "caesar", "augustus", "collapse"],
+          "time_period": "753 BC - 476 AD",
+          "difficulty": "beginner"
+        },
+        {
+          "title": "Genghis Khan and the Mongol Empire",
+          "keywords": ["mongol", "genghis khan", "kublai khan", "steppe", "conquest"],
+          "time_period": "1206 - 1368",
+          "difficulty": "intermediate"
+        },
+        {
+          "title": "The Persian Empire: First World Superpower",
+          "keywords": ["persia", "achaemenid", "cyrus", "darius", "persian wars"],
+          "time_period": "550 BC - 330 BC",
+          "difficulty": "beginner"
+        },
+        {
+          "title": "The Byzantine Empire: Eastern Rome",
+          "keywords": ["byzantine", "constantinople", "justinian", "eastern roman"],
+          "time_period": "330 - 1453",
+          "difficulty": "intermediate"
+        },
+        {
+          "title": "The Ottoman Empire: 600 Years of Power",
+          "keywords": ["ottoman", "suleiman", "constantinople", "janissary"],
+          "time_period": "1299 - 1922",
+          "difficulty": "intermediate"
+        },
+        {
+          "title": "The British Empire: Empire Where the Sun Never Sets",
+          "keywords": ["british empire", "colonialism", "victoria", "commonwealth"],
+          "time_period": "1583 - 1997",
+          "difficulty": "beginner"
+        },
+        {
+          "title": "The Spanish Empire: Conquistadors and Gold",
+          "keywords": ["spanish empire", "conquistador", "armada", "colonization"],
+          "time_period": "1492 - 1975",
+          "difficulty": "beginner"
+        },
+        {
+          "title": "The Macedonian Empire: Alexander the Great",
+          "keywords": ["alexander", "macedon", "hellenistic", "conquest"],
+          "time_period": "336 BC - 323 BC",
+          "difficulty": "beginner"
+        },
+        {
+          "title": "The Qing Dynasty: China's Last Empire",
+          "keywords": ["qing", "manchu", "china", "dynasty", "kangxi"],
+          "time_period": "1644 - 1912",
+          "difficulty": "intermediate"
+        },
+        {
+          "title": "The Mughal Empire: India's Golden Age",
+          "keywords": ["mughal", "akbar", "taj mahal", "india", "shah jahan"],
+          "time_period": "1526 - 1857",
+          "difficulty": "beginner"
+        },
+        {
+          "title": "The Russian Empire: From Tsars to Revolution",
+          "keywords": ["russian empire", "romanov", "peter the great", "catherine"],
+          "time_period": "1721 - 1917",
+          "difficulty": "intermediate"
+        },
+        {
+          "title": "The Carolingian Empire: Charlemagne's Legacy",
+          "keywords": ["charlemagne", "carolingian", "frankish", "holy roman"],
+          "time_period": "800 - 888",
+          "difficulty": "advanced"
+        },
+        {
+          "title": "The Inca Empire: Children of the Sun",
+          "keywords": ["inca", "machu picchu", "atahualpa", "andes", "pachacuti"],
+          "time_period": "1438 - 1533",
+          "difficulty": "beginner"
+        },
+        {
+          "title": "The Aztec Empire: Warriors of Mexico",
+          "keywords": ["aztec", "tenochtitlan", "montezuma", "mexica", "tlaxcala"],
+          "time_period": "1428 - 1521",
+          "difficulty": "beginner"
+        },
+        {
+          "title": "The Gupta Empire: India's Classical Age",
+          "keywords": ["gupta", "chandragupta", "india", "golden age", "mathematics"],
+          "time_period": "320 - 550",
+          "difficulty": "intermediate"
+        }
+      ]
+    }
+  ],
+  "future_series": [
+    {
+      "name": "War Stories",
+      "description": "Decisive battles that changed history"
+    },
+    {
+      "name": "Ancient Mysteries",
+      "description": "Unsolved puzzles from the ancient world"
+    },
+    {
+      "name": "Great Leaders",
+      "description": "Biographies of history's most influential figures"
+    },
+    {
+      "name": "Technology Through Time",
+      "description": "How innovations shaped civilizations"
+    }
+  ]
+}

@@ -1,9 +1,55 @@
-requests>=2.33,<3.0
-google-api-python-client>=2.177,<3.0
-google-auth>=2.40,<3.0
-google-auth-httplib2>=0.2,<1.0
-google-auth-oauthlib>=1.2,<2.0
-PyYAML>=6.0,<7.0
-pytest>=8.4,<9.0
-piper-tts>=1.4,<2.0
+# Core dependencies
+python-dotenv>=1.0.0
+pyyaml>=6.0
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
 
+# Research
+wikipedia-api>=0.6.0
+newspaper3k>=0.2.8
+
+# Image processing
+Pillow>=10.0.0
+rembg>=2.0.50
+opencv-python>=4.8.0
+scikit-image>=0.21.0
+
+# Video processing
+ffmpeg-python>=0.2.0
+moviepy>=1.0.3
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.8
+
+# Visualization
+matplotlib>=3.7.0
+seaborn>=0.12.0
+geopandas>=0.14.0
+shapely>=2.0.0
+
+# Animation
+manim>=0.17.0
+
+# Audio processing
+pydub>=0.25.0
+pyttsx3>=2.90
+
+# TTS APIs
+openai>=1.0.0
+
+# YouTube API
+google-auth>=2.23.0
+google-auth-oauthlib>=1.1.0
+google-auth-httplib2>=0.1.1
+google-api-python-client>=2.100.0
+
+# AI/ML for script generation
+anthropic>=0.7.0
+
+# Testing
+pytest>=7.4.0
+pytest-cov>=4.1.0
+
+# Utilities
+tqdm>=4.66.0
+loguru>=0.7.0

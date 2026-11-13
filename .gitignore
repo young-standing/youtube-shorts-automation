@@ -1,13 +1,70 @@
+# Python
 __pycache__/
 *.py[cod]
-.pytest_cache/
-.venv/
-venv/
-.env
-client_secret.json
-output/
-.shorts-tmp/
-.tts-models/
-.idea/
-.vscode/
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
 
+# Virtual environments
+venv/
+ENV/
+env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Output files
+output/
+temp/
+cache/
+
+# State and secrets
+state/
+token.pickle
+*.env
+.env
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Distribution
+*.manifest
+*.spec
+
+# Credentials
+secrets/
+credentials.json

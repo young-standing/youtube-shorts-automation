@@ -1,0 +1,234 @@
+name: Generate Documentary
+
+on:
+  schedule:
+    - cron: '0 6 * * 1'  # Weekly on Monday 6 AM UTC
+  workflow_dispatch:
+    inputs:
+      topic:
+        description: 'Documentary topic (leave blank for random)'
+        required: false
+        default: ''
+      dry_run:
+        description: 'Dry run (skip upload)'
+        required: false
+        type: boolean
+        default: false
+
+env:
+  PYTHON_VERSION: '3.11'
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+          cache: 'pip'
+      
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg libsndfile1 sox
+          ffmpeg -version
+      
+      - name: Cache pip dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+      
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      
+      - name: Create output directory
+        run: mkdir -p output
+      
+      - name: Generate topic
+        id: topic
+        run: |
+          if [ -n "${{ github.event.inputs.topic }}" ]; then
+            echo "topic=${{ github.event.inputs.topic }}" >> $GITHUB_OUTPUT
+          else
+            TOPIC=$(python src/research/topic_selector.py)
+            echo "topic=$TOPIC" >> $GITHUB_OUTPUT
+          fi
+        env:
+          TOPICS_CONFIG: config/topics.json
+      
+      - name: Research topic
+        run: |
+          python src/research/wikipedia_researcher.py \
+            --topic "${{ steps.topic.outputs.topic }}" \
+            --output output/research.json
+        env:
+          MAX_WIKI_SECTIONS: 10
+      
+      - name: Fact check content
+        run: |
+          python src/research/fact_checker.py \
+            --input output/research.json \
+            --output output/verified_research.json
+      
+      - name: Generate script
+        run: |
+          python src/content/script_generator.py \
+            --input output/verified_research.json \
+            --output output/script.json \
+            --style vox
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          TARGET_DURATION_MINUTES: 10
+      
+      - name: Generate metadata
+        run: |
+          python src/content/metadata_generator.py \
+            --input output/script.json \
+            --output output/metadata.json
+      
+      - name: Collect visual assets
+        run: |
+          python src/assets/image_collector.py \
+            --input output/script.json \
+            --output output/images/
+          python src/assets/video_collector.py \
+            --input output/script.json \
+            --output output/videos/
+        env:
+          WIKIMEDIA_USER_AGENT: "EmpireHistoriesBot/1.0"
+      
+      - name: Generate background music
+        run: |
+          python src/assets/music_generator.py \
+            --duration 720 \
+            --output output/background_music.mp3
+        env:
+          SUNO_API_KEY: ${{ secrets.SUNO_API_KEY }}
+      
+      - name: Generate infographics
+        run: |
+          python src/visuals/infographic_generator.py \
+            --input output/script.json \
+            --research output/verified_research.json \
+            --output output/infographics/
+      
+      - name: Generate animated maps
+        run: |
+          python src/visuals/map_animator.py \
+            --input output/script.json \
+            --research output/verified_research.json \
+            --output output/maps/
+      
+      - name: Generate timeline graphics
+        run: |
+          python src/visuals/timeline_generator.py \
+            --input output/script.json \
+            --output output/timelines/
+      
+      - name: Process images
+        run: |
+          python src/visuals/image_processor.py \
+            --input output/images/ \
+            --output output/processed_images/
+      
+      - name: Generate TTS narration
+        run: |
+          python src/audio/tts_generator.py \
+            --input output/script.json \
+            --output output/narration/
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          TTS_VOICE: "onyx"
+      
+      - name: Mix audio
+        run: |
+          python src/audio/audio_mixer.py \
+            --narration output/narration/ \
+            --music output/background_music.mp3 \
+            --output output/final_audio.mp3
+      
+      - name: Assemble video
+        run: |
+          python src/video/video_assembler.py \
+            --script output/script.json \
+            --narration output/final_audio.mp3 \
+            --images output/processed_images/ \
+            --videos output/videos/ \
+            --infographics output/infographics/ \
+            --maps output/maps/ \
+            --timelines output/timelines/ \
+            --output output/documentary.mp4
+        env:
+          OUTPUT_RESOLUTION: "1920x1080"
+          OUTPUT_FPS: 30
+      
+      - name: Quality assurance
+        run: |
+          python src/video/qa_checker.py \
+            --video output/documentary.mp4 \
+            --script output/script.json \
+            --output output/qa_report.json
+      
+      - name: Generate thumbnail
+        run: |
+          python src/upload/thumbnail_generator.py \
+            --video output/documentary.mp4 \
+            --metadata output/metadata.json \
+            --output output/thumbnail.jpg
+      
+      - name: Upload to YouTube
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          python src/upload/youtube_uploader.py \
+            --video output/documentary.mp4 \
+            --thumbnail output/thumbnail.jpg \
+            --metadata output/metadata.json \
+            --output output/upload_result.json
+        env:
+          YOUTUBE_CLIENT_ID: ${{ secrets.YOUTUBE_CLIENT_ID }}
+          YOUTUBE_CLIENT_SECRET: ${{ secrets.YOUTUBE_CLIENT_SECRET }}
+          YOUTUBE_REFRESH_TOKEN: ${{ secrets.YOUTUBE_REFRESH_TOKEN }}
+          DEFAULT_PRIVACY: "public"
+      
+      - name: Save publication state
+        if: ${{ github.event.inputs.dry_run != 'true' }}
+        run: |
+          python src/upload/state_manager.py \
+            --save \
+            --topic "${{ steps.topic.outputs.topic }}" \
+            --upload-result output/upload_result.json
+      
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: documentary-output
+          path: |
+            output/documentary.mp4
+            output/thumbnail.jpg
+            output/metadata.json
+            output/qa_report.json
+          retention-days: 14
+      
+      - name: Create summary
+        run: |
+          echo "## Documentary Generation Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Topic:** ${{ steps.topic.outputs.topic }}" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "**Status:** ✅ Completed" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f output/qa_report.json ]; then
+            echo "### QA Report" >> $GITHUB_STEP_SUMMARY
+            cat output/qa_report.json >> $GITHUB_STEP_SUMMARY
+          fi

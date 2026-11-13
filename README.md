@@ -1,35 +1,169 @@
-# GitHub-only cinematic motivational quote automation
+# Empire Histories - Vox-Style Documentary Automation
 
-Create and upload original, concise English motivational impact quotes using only GitHub Actions, the free Pexels Videos API, CC0/Public Domain energetic music from Openverse, FFmpeg, and the official YouTube Data API.
+Automated YouTube documentary channel producing Vox-style historical documentaries using GitHub Actions.
 
-The project does not require n8n, a VM, a database, paid rendering services, or paid AI APIs. Scheduled uploads are public; manual runs remain private by default.
+## Features
 
-## What it does
+- **Fully Automated Pipeline**: Topic → Research → Script → Visuals → Video → YouTube
+- **Vox-Style Editing**: Animated infographics, maps, timelines, motion graphics
+- **Copyright-Safe Content**: Public domain historical sources
+- **Global Audience**: English narration, worldwide topics
+- **Weekly Production**: One 8–12 minute documentary per week
 
-- Runs every day at 5:00 AM, 8:00 AM, 11:00 AM, and 2:00 PM in `Asia/Yangon`, with manual runs supported.
-- Selects from an original motivational quote bank and renders each quote as a unique 8–14 second Short.
-- Rotates discipline, success, healing, confidence, growth, and consistency themes.
-- Permanently removes each quote only after its YouTube upload succeeds, so uploaded scripts never repeat.
-- Uses one coherent portrait clip per Short, with monochrome contrast and phrase-synchronized punch-ins instead of unrelated scene changes.
-- Creates English narration locally with Piper's `en_US-joe-medium` CC0 voice, varying pace, energy, and emphasis phrase by phrase.
-- Downloads uplifting, epic, or cinematic motivational music from Openverse, restricted to CC0 or Public Domain audio, then ducks it under narration.
-- Renders 1080×1920 H.264/AAC Shorts with minimal centered white captions, subtle `ORDERLESS` branding, and a final audio target near -14 LUFS.
-- Saves analytics-ready metadata including theme, duration, title, script, music source, and visual searches.
-- Uploads through the official YouTube Data API using resumable upload and retries.
-- Saves two-day debugging artifacts and persists rich anti-repetition history safely.
+## Tech Stack
 
-The established schedule, secrets, OAuth flow, YouTube uploader, Pexels/Openverse integrations, public/private behavior, and success-only consumption logic are preserved. The project does not add a paid API.
+- **Python 3.11** - Core automation
+- **FFmpeg** - Video rendering and effects
+- **MoviePy** - Video editing
+- **Pillow/PIL** - Image processing
+- **Matplotlib** - Charts and visualizations
+- **Wikipedia API** - Research source
+- **TTS (OpenAI/ElevenLabs)** - Narration
+- **GitHub Actions** - CI/CD pipeline
+- **YouTube Data API** - Upload automation
 
-## Start here
+## Project Structure
 
-Follow [SETUP.md](SETUP.md) from beginning to end and configure the required GitHub Secrets and `CHANNEL_NAME` repository variable. Openverse credentials are free and keep scheduled searches within authenticated rate limits.
-
-Run local feature tests with:
-
-```bash
-pip install -r requirements.txt
-pytest -q
-python -m scripts.preview_stories --count 3
+```
+lofi-documentary/
+├── .github/
+│   └── workflows/
+│       └── generate-documentary.yml
+├── src/
+│   ├── research/
+│   │   ├── topic_selector.py
+│   │   ├── wikipedia_researcher.py
+│   │   └── fact_checker.py
+│   ├── content/
+│   │   ├── script_generator.py
+│   │   └── metadata_generator.py
+│   ├── assets/
+│   │   ├── image_collector.py
+│   │   ├── video_collector.py
+│   │   └── music_generator.py
+│   ├── visuals/
+│   │   ├── infographic_generator.py
+│   │   ├── map_animator.py
+│   │   ├── timeline_generator.py
+│   │   └── image_processor.py
+│   ├── audio/
+│   │   ├── tts_generator.py
+│   │   └── audio_mixer.py
+│   ├── video/
+│   │   ├── video_assembler.py
+│   │   └── effects.py
+│   └── upload/
+│       ├── youtube_uploader.py
+│       └── thumbnail_generator.py
+├── templates/
+│   ├── visual_templates/
+│   └── audio_templates/
+├── tests/
+├── config/
+│   ├── settings.yaml
+│   └── topics.json
+├── output/
+├── requirements.txt
+└── README.md
 ```
 
-No real YouTube upload is performed by the tests.
+## Setup
+
+### Prerequisites
+
+1. Python 3.11+
+2. FFmpeg installed on system
+3. GitHub account
+4. YouTube channel with API access
+
+### Installation
+
+```bash
+# Clone repository
+git clone <your-repo-url>
+cd lofi-documentary
+
+# Create virtual environment
+python -m venv venv
+source venv/bin/activate  # Linux/Mac
+# or
+.\venv\Scripts\activate  # Windows
+
+# Install dependencies
+pip install -r requirements.txt
+```
+
+### YouTube API Setup
+
+1. Go to [Google Cloud Console](https://console.cloud.google.com/)
+2. Create a new project
+3. Enable YouTube Data API v3
+4. Create OAuth 2.0 credentials
+5. Get refresh token for automation
+
+### GitHub Secrets
+
+Add these secrets to your repository:
+
+- `YOUTUBE_CLIENT_ID`
+- `YOUTUBE_CLIENT_SECRET`
+- `YOUTUBE_REFRESH_TOKEN`
+- `OPENAI_API_KEY` (optional, for TTS and script enhancement)
+
+## Usage
+
+### Manual Trigger
+
+Go to Actions → Generate Documentary → Run workflow
+
+Enter topic or leave blank for random selection.
+
+### Scheduled Runs
+
+Automatically runs every Monday at 6 AM UTC.
+
+### Local Testing
+
+```bash
+# Generate a documentary
+python main.py --topic "Rise and Fall of the Roman Empire"
+
+# Test specific component
+python -m src.research.wikipedia_researcher --topic "Mongol Empire"
+```
+
+## Topics Coverage
+
+Initial series focus on **"Empire Histories"**:
+
+- Ancient empires (Roman, Persian, Mongol, etc.)
+- Rise and fall narratives
+- Geographic changes over time
+- Cultural and technological impacts
+- Key historical figures
+
+## Video Format
+
+- **Duration**: 8–12 minutes
+- **Resolution**: 1920x1080 (1080p)
+- **FPS**: 30
+- **Format**: MP4 (H.264 + AAC)
+- **Style**: Vox-style documentary
+
+## Monetization Path
+
+1. **Phase 1** (0–6 months): Build content library, establish audience
+2. **Phase 2** (6–12 months): Apply for YouTube Partner Program
+3. **Phase 3** (12+ months): Expand to multiple series, sponsorships
+
+## License
+
+MIT License - See LICENSE file for details
+
+## Contributing
+
+This is a personal automation project. Contributions welcome via issues and pull requests.
+
+## Disclaimer
+
+This project uses public domain and properly licensed content only. All historical footage and images are sourced from copyright-safe archives. AI-generated content is used responsibly for educational purposes.

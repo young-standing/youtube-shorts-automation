@@ -1,0 +1,115 @@
+# Empire Histories Configuration
+
+# Video Settings
+video:
+  resolution:
+    width: 1920
+    height: 1080
+  fps: 30
+  codec: libx264
+  audio_codec: aac
+  bitrate: "8000k"
+  audio_bitrate: "192k"
+  format: mp4
+
+# Content Settings
+content:
+  target_duration_minutes: 10
+  min_duration_minutes: 8
+  max_duration_minutes: 12
+  style: vox
+  language: en
+  narration_style: documentary
+
+# Research Settings
+research:
+  max_wiki_sections: 10
+  min_word_count: 2000
+  sources:
+    - wikipedia
+    - wikimedia_commons
+    - internet_archive
+  fact_check_enabled: true
+
+# Visual Settings
+visuals:
+  theme:
+    primary_color: "#2C3E50"
+    secondary_color: "#E74C3C"
+    accent_color: "#3498DB"
+    background_color: "#1A1A2E"
+    text_color: "#FFFFFF"
+  
+  animation:
+    default_duration_seconds: 5
+    transition_duration_seconds: 0.5
+    ken_burns_enabled: true
+    parallax_enabled: true
+  
+  infographic:
+    style: modern
+    font: "Roboto"
+    animation_enabled: true
+  
+  map:
+    projection: mercator
+    animation_style: highlight
+    duration_seconds: 8
+  
+  timeline:
+    style: horizontal
+    animation_style: reveal
+    duration_seconds: 6
+
+# Audio Settings
+audio:
+  tts:
+    provider: openai
+    voice: onyx
+    speed: 1.0
+  
+  music:
+    enabled: true
+    volume: 0.15
+    fade_in_seconds: 2
+    fade_out_seconds: 3
+  
+  sound_effects:
+    enabled: true
+    volume: 0.1
+
+# Upload Settings
+upload:
+  default_privacy: public
+  category: 27  # Education
+  tags:
+    - history
+    - documentary
+    - education
+    - "world history"
+  default_language: en
+  made_for_kids: false
+
+# Scheduling
+schedule:
+  timezone: "UTC"
+  publish_day: monday
+  publish_hour: 6
+  
+# API Rate Limits
+rate_limits:
+  wikipedia_requests_per_second: 1
+  wikimedia_requests_per_second: 2
+  openai_requests_per_minute: 60
+
+# Paths
+paths:
+  output: output
+  temp: temp
+  cache: cache
+  templates: templates
+
+# Logging
+logging:
+  level: INFO
+  format: "{time:YYYY-MM-DD HH:mm:ss} | {level} | {message}"
