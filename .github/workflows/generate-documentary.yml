@@ -36,7 +36,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg libsndfile1 sox python3-tk
+          sudo apt-get install -y ffmpeg libsndfile1 sox python3-tk espeak-ng
           ffmpeg -version
       
       - name: Cache pip dependencies
@@ -146,9 +146,9 @@ jobs:
         run: |
           python src/audio/tts_generator.py \
             --input output/script.json \
-            --output output/narration/
+            --output output/narration/ \
+            --provider local
         env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
           TTS_VOICE: "onyx"
       
       - name: Mix audio

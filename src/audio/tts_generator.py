@@ -15,7 +15,7 @@ class TTSGenerator:
 
     def __init__(
         self,
-        provider: str = "openai",
+        provider: str = "local",
         voice: str = "onyx",
         output_dir: str = "output/narration",
     ):
@@ -26,6 +26,11 @@ class TTSGenerator:
             voice: Voice name/ID
             output_dir: Output directory
         """
+        # Default to local TTS if no API key
+        if provider == "openai" and not os.environ.get("OPENAI_API_KEY"):
+            logger.info("No OPENAI_API_KEY found, falling back to local TTS")
+            provider = "local"
+        
         self.provider = provider
         self.voice = voice
         self.output_dir = Path(output_dir)
@@ -127,7 +132,7 @@ class TTSGenerator:
         text: str,
         output_path: str,
     ) -> str:
-        """Generate narration using local TTS.
+        """Generate narration using local TTS (espeak on Linux).
 
         Args:
             text: Text to convert
@@ -136,19 +141,48 @@ class TTSGenerator:
         Returns:
             Path to generated audio
         """
+        import subprocess
+        
         try:
-            import pyttsx3
-
-            engine = pyttsx3.init()
-            engine.save_to_file(text, output_path)
-            engine.runAndWait()
-
+            # Use espeak-ng on Linux (available in GitHub Actions)
+            subprocess.run([
+                "espeak-ng",
+                "-v", "en",
+                "-s", "150",  # Speed
+                "-w", output_path,
+                text[:3000]  # Limit text length
+            ], check=True, capture_output=True)
+            
             logger.info(f"Generated local narration: {output_path}")
             return output_path
-
-        except ImportError:
-            logger.error("pyttsx3 not installed. Run: pip install pyttsx3")
-            raise
+            
+        except FileNotFoundError:
+            # Fall back to espeak if espeak-ng not available
+            try:
+                subprocess.run([
+                    "espeak",
+                    "-v", "en",
+                    "-s", "150",
+                    "-w", output_path,
+                    text[:3000]
+                ], check=True, capture_output=True)
+                
+                logger.info(f"Generated local narration: {output_path}")
+                return output_path
+                
+            except FileNotFoundError:
+                # Last resort: create silent audio
+                logger.warning("No TTS available, creating silent audio")
+                subprocess.run([
+                    "ffmpeg", "-y",
+                    "-f", "lavfi",
+                    "-i", f"anullsrc=r=44100:cl=mono",
+                    "-t", str(len(text.split()) / 150 * 60),  # Approximate duration
+                    "-q:a", "9",
+                    output_path
+                ], check=True, capture_output=True)
+                
+                return output_path
 
     def generate_narration(
         self,
