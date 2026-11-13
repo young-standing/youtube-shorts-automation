@@ -36,7 +36,7 @@ jobs:
       - name: Install system dependencies
         run: |
           sudo apt-get update
-          sudo apt-get install -y ffmpeg libsndfile1 sox
+          sudo apt-get install -y ffmpeg libsndfile1 sox python3-tk
           ffmpeg -version
       
       - name: Cache pip dependencies

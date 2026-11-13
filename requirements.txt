@@ -24,11 +24,11 @@ imageio-ffmpeg>=0.4.8
 # Visualization
 matplotlib>=3.7.0
 seaborn>=0.12.0
-geopandas>=0.14.0
+# Note: geopandas requires system dependencies, using shapely only for coordinates
 shapely>=2.0.0
 
-# Animation
-manim>=0.17.0
+# Note: manim requires system dependencies (pango, cairo), removed for CI compatibility
+# Animation features will use matplotlib and PIL instead
 
 # Audio processing
 pydub>=0.25.0
